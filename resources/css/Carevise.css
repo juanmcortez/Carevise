@@ -1,3 +1,155 @@
+:root {
+    --light: #edf2f9;
+    --dark: #152e4d;
+    --darker: #12263f;
+    /*  */
+    --color-primary: var(--color-blue);
+    --color-primary-50: var(--color-blue-50);
+    --color-primary-100: var(--color-blue-100);
+    --color-primary-light: var(--color-blue-light);
+    --color-primary-lighter: var(--color-blue-lighter);
+    --color-primary-dark: var(--color-blue-dark);
+    --color-primary-darker: var(--color-blue-darker);
+    /*  */
+    --color-blue: #2563eb;
+    --color-blue-50: #eff6ff;
+    --color-blue-100: #dbeafe;
+    --color-blue-light: #3b82f6;
+    --color-blue-lighter: #60a5fa;
+    --color-blue-dark: #1d4ed8;
+    --color-blue-darker: #1e40af;
+  }
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+body#guest,
+body#application {
+    @apply min-w-full min-h-full;
+    @apply p-0 m-0;
+    @apply font-sans text-xs antialiased xl:text-base;
+}
+
+#container {
+    @apply flex flex-col;
+    @apply min-h-screen;
+}
+
+#header {
+    @apply flex xl:flex-row;
+    @apply min-h-14;
+    @apply bg-gray-100;
+}
+
+body#guest #header > #logo {
+    @apply flex flex-row;
+    @apply items-center justify-center;
+    @apply w-full;
+    @apply bg-gray-300;
+    @apply border-b border-gray-400 xl:border-r;
+}
+
+body#guest #header > #logo > #appTitle {
+    @apply ml-4;
+    @apply text-lg font-semibold;
+}
+
+body#application #header > #logo {
+    @apply flex flex-row;
+    @apply items-center justify-center;
+    @apply w-1/4 xl:w-16;
+    @apply bg-gray-300;
+    @apply border-0 border-gray-400 xl:border-r;
+}
+
+body#application #header > #logo > #appTitle {
+    @apply hidden;
+}
+
+#header > #headerL {
+    @apply hidden xl:flex;
+    @apply flex-grow-0 xl:flex-grow;
+    @apply items-center justify-center;
+    @apply bg-gray-300;
+    @apply border-b border-gray-400;
+}
+
+#header > #headerR {
+    @apply flex flex-grow-0 xl:flex-grow;
+    @apply w-3/4 xl:w-auto;
+    @apply pr-4 xl:pr-0;
+    @apply items-center justify-end xl:justify-center;
+    @apply bg-gray-300;
+    @apply border-0 border-gray-400 xl:border-b;
+}
+
+body#guest #header > #headerL,
+body#guest #header > #headerR{
+    @apply hidden;
+}
+
+#main {
+    @apply flex flex-col flex-grow xl:flex-row;
+}
+
+#main > #sidebar {
+    @apply flex xl:flex-col;
+    @apply items-center justify-center;
+    @apply w-full xl:w-16;
+    @apply py-2 xl:py-0;
+    @apply bg-gray-200 xl:bg-gray-300;
+    @apply border-b border-gray-400 xl:border-r xl:border-b-0;
+}
+
+#main > #sidebar > #sdbrTop {
+    @apply flex flex-grow;
+    @apply items-center justify-center xl:items-start;
+    @apply p-0 xl:pt-4;
+}
+
+#main > #sidebar > #sdbrMiddle {
+    @apply flex-grow hidden xl:flex;
+    @apply items-center justify-center;
+}
+
+#main > #sidebar > #sdbrBottom {
+    @apply flex flex-grow;
+    @apply items-center justify-center xl:items-end;
+    @apply p-0 xl:pb-2;
+}
+
+#main > #contentholder {
+    @apply flex flex-col flex-grow;
+    @apply bg-gray-200;
+}
+
+#main > #contentholder > #content {
+    @apply flex flex-grow;
+    @apply p-2 xl:p-4;
+    @apply bg-gray-100;
+}
+
+body#guest #main > #contentholder > #content {
+    @apply items-center justify-center;
+    @apply p-0;
+}
+
+#main > #contentholder > #footer {
+    @apply flex flex-row;
+    @apply w-full min-h-7 xl:min-h-10;
+    @apply text-[10px] xl:text-xs text-gray-500;
+    @apply bg-gray-300;
+    @apply border-t border-gray-400;
+}
+
+#main > #contentholder > #footer > #footerL {
+    @apply flex flex-grow;
+    @apply items-center justify-center;
+}
+
+#main > #contentholder > #footer > #footerR {
+    @apply flex flex-grow;
+    @apply items-center justify-center;
+}
