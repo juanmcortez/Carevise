@@ -4,6 +4,7 @@ namespace Database\Seeders\Users;
 
 use App\Models\Users\User;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
 class UserSeeder extends Seeder
@@ -16,6 +17,7 @@ class UserSeeder extends Seeder
         User::factory()->create([
             'username'  => 'superadmin',
             'email'     => 'superadmin@carevise.test',
+            'password'  => Hash::make('superadmin'),
         ]);
     }
 }

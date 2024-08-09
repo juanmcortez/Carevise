@@ -2,6 +2,9 @@
 
 use Illuminate\Support\Facades\Route;
 
-Route::get('/', function () {
-    return view('main.index');
+// Protected routes by login
+Route::middleware('auth')->group(function () {
+    Route::get('/', function () {
+        return view('main.index');
+    })->name('index');
 });
