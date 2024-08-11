@@ -121,7 +121,7 @@ body#guest #header > #headerR{
 }
 
 #main > #contentholder {
-    @apply flex flex-col flex-grow;
+    @apply flex flex-col flex-1;
     @apply bg-gray-200;
 }
 

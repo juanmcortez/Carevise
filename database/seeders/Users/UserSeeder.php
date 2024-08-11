@@ -16,8 +16,8 @@ class UserSeeder extends Seeder
     {
         User::factory()->create([
             'username'  => 'superadmin',
-            'email'     => 'superadmin@carevise.test',
-            'password'  => Hash::make('superadmin'),
+            'email'     => 'superadmin@carevise.com',
+            'password'  => Hash::make('5uper4dm!nCar3vis3'),
         ]);
     }
 }
