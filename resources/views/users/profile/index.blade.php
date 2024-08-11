@@ -1,5 +1,10 @@
 @extends('layouts.application')
 
 @section('content')
-    USER PROFILE {{ $user }}
+    USER PROFILE
+    <br />
+    <br />
+    <pre>{{ $user }}</pre>
+    <br />
+    <pre>{{ $user->demographic }}</pre>
 @endsection
