@@ -32,6 +32,13 @@ body#application {
     @apply font-sans text-xs antialiased xl:text-base;
 }
 
+a#link {
+    @apply text-xs font-medium text-gray-500 xl:text-sm;
+    @apply transition duration-150 ease-in-out;
+    @apply hover:text-teal-500 hover:cursor-pointer;
+    @apply focus:outline-none focus:no-underline hover:no-underline active:no-underline;
+}
+
 #container {
     @apply flex flex-col;
     @apply min-h-screen;
@@ -61,7 +68,7 @@ body#application #header > #logo {
     @apply items-center justify-center;
     @apply w-1/4 xl:w-16;
     @apply bg-gray-300;
-    @apply border-0 border-gray-400 xl:border-r;
+    @apply border-0 border-gray-400 xl:border-r-0;
 }
 
 body#application #header > #logo > #appTitle {
@@ -152,4 +159,50 @@ body#guest #main > #contentholder > #content {
 #main > #contentholder > #footer > #footerR {
     @apply flex flex-grow;
     @apply items-center justify-center;
+}
+
+#main > #sidebar > #sdbrBottom > #user-menu {
+    @apply relative;
+}
+
+#main > #sidebar > #sdbrBottom > #user-menu > #user-icon {
+    @apply object-cover;
+    @apply w-8 h-8;
+    @apply bg-gray-200 border border-gray-400 rounded-full;
+    @apply transition-colors duration-200;
+    @apply overflow-hidden;
+    @apply flex flex-row;
+    @apply items-center justify-center;
+    @apply hover:cursor-pointer hover:bg-gray-400 hover:border-gray-600;
+}
+
+#main > #sidebar > #sdbrBottom > #user-menu > #user-icon > svg {
+    @apply w-5 h-5;
+    @apply fill-gray-500;
+    @apply transition-colors duration-200;
+}
+
+
+#main > #sidebar > #sdbrBottom > #user-menu > #submenu {
+    @apply absolute z-50 w-56 -left-32 xl:bottom-0 xl:-translate-y-3 xl:left-10 ;
+}
+
+#main > #sidebar > #sdbrBottom > #user-menu > #submenu .holder {
+    @apply p-1 mt-1;
+    @apply bg-gray-100 shadow;
+    @apply border rounded-sm border-gray-200/70;
+    @apply text-gray-700;
+}
+
+#main > #sidebar > #sdbrBottom > #user-menu > #submenu .holder a {
+    @apply relative;
+    @apply flex select-none;
+    @apply hover:bg-teal-100/75;
+    @apply items-center;
+    @apply rounded;
+    @apply px-2 py-1.5;
+    @apply text-sm;
+    @apply transition-colors outline-none;
+    @apply data-[disabled]:pointer-events-none data-[disabled]:opacity-50;
+    @apply hover:cursor-pointer ;
 }
