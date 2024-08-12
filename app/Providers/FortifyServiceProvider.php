@@ -26,7 +26,7 @@ class FortifyServiceProvider extends ServiceProvider
             public function toResponse($request)
             {
                 return redirect()
-                    ->route('user.profile', ['username' => $request->user()->username]);
+                    ->route('user.profile', ['user' => $request->user()]);
             }
         });
         // This code redirects new registerd users to its profile page for completion

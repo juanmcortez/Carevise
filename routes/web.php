@@ -12,6 +12,7 @@ Route::middleware('auth')->group(function () {
 
     // User Profile
     Route::controller(UserController::class)->group(function () {
-        Route::get('/{username}/profile', 'edit')->name('user.profile');
+        Route::get('/{user:username}/profile', 'edit')->name('user.profile');
+        Route::patch('/{user:username}/profile', 'update')->name('user.profile.update');
     });
 });
