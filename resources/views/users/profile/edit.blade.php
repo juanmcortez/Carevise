@@ -11,10 +11,10 @@
                 <x-form-input name="email" :value="old('email', $user->email)" :error="$errors->get('email')" :placeholder="__('E-mail')" maxlength="255" />
             </div>
             <div class="flex flex-row w-1/2 mb-12 space-x-2">
-                <x-form-input name="is_active" type="checkbox" :value="$user->is_active" :checked="old('is_active', $user->is_active)" :error="$errors->get('is_active')"
-                    :placeholder="__('Is the user active?')" />
-                <x-form-input name="is_user_provider" type="checkbox" :value="$user->is_user_provider" :checked="old('is_user_provider', $user->is_user_provider)"
-                    :error="$errors->get('is_user_provider')" :placeholder="__('Is the user a provider?')" />
+                <x-form-checkbox class="mr-4" name="is_active" value="1" :checked="old('is_active', $user->is_active)" :error="$errors->get('is_active')" readonly
+                    disabled>{{ __('Is the user active?') }}</x-form-checkbox>
+                <x-form-checkbox name="is_user_provider" value="1" :checked="old('is_user_provider', $user->is_user_provider)"
+                    :error="$errors->get('is_user_provider')">{{ __('Is the user a provider?') }}</x-form-checkbox>
             </div>
         </div>
         <div class="flex flex-row space-x-4">

@@ -12,7 +12,9 @@
 
                 <div class="flex flex-col items-center justify-between mb-4 xl:mb-5 sm:flex-row">
                     <div class="flex items-center sm:justify-center mb-1.5 sm:mb-0">
-                        <x-checkbox id="remember_me" name="remember_me" value="1">{{ __('Remember me') }}</x-checkbox>
+                        <x-form-checkbox name="remember_me" value="1" :checked="old('remember_me')" :error="$errors->get('remember_me')">
+                            {{ __('Remember me') }}
+                        </x-form-checkbox>
                     </div>
                     <div class="text-sm leading-5">
                         <x-link route="{{ route('password.request') }}">{{ __('Forgot your password?') }}</x-link>
