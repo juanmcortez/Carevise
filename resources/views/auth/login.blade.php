@@ -1,4 +1,4 @@
-@extends('layouts.guest')
+@extends('layouts.application')
 
 @section('content')
     <div class="flex flex-row w-9/12 text-gray-800 shadow sm:w-6/12 md:w-4/12 xl:w-5/12">
@@ -6,9 +6,9 @@
             <h1 class="text-lg font-extrabold uppercase xl:text-3xl">{{ __('Login') }}</h1>
             <form method="POST" action="{{ route('login') }}" class="flex flex-col w-full px-0 mt-4 xl:mt-8 xl:px-8">
                 @csrf
-                <x-input id="username" name="username" placeholder="{{ __('Username') }}" autofocus :errors="$errors" />
+                <x-form-input name="username" :value="old('username')" :error="$errors->get('username')" :placeholder="__('Username')" autofocus />
 
-                <x-passw id="password" name="password" placeholder="{{ __('Password') }}" :errors="$errors" />
+                <x-form-input name="password" type="password" :error="$errors->get('password')" :placeholder="__('Password')" />
 
                 <div class="flex flex-col items-center justify-between mb-4 xl:mb-5 sm:flex-row">
                     <div class="flex items-center sm:justify-center mb-1.5 sm:mb-0">

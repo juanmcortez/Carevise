@@ -1,4 +1,4 @@
-@extends('layouts.guest')
+@extends('layouts.application')
 
 @section('content')
     <div class="flex flex-row w-9/12 text-gray-800 shadow sm:w-6/12 md:w-4/12 xl:w-5/12">
@@ -6,14 +6,13 @@
             <h1 class="text-lg font-extrabold uppercase xl:text-3xl">{{ __('Register') }}</h1>
             <form method="POST" action="{{ route('register') }}" class="flex flex-col w-full px-0 mt-4 xl:mt-8 xl:px-8">
                 @csrf
-                <x-input id="username" name="username" placeholder="{{ __('Username') }}" autofocus :errors="$errors" />
+                <x-form-input name="username" :value="old('username')" :error="$errors->get('username')" :placeholder="__('Username')" autofocus />
 
-                <x-input id="email" name="email" placeholder="{{ __('E-mail') }}" :errors="$errors" />
+                <x-form-input name="email" :value="old('email')" :error="$errors->get('email')" :placeholder="__('E-mail')" />
 
-                <x-passw id="password" name="password" placeholder="{{ __('Password') }}" :errors="$errors" />
+                <x-form-input name="password" type="password" :error="$errors->get('password')" :placeholder="__('Password')" />
 
-                <x-passw id="password_confirmation" name="password_confirmation" placeholder="{{ __('Confirm password') }}"
-                    :errors="$errors" />
+                <x-form-input name="password_confirmation" type="password" :error="$errors->get('password_confirmation')" :placeholder="__('Confirm password')" />
 
                 <x-button
                     class="tracking-wider text-teal-100 uppercase bg-teal-600 border-teal-200 hover:bg-teal-500/75 hover:text-teal-900 focus:border-teal-400 focus:bg-teal-500/50 xl:mb-6"

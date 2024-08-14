@@ -1,8 +1,13 @@
 <div id="header">
-    <div id="logo">
-        <x-logo route="{{ route('index') }}" class="w-8 h-8 fill-teal-600" />
-        <div id="appTitle">{{ config('app.name', 'Laravel') }}</div>
+    <div class="left">
+        @guest
+            <x-logo route="{{ route('index') }}" class="logo" />
+            <span>{{ config('company.name') }}</span>
+        @else
+            HDR L
+        @endguest
     </div>
-    <div id="headerL">HEADER L</div>
-    <div id="headerR">HEADER R</div>
+    @Auth
+        <div class="right">HDR R</div>
+    @endAuth
 </div>
