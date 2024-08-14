@@ -62,6 +62,7 @@
     }
 
     #content #header {
+        @apply relative;
         @apply flex;
         @apply items-center justify-end xl:justify-center;
         @apply w-1/2 h-10 xl:h-20 xl:w-full;
@@ -74,6 +75,49 @@
 
     #guest #content #header {
         @apply w-full;
+    }
+
+    #content #header .toast {
+        @apply absolute z-[999];
+        @apply w-80 xl:w-96;
+        @apply top-14 xl:top-24 right-[calc(50%-10rem)] xl:right-[calc(50%-12rem)];
+        @apply rounded-sm;
+        @apply border-l-4 shadow-md;
+    }
+
+    #content #header .toast h6 {
+        @apply w-full;
+        @apply px-3 pt-2;
+        @apply text-xs font-bold uppercase xl:text-sm;
+    }
+
+    #content #header .toast .message {
+        @apply flex flex-col;
+        @apply w-full;
+        @apply px-3 pb-2;
+        @apply text-[10px] xl:text-xs;
+    }
+
+    #content #header .toast .message span {
+        @apply w-full;
+        @apply mt-1 ml-2;
+    }
+
+    #content #header .toast.info {
+        @apply bg-info-100/90 text-info-700;
+        @apply shadow-info-400 border-info-700;
+    }
+    #content #header .toast.success {
+        @apply bg-success-100/90 text-success-700;
+        @apply shadow-success-300 border-success-700;
+    }
+    #content #header .toast.warning {
+        @apply bg-warning-100/90 text-warning-700;
+        @apply shadow-warning-300/75 border-warning-700;
+    }
+    #content #header .toast.error {
+        @apply bg-danger-100/90 text-danger-700;
+        @apply shadow-danger-300 border-danger-700;
     }
 
     #content #header .left {

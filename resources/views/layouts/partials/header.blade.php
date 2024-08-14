@@ -10,4 +10,7 @@
     @Auth
         <div class="right">HDR R</div>
     @endAuth
+
+    {{-- System wide messages --}}
+    <x-tools.toast :help="session('status')" :success="session('success')" :errors="$errors" :warning="session('warning')" :info="session('info')" />
 </div>
