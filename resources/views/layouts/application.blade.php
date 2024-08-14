@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>{{ config('company.name', 'Laravel') }}</title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,17 +23,17 @@
     @vite(['resources/css/Carevise.css', 'resources/js/Carevise.js'])
 </head>
 
-<body id="application">
-    <div id="container">
+<body @guest id="guest" @endguest>
+    @Auth
+        @include('layouts.partials.sidebar')
+    @endAuth
+    <div id="content">
         @include('layouts.partials.header')
-        <div id="main">
-            @include('layouts.partials.sidebar')
-            <div id="contentholder">
-                <main id="content">
-                    @yield('content')
-                </main>
+        <div id="articles">
+            <main>
+                <div class="wrapper">@yield('content')</div>
                 @include('layouts.partials.footer')
-            </div>
+            </main>
         </div>
     </div>
 </body>

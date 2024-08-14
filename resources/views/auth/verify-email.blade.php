@@ -1,4 +1,4 @@
-@extends('layouts.guest')
+@extends('layouts.application')
 
 @section('content')
     VERIFY E-MAIL

@@ -1,5 +1,9 @@
-<div id="sidebar">
-    <div id="sdbrTop">SDBR T</div>
-    <div id="sdbrMiddle">SDBR M</div>
-    <div id="sdbrBottom">SDBR B</div>
-</div>
+<aside>
+    <div id="logo">
+        <x-logo route="{{ route('index') }}" class="logo" />
+    </div>
+    <div id="sidebar">
+        <div class="top">SDBRT</div>
+        <div class="bottom">SDBRB</div>
+    </div>
+</aside>

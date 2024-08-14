@@ -1,155 +1,171 @@
-:root {
-    --light: #edf2f9;
-    --dark: #152e4d;
-    --darker: #12263f;
-    /*  */
-    --color-primary: var(--color-blue);
-    --color-primary-50: var(--color-blue-50);
-    --color-primary-100: var(--color-blue-100);
-    --color-primary-light: var(--color-blue-light);
-    --color-primary-lighter: var(--color-blue-lighter);
-    --color-primary-dark: var(--color-blue-dark);
-    --color-primary-darker: var(--color-blue-darker);
-    /*  */
-    --color-blue: #2563eb;
-    --color-blue-50: #eff6ff;
-    --color-blue-100: #dbeafe;
-    --color-blue-light: #3b82f6;
-    --color-blue-lighter: #60a5fa;
-    --color-blue-dark: #1d4ed8;
-    --color-blue-darker: #1e40af;
-  }
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
+@layer utilities {
+    html,
+    body {
+        @apply w-full h-full;
+        @apply p-0 m-0;
+    }
 
-body#guest,
-body#application {
-    @apply min-w-full min-h-full;
-    @apply p-0 m-0;
-    @apply font-sans text-xs antialiased xl:text-base;
-}
+    body {
+        @apply font-sans text-xs antialiased leading-3 xl:text-base;
+        @apply relative flex flex-col xl:flex-row;
+        @apply bg-original-primary-200 text-original-light-100;
+    }
 
-#container {
-    @apply flex flex-col;
-    @apply min-h-screen;
-}
+    aside {
+        @apply sticky;
+        @apply flex flex-row xl:flex-col;
+        @apply w-full h-auto xl:w-20 xl:h-full;
+        @apply text-[10px] xl:text-base;
+    }
 
-#header {
-    @apply flex xl:flex-row;
-    @apply min-h-14;
-    @apply bg-gray-100;
-}
+    aside #logo {
+        @apply flex;
+        @apply items-center justify-center;
+        @apply w-10 h-10 xl:h-20 xl:w-full;
+        @apply p-1;
+        @apply border-b border-original-secondary-900 xl:border-b-0;
+        @apply bg-original-secondary-800 xl:bg-original-primary-700;
+    }
 
-body#guest #header > #logo {
-    @apply flex flex-row;
-    @apply items-center justify-center;
-    @apply w-full;
-    @apply bg-gray-300;
-    @apply border-b border-gray-400 xl:border-r;
-}
+    aside #logo .logo,
+    #content #header .left .logo {
+        @apply w-7 h-7 xl:w-12 xl:h-12;
+        @apply fill-original-light-200;
+    }
 
-body#guest #header > #logo > #appTitle {
-    @apply ml-4;
-    @apply text-lg font-semibold;
-}
+    aside #sidebar {
+        @apply flex flex-row xl:flex-col;
+        @apply items-center justify-start xl:justify-center;
+        @apply h-10 w-[calc(50%-40px)] xl:w-full xl:h-full;
+        @apply px-4 py-2 xl:p-2;
+        @apply border-b border-original-secondary-900 xl:border-b-0;
+        @apply bg-original-secondary-800 xl:bg-original-primary-700;
+    }
 
-body#application #header > #logo {
-    @apply flex flex-row;
-    @apply items-center justify-center;
-    @apply w-1/4 xl:w-16;
-    @apply bg-gray-300;
-    @apply border-0 border-gray-400 xl:border-r;
-}
+    aside #sidebar .top {
+        @apply flex items-center justify-start xl:items-start xl:justify-center;
+        @apply w-1/2 h-full xl:w-full xl:h-1/2;
+    }
 
-body#application #header > #logo > #appTitle {
-    @apply hidden;
-}
+    aside #sidebar .bottom {
+        @apply flex items-center justify-end xl:items-end xl:justify-center;
+        @apply w-1/2 h-full xl:w-full xl:h-1/2;
+    }
 
-#header > #headerL {
-    @apply hidden xl:flex;
-    @apply flex-grow-0 xl:flex-grow;
-    @apply items-center justify-center;
-    @apply bg-gray-300;
-    @apply border-b border-gray-400;
-}
+    #content {
+        @apply flex flex-col;
+        @apply w-full h-full;
+    }
 
-#header > #headerR {
-    @apply flex flex-grow-0 xl:flex-grow;
-    @apply w-3/4 xl:w-auto;
-    @apply pr-4 xl:pr-0;
-    @apply items-center justify-end xl:justify-center;
-    @apply bg-gray-300;
-    @apply border-0 border-gray-400 xl:border-b;
-}
+    #content #header {
+        @apply flex;
+        @apply items-center justify-end xl:justify-center;
+        @apply w-1/2 h-10 xl:h-20 xl:w-full;
+        @apply px-4 py-1 xl:p-4;
+        @apply text-[10px] xl:text-base;
+        @apply absolute top-0 right-0 xl:relative;
+        @apply border-b border-original-secondary-900;
+        @apply bg-original-secondary-800;
+    }
 
-body#guest #header > #headerL,
-body#guest #header > #headerR{
-    @apply hidden;
-}
+    #guest #content #header {
+        @apply w-full;
+    }
 
-#main {
-    @apply flex flex-col flex-grow xl:flex-row;
-}
+    #content #header .left {
+        @apply flex justify-start;
+        @apply w-1/2;
+    }
 
-#main > #sidebar {
-    @apply flex xl:flex-col;
-    @apply items-center justify-center;
-    @apply w-full xl:w-16;
-    @apply py-2 xl:py-0;
-    @apply bg-gray-200 xl:bg-gray-300;
-    @apply border-b border-gray-400 xl:border-r xl:border-b-0;
-}
+    #content #header .right {
+        @apply flex justify-end;
+        @apply w-1/2;
+    }
 
-#main > #sidebar > #sdbrTop {
-    @apply flex flex-grow;
-    @apply items-center justify-center xl:items-start;
-    @apply p-0 xl:pt-4;
-}
+    #guest #content #header .left {
+        @apply justify-center w-full;
+    }
 
-#main > #sidebar > #sdbrMiddle {
-    @apply flex-grow hidden xl:flex;
-    @apply items-center justify-center;
-}
+    #guest #content #header .left .logo {
+        @apply w-7 h-7 xl:w-10 xl:h-10;
+    }
 
-#main > #sidebar > #sdbrBottom {
-    @apply flex flex-grow;
-    @apply items-center justify-center xl:items-end;
-    @apply p-0 xl:pb-2;
-}
+    #guest #content #header .left .logo + span {
+        @apply mt-2 ml-2 xl:mt-2 xl:ml-3;
+    }
 
-#main > #contentholder {
-    @apply flex flex-col flex-grow;
-    @apply bg-gray-200;
-}
+    #content #articles {
+        @apply flex flex-col;
+        @apply w-full h-full;
+        @apply overflow-y-auto;
+        @apply xl:border-l xl:border-original-secondary-900;
+    }
 
-#main > #contentholder > #content {
-    @apply flex flex-grow;
-    @apply p-2 xl:p-4;
-    @apply bg-gray-100;
-}
+    #content #articles main {
+        @apply flex flex-col;
+        @apply w-full h-full;
+        @apply text-[10px] xl:text-sm leading-3;
+    }
 
-body#guest #main > #contentholder > #content {
-    @apply items-center justify-center;
-    @apply p-0;
-}
+    #content #articles main .wrapper {
+        @apply flex flex-1;
+        @apply p-4;
+        @apply text-original-dark-950;
+        @apply w-full h-fit;
+    }
 
-#main > #contentholder > #footer {
-    @apply flex flex-row;
-    @apply w-full min-h-7 xl:min-h-10;
-    @apply text-[10px] xl:text-xs text-gray-500;
-    @apply bg-gray-300;
-    @apply border-t border-gray-400;
-}
+    #content #articles main footer {
+        @apply flex flex-col md:flex-row;
+        @apply items-center justify-center;
+        @apply w-full h-auto;
+        @apply py-2 px-0 space-y-2 md:space-y-0 md:px-4 xl:py-2.5;
+        @apply text-[10px] xl:text-sm leading-3;
+        @apply border-t border-original-secondary-900;
+        @apply bg-original-secondary-800;
+    }
 
-#main > #contentholder > #footer > #footerL {
-    @apply flex flex-grow;
-    @apply items-center justify-center;
-}
+    #content #articles main footer .left {
+        @apply flex flex-row;
+        @apply items-center justify-center;
+        @apply w-full md:w-1/2;
+        @apply text-original-secondary-400;
+    }
 
-#main > #contentholder > #footer > #footerR {
-    @apply flex flex-grow;
-    @apply items-center justify-center;
+    #content #articles main footer .right {
+        @apply flex flex-col xl:flex-row;
+        @apply items-center justify-center;
+        @apply w-full md:w-1/2;
+        @apply text-original-secondary-400;
+    }
+
+    #content #articles main footer .left .logo {
+        @apply w-5 h-5;
+        @apply leading-5;
+        @apply fill-original-secondary-400;
+    }
+
+    #content #articles main footer .left span,
+    #content #articles main footer .right span{
+        @apply mx-2;
+        @apply leading-5;
+        @apply xl:text-[12px] tracking-wide;
+    }
+
+    #content #articles main footer .right a {
+        @apply hover:text-original-secondary-300;
+        @apply transition-all;
+    }
+
+    #content #articles main footer .right span {
+        @apply xl:mr-20;
+        @apply text-center;
+    }
+
+    #content #articles main footer .right span br {
+        @apply xl:hidden;
+    }
 }
