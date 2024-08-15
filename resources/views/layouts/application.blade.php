@@ -23,7 +23,7 @@
     @vite(['resources/css/Carevise.css', 'resources/js/Carevise.js'])
 </head>
 
-<body @guest id="guest" @endguest>
+<body @guest id="guest" @endguest data-theme="default">
     @Auth
         @include('layouts.partials.sidebar')
     @endAuth

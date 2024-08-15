@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 @layer base {
-    html[data-theme='default'] {
+    body[data-theme='default'] {
         --color-dark-50: 243 245 252;
         --color-dark-100: 231 236 247;
         --color-dark-200: 201 214 238;
@@ -64,7 +64,7 @@
         --color-accent-900: 92 61 43;
         --color-accent-950: 51 31 21;
     }
-    html[data-theme='greenish'] {
+    body[data-theme='greenish'] {
         --color-dark-50: 245 248 246;
         --color-dark-100: 221 234 226;
         --color-dark-200: 187 212 196;
@@ -125,7 +125,7 @@
         --color-accent-900: 79 71 63;
         --color-accent-950: 42 36 32;
     }
-    html[data-theme='violetish'] {
+    body[data-theme='violetish'] {
         --color-dark-50: 242 245 251;
         --color-dark-100: 231 236 248;
         --color-dark-200: 211 219 242;
