@@ -2,7 +2,197 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer base {
+    html[data-theme='default'] {
+        --color-dark-50: 243 245 252;
+        --color-dark-100: 231 236 247;
+        --color-dark-200: 201 214 238;
+        --color-dark-300: 154 180 223;
+        --color-dark-400: 100 141 204;
+        --color-dark-500: 64 110 183;
+        --color-dark-600: 47 86 154;
+        --color-dark-700: 39 68 125;
+        --color-dark-800: 36 60 104;
+        --color-dark-900: 34 52 88;
+        --color-dark-950: 13 19 33;
+
+        --color-light-50: 244 247 249;
+        --color-light-100: 234 242 245;
+        --color-light-200: 217 230 236;
+        --color-light-300: 194 213 223;
+        --color-light-400: 169 192 208;
+        --color-light-500: 147 171 193;
+        --color-light-600: 116 140 171;
+        --color-light-700: 105 125 153;
+        --color-light-800: 87 103 124;
+        --color-light-900: 74 86 101;
+        --color-light-950: 43 50 59;
+
+        --color-primary-50: 245 247 250;
+        --color-primary-100: 234 239 244;
+        --color-primary-200: 209 221 230;
+        --color-primary-300: 168 191 209;
+        --color-primary-400: 121 157 183;
+        --color-primary-500: 88 129 159;
+        --color-primary-600: 69 104 132;
+        --color-primary-700: 62 92 118;
+        --color-primary-800: 50 72 90;
+        --color-primary-900: 45 61 77;
+        --color-primary-950: 30 41 51;
+
+        --color-secondary-50: 244 247 251;
+        --color-secondary-100: 231 238 247;
+        --color-secondary-200: 203 219 236;
+        --color-secondary-300: 157 188 220;
+        --color-secondary-400: 104 153 200;
+        --color-secondary-500: 69 123 178;
+        --color-secondary-600: 51 97 150;
+        --color-secondary-700: 42 79 122;
+        --color-secondary-800: 38 68 102;
+        --color-secondary-900: 36 59 86;
+        --color-secondary-950: 29 45 68;
+
+        --color-accent-50: 250 248 240;
+        --color-accent-100: 240 235 216;
+        --color-accent-200: 222 211 169;
+        --color-accent-300: 205 185 124;
+        --color-accent-400: 193 164 94;
+        --color-accent-500: 182 141 74;
+        --color-accent-600: 160 114 63;
+        --color-accent-700: 134 88 55;
+        --color-accent-800: 110 72 50;
+        --color-accent-900: 92 61 43;
+        --color-accent-950: 51 31 21;
+    }
+    html[data-theme='greenish'] {
+        --color-dark-50: 245 248 246;
+        --color-dark-100: 221 234 226;
+        --color-dark-200: 187 212 196;
+        --color-dark-300: 146 182 161;
+        --color-dark-400: 107 150 127;
+        --color-dark-500: 81 123 101;
+        --color-dark-600: 63 98 80;
+        --color-dark-700: 52 78 65;
+        --color-dark-800: 46 65 56;
+        --color-dark-900: 41 56 49;
+        --color-dark-950: 20 31 26;
+
+        --color-light-50: 244 245 240;
+        --color-light-100: 230 233 222;
+        --color-light-200: 206 214 192;
+        --color-light-300: 163 177 138;
+        --color-light-400: 147 162 121;
+        --color-light-500: 117 135 91;
+        --color-light-600: 91 106 70;
+        --color-light-700: 71 82 57;
+        --color-light-800: 59 67 49;
+        --color-light-900: 52 59 44;
+        --color-light-950: 26 30 21;
+
+        --color-primary-50: 245 248 245;
+        --color-primary-100: 232 240 232;
+        --color-primary-200: 209 225 209;
+        --color-primary-300: 172 201 172;
+        --color-primary-400: 130 168 128;
+        --color-primary-500: 88 129 87;
+        --color-primary-600: 74 112 73;
+        --color-primary-700: 60 89 60;
+        --color-primary-800: 51 72 51;
+        --color-primary-900: 43 60 43;
+        --color-primary-950: 20 31 21;
+
+        --color-secondary-50: 245 248 245;
+        --color-secondary-100: 231 241 232;
+        --color-secondary-200: 208 226 211;
+        --color-secondary-300: 171 202 176;
+        --color-secondary-400: 126 170 134;
+        --color-secondary-500: 91 140 100;
+        --color-secondary-600: 71 114 79;
+        --color-secondary-700: 58 90 64;
+        --color-secondary-800: 50 73 55;
+        --color-secondary-900: 42 61 46;
+        --color-secondary-950: 19 32 22;
+
+        --color-accent-50: 247 246 245;
+        --color-accent-100: 237 235 231;
+        --color-accent-200: 218 215 205;
+        --color-accent-300: 195 190 174;
+        --color-accent-400: 170 161 141;
+        --color-accent-500: 153 140 118;
+        --color-accent-600: 140 126 106;
+        --color-accent-700: 117 104 89;
+        --color-accent-800: 96 86 76;
+        --color-accent-900: 79 71 63;
+        --color-accent-950: 42 36 32;
+    }
+    html[data-theme='violetish'] {
+        --color-dark-50: 242 245 251;
+        --color-dark-100: 231 236 248;
+        --color-dark-200: 211 219 242;
+        --color-dark-300: 184 195 233;
+        --color-dark-400: 155 165 222;
+        --color-dark-500: 129 136 211;
+        --color-dark-600: 104 105 195;
+        --color-dark-700: 89 87 171;
+        --color-dark-800: 73 73 138;
+        --color-dark-900: 64 65 111;
+        --color-dark-950: 34 34 59;
+
+        --color-light-50: 250 247 246;
+        --color-light-100: 244 237 236;
+        --color-light-200: 235 223 221;
+        --color-light-300: 220 201 197;
+        --color-light-400: 201 173 167;
+        --color-light-500: 176 139 131;
+        --color-light-600: 153 113 105;
+        --color-light-700: 127 93 86;
+        --color-light-800: 107 79 73;
+        --color-light-900: 91 70 65;
+        --color-light-950: 47 35 32;
+
+        --color-primary-50: 248 247 248;
+        --color-primary-100: 242 241 242;
+        --color-primary-200: 231 227 230;
+        --color-primary-300: 212 205 212;
+        --color-primary-400: 184 174 183;
+        --color-primary-500: 154 140 152;
+        --color-primary-600: 136 122 133;
+        --color-primary-700: 114 100 111;
+        --color-primary-800: 95 85 93;
+        --color-primary-900: 82 73 80;
+        --color-primary-950: 46 41 45;
+
+        --color-secondary-50: 245 246 249;
+        --color-secondary-100: 232 235 241;
+        --color-secondary-200: 214 220 231;
+        --color-secondary-300: 186 195 214;
+        --color-secondary-400: 152 166 194;
+        --color-secondary-500: 127 139 178;
+        --color-secondary-600: 109 119 163;
+        --color-secondary-700: 97 104 148;
+        --color-secondary-800: 83 87 122;
+        --color-secondary-900: 74 78 105;
+        --color-secondary-950: 45 47 62;
+
+        --color-accent-50: 250 247 246;
+        --color-accent-100: 242 233 228;
+        --color-accent-200: 238 225 218;
+        --color-accent-300: 225 204 192;
+        --color-accent-400: 206 173 155;
+        --color-accent-500: 186 144 121;
+        --color-accent-600: 163 119 95;
+        --color-accent-700: 136 98 77;
+        --color-accent-800: 114 83 66;
+        --color-accent-900: 96 73 60;
+        --color-accent-950: 51 36 28;
+    }
+}
+
 @layer utilities {
+    * {
+        @apply transition-colors duration-100 ease-in-out;
+    }
+
     html,
     body {
         @apply w-full h-full;
@@ -12,7 +202,7 @@
     body {
         @apply font-sans text-xs antialiased leading-3 xl:text-base;
         @apply relative flex flex-col xl:flex-row;
-        @apply bg-original-primary-200 text-original-light-100;
+        @apply bg-primary-200 text-light-100;
     }
 
     aside {
@@ -27,14 +217,14 @@
         @apply items-center justify-center;
         @apply w-10 h-10 xl:h-20 xl:w-full;
         @apply p-1;
-        @apply border-b border-original-secondary-900 xl:border-b-0;
-        @apply bg-original-secondary-800 xl:bg-original-primary-700;
+        @apply border-b border-secondary-900 xl:border-b-0;
+        @apply bg-secondary-800 xl:bg-primary-700;
     }
 
     aside #logo .logo,
     #content #header .left .logo {
         @apply w-7 h-7 xl:w-12 xl:h-12;
-        @apply fill-original-light-200;
+        @apply fill-light-200;
     }
 
     aside #sidebar {
@@ -42,8 +232,8 @@
         @apply items-center justify-start xl:justify-center;
         @apply h-10 w-[calc(50%-40px)] xl:w-full xl:h-full;
         @apply px-4 py-2 xl:p-2;
-        @apply border-b border-original-secondary-900 xl:border-b-0;
-        @apply bg-original-secondary-800 xl:bg-original-primary-700;
+        @apply border-b border-secondary-900 xl:border-b-0;
+        @apply bg-secondary-800 xl:bg-primary-700;
     }
 
     aside #sidebar .top {
@@ -69,8 +259,8 @@
         @apply px-4 py-1 xl:p-4;
         @apply text-[10px] xl:text-base;
         @apply absolute top-0 right-0 xl:relative;
-        @apply border-b border-original-secondary-900;
-        @apply bg-original-secondary-800;
+        @apply border-b border-secondary-900;
+        @apply bg-secondary-800;
     }
 
     #guest #content #header {
@@ -146,7 +336,7 @@
         @apply flex flex-col;
         @apply w-full h-full;
         @apply overflow-y-auto;
-        @apply xl:border-l xl:border-original-secondary-900;
+        @apply xl:border-l xl:border-secondary-900;
     }
 
     #content #articles main {
@@ -158,7 +348,7 @@
     #content #articles main .wrapper {
         @apply flex flex-1;
         @apply p-4;
-        @apply text-original-dark-950;
+        @apply text-dark-950;
         @apply w-full h-fit;
     }
 
@@ -168,28 +358,28 @@
         @apply w-full h-auto;
         @apply py-2 px-0 space-y-2 md:space-y-0 md:px-4 xl:py-2.5;
         @apply text-[10px] xl:text-sm leading-3;
-        @apply border-t border-original-secondary-900;
-        @apply bg-original-secondary-800;
+        @apply border-t border-secondary-900;
+        @apply bg-secondary-800;
     }
 
     #content #articles main footer .left {
         @apply flex flex-row;
         @apply items-center justify-center;
         @apply w-full md:w-1/2;
-        @apply text-original-secondary-400;
+        @apply text-secondary-400;
     }
 
     #content #articles main footer .right {
         @apply flex flex-col xl:flex-row;
         @apply items-center justify-center;
         @apply w-full md:w-1/2;
-        @apply text-original-secondary-400;
+        @apply text-secondary-400;
     }
 
     #content #articles main footer .left .logo {
         @apply w-5 h-5;
         @apply leading-5;
-        @apply fill-original-secondary-400;
+        @apply fill-secondary-400;
     }
 
     #content #articles main footer .left span,
@@ -200,7 +390,7 @@
     }
 
     #content #articles main footer .right a {
-        @apply hover:text-original-secondary-300;
+        @apply hover:text-secondary-300;
         @apply transition-all;
     }
 
