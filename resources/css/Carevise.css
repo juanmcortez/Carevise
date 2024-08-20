@@ -395,7 +395,8 @@
         @apply outline-dark/15 focus:outline-0;
     }
 
-    .form-block.show-error label {
+    .form-block.show-error label,
+    .form-block-checkbox.show-error label {
         @apply text-danger/75
     }
 
