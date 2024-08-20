@@ -324,7 +324,7 @@
     .form-block-checkbox {
         @apply relative;
         @apply flex flex-row items-center justify-between;
-        @apply mt-0 mb-4;
+        @apply mt-1 mb-4;
     }
 
     .form-block label {
@@ -432,7 +432,7 @@
     }
 
     .form-block-checkbox.show-error .error-detail {
-        @apply left-4 top-4;
+        @apply left-4 -top-3.5;
         @apply w-48 p-0.5 rounded;
         @apply text-center;
     }
