@@ -25,7 +25,8 @@ class LoginUserRequest extends LoginRequest
     {
         return [
             Fortify::username() => ['required', 'string', 'max:64'],
-            'password'          => Password::defaults(),
+            'password'          => ['required', 'string', Password::defaults()],
+            // 'remember_me'       => ['required', 'boolean'],
         ];
     }
 }
