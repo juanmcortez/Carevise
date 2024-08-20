@@ -14,6 +14,7 @@ return [
     */
 
     'name' => env('COMPANY_NAME', 'Laravel'),
+    'short-name' => env('COMPANY_NAME_SHORT', 'Laravel'),
 
     /*
     |--------------------------------------------------------------------------
