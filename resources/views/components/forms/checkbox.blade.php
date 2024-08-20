@@ -1,48 +1,31 @@
 @props([
-    'value' => null,
+    'value' => true,
+    'label' => null,
     'name' => null,
-    'checked' => null,
-    'class' => '',
-    'placeholder' => false,
-    'type' => 'checkbox',
-    'error' => false,
-    'required' => false,
+    'type' => 'text',
+    'error' => null,
     'readonly' => false,
     'disabled' => false,
-    'autocomplete' => false,
-    'maxlength' => 128,
+    'required' => false,
 ])
 <div @class([
-    'flex',
-    'error-notice' => $error,
-    'no-label' => !$slot,
-    'item-' . $type => $type,
+    'form-block-checkbox',
     'disabled' => $disabled,
-    'relative',
-    $class,
+    'readonly' => $readonly,
+    'show-error' => count($error->get($name)),
 ])>
-    <input {{ $attributes->merge(['type' => $type, 'name' => $name, 'id' => $name, 'value' => $value]) }}
-        autocomplete="{{ $autocomplete ? $autocomplete : $name }}" placeholder="{{ $placeholder ? $placeholder : $slot }}"
-        maxlength="{{ $maxlength }}" @required($required) @readonly($readonly) @disabled($disabled)
-        @checked($checked) @class([
-            'w-3 h-3 transition duration-150 ease-in-out xl:rounded xl:w-4 xl:h-4 focus:ring-0',
-            'text-teal-600' => !$readonly && !$disabled,
-            'text-gray-300' => $readonly || $disabled,
-        ])>
-    @if ($slot)
-        <label @if (!empty($name)) for="{{ $name }}" @endif @class([
-            'block ml-2 text-xs leading-5 xl:text-sm',
-            'text-gray-900' => !$readonly && !$disabled,
-            'text-gray-300' => $readonly || $disabled,
-        ])>
-            {{ $slot }}
+    <input class="form-checkbox" type="checkbox"
+        {{ $attributes->merge(['name' => $name, 'id' => $name, 'value' => $value]) }} @readonly($readonly)
+        @disabled($disabled) @required($required) />
+    @if ($label)
+        <label for="{{ $name }}">
+            {{ $label }}
+            <span @class(['hidden' => !$required])>*</span>
         </label>
     @endif
-    @if (count($error))
-        @foreach ($error as $message)
-            <span class="absolute w-full text-right text-[10px] xl:text-xs text-red-600 left-0 top-12 pr-1">
-                {{ $message }}
-            </span>
+    @if (count($error->get($name)))
+        @foreach ($error->get($name) as $message)
+            <span class="error-detail">{{ $message }}</span>
         @endforeach
     @endif
 </div>

@@ -315,4 +315,125 @@
         @apply fill-accent;
         @apply dark:fill-secondary;
     }
+
+    .form-block {
+        @apply relative;
+        @apply mt-5 mb-4;
+    }
+
+    .form-block-checkbox {
+        @apply relative;
+        @apply flex flex-row items-center justify-between;
+        @apply mt-0 mb-4;
+    }
+
+    .form-block label {
+        @apply absolute left-0 -top-5;
+        @apply text-xs leading-none text-dark/75;
+    }
+
+    .form-block-checkbox label {
+        @apply ml-2;
+        @apply text-xs leading-none text-dark/75;
+    }
+
+    .form-block label span,
+    .form-block-checkbox label span {
+        @apply text-xs leading-none text-danger/75;
+    }
+
+    .form-block input {
+        @apply rounded;
+        @apply px-3 py-2;
+        @apply placeholder:text-dark/25;
+        @apply border-dark/30 focus:border-dark/50;
+        @apply ring-dark/30 focus:ring-dark/25;
+        @apply ring-offset-dark/30 focus:ring-offset-0;
+        @apply outline-dark/30 focus:outline-0;
+        @apply text-sm leading-none text-dark;
+    }
+
+    .form-block-checkbox input {
+        @apply rounded appearance-none cursor-pointer aspect-square;
+        @apply checked:bg-dark checked:hover:bg-dark;
+        @apply checked:focus:bg-dark checked:focus:hover:bg-dark;
+        @apply checked:border-dark/30;
+        @apply border-dark/30 focus:border-dark/50;
+        @apply ring-dark/30 focus:ring-dark/25;
+        @apply ring-offset-dark/30 focus:ring-offset-0;
+        @apply outline-dark/30 focus:outline-0;
+    }
+
+    .form-block.disabled label,
+    .form-block.readonly label {
+        @apply text-dark/25;
+    }
+
+    .form-block.disabled label span,
+    .form-block.readonly label span {
+        @apply text-danger/25;
+    }
+
+    .form-block.disabled input,
+    .form-block.readonly input {
+        @apply placeholder:text-dark/10;
+        @apply border-dark/15 focus:border-dark/35;
+        @apply ring-dark/15 focus:ring-dark/10;
+        @apply ring-offset-dark/15;
+        @apply outline-dark/15;
+        @apply text-dark;
+    }
+
+    .form-block-checkbox.disabled input,
+    .form-block-checkbox.readonly input {
+        @apply checked:bg-dark/10 checked:hover:bg-dark/10;
+        @apply checked:focus:bg-dark/10 checked:focus:hover:bg-dark/10;
+        @apply checked:border-dark/15;
+        @apply border-dark/15 focus:border-dark/35;
+        @apply ring-dark/15 focus:ring-dark/10;
+        @apply ring-offset-dark/15 focus:ring-offset-0;
+        @apply outline-dark/15 focus:outline-0;
+    }
+
+    .form-block.show-error label {
+        @apply text-danger/75
+    }
+
+    .form-block.show-error label span {
+        @apply text-danger/75;
+    }
+
+    .form-block.show-error input {
+        @apply placeholder:text-danger/35;
+        @apply border-danger/40 focus:border-danger/60;
+        @apply ring-danger/40 focus:ring-danger/35;
+        @apply ring-offset-danger/40;
+        @apply outline-danger/40;
+        @apply text-danger;
+    }
+
+    .form-block-checkbox.show-error input {
+        @apply checked:bg-danger checked:hover:bg-danger;
+        @apply checked:focus:bg-danger checked:focus:hover:bg-danger;
+        @apply checked:border-danger/30;
+        @apply border-danger/30 focus:border-danger/50;
+        @apply ring-danger/30 focus:ring-danger/25;
+        @apply ring-offset-danger/30 focus:ring-offset-0;
+        @apply outline-danger/30 focus:outline-0;
+    }
+
+    .form-block.show-error .error-detail,
+    .form-block-checkbox.show-error .error-detail {
+        @apply absolute z-[999];
+        @apply -top-2 -right-2;
+        @apply w-auto px-1.5 py-1 rounded;
+        @apply bg-danger/80;
+        @apply text-[10px] text-right text-light leading-none;
+    }
+
+    .form-block-checkbox.show-error .error-detail {
+        @apply left-4 top-4;
+        @apply w-48 p-0.5 rounded;
+        @apply text-center;
+    }
 }
