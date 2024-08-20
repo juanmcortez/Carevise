@@ -23,19 +23,20 @@
     @vite(['resources/css/Carevise.css', 'resources/js/Carevise.js'])
 </head>
 
-<body @guest id="guest" @endguest data-theme="default">
-    @Auth
-        @include('layouts.partials.sidebar')
-    @endAuth
-    <div id="content">
-        @include('layouts.partials.header')
-        <div id="articles">
-            <main>
-                <div class="wrapper">@yield('content')</div>
-                @include('layouts.partials.footer')
-            </main>
-        </div>
-    </div>
+<body @Auth id="application" @else id="guest" @endAuth class="">
+    @include('layouts.partials.header')
+    <section class="content">
+        @Auth
+            @include('layouts.partials.sidebar')
+        @endAuth
+        <main>
+            @Auth
+                @include('layouts.partials.breadcrumb')
+            @endAuth
+            <article class="content">@yield('content')</article>
+            @include('layouts.partials.footer')
+        </main>
+    </section>
 </body>
 
 </html>

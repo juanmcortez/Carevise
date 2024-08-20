@@ -2,404 +2,317 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer base {
-    body[data-theme='default'] {
-        --color-dark-50: 243 245 252;
-        --color-dark-100: 231 236 247;
-        --color-dark-200: 201 214 238;
-        --color-dark-300: 154 180 223;
-        --color-dark-400: 100 141 204;
-        --color-dark-500: 64 110 183;
-        --color-dark-600: 47 86 154;
-        --color-dark-700: 39 68 125;
-        --color-dark-800: 36 60 104;
-        --color-dark-900: 34 52 88;
-        --color-dark-950: 13 19 33;
-
-        --color-light-50: 244 247 249;
-        --color-light-100: 234 242 245;
-        --color-light-200: 217 230 236;
-        --color-light-300: 194 213 223;
-        --color-light-400: 169 192 208;
-        --color-light-500: 147 171 193;
-        --color-light-600: 116 140 171;
-        --color-light-700: 105 125 153;
-        --color-light-800: 87 103 124;
-        --color-light-900: 74 86 101;
-        --color-light-950: 43 50 59;
-
-        --color-primary-50: 245 247 250;
-        --color-primary-100: 234 239 244;
-        --color-primary-200: 209 221 230;
-        --color-primary-300: 168 191 209;
-        --color-primary-400: 121 157 183;
-        --color-primary-500: 88 129 159;
-        --color-primary-600: 69 104 132;
-        --color-primary-700: 62 92 118;
-        --color-primary-800: 50 72 90;
-        --color-primary-900: 45 61 77;
-        --color-primary-950: 30 41 51;
-
-        --color-secondary-50: 244 247 251;
-        --color-secondary-100: 231 238 247;
-        --color-secondary-200: 203 219 236;
-        --color-secondary-300: 157 188 220;
-        --color-secondary-400: 104 153 200;
-        --color-secondary-500: 69 123 178;
-        --color-secondary-600: 51 97 150;
-        --color-secondary-700: 42 79 122;
-        --color-secondary-800: 38 68 102;
-        --color-secondary-900: 36 59 86;
-        --color-secondary-950: 29 45 68;
-
-        --color-accent-50: 250 248 240;
-        --color-accent-100: 240 235 216;
-        --color-accent-200: 222 211 169;
-        --color-accent-300: 205 185 124;
-        --color-accent-400: 193 164 94;
-        --color-accent-500: 182 141 74;
-        --color-accent-600: 160 114 63;
-        --color-accent-700: 134 88 55;
-        --color-accent-800: 110 72 50;
-        --color-accent-900: 92 61 43;
-        --color-accent-950: 51 31 21;
-    }
-    body[data-theme='greenish'] {
-        --color-dark-50: 245 248 246;
-        --color-dark-100: 221 234 226;
-        --color-dark-200: 187 212 196;
-        --color-dark-300: 146 182 161;
-        --color-dark-400: 107 150 127;
-        --color-dark-500: 81 123 101;
-        --color-dark-600: 63 98 80;
-        --color-dark-700: 52 78 65;
-        --color-dark-800: 46 65 56;
-        --color-dark-900: 41 56 49;
-        --color-dark-950: 20 31 26;
-
-        --color-light-50: 244 245 240;
-        --color-light-100: 230 233 222;
-        --color-light-200: 206 214 192;
-        --color-light-300: 163 177 138;
-        --color-light-400: 147 162 121;
-        --color-light-500: 117 135 91;
-        --color-light-600: 91 106 70;
-        --color-light-700: 71 82 57;
-        --color-light-800: 59 67 49;
-        --color-light-900: 52 59 44;
-        --color-light-950: 26 30 21;
-
-        --color-primary-50: 245 248 245;
-        --color-primary-100: 232 240 232;
-        --color-primary-200: 209 225 209;
-        --color-primary-300: 172 201 172;
-        --color-primary-400: 130 168 128;
-        --color-primary-500: 88 129 87;
-        --color-primary-600: 74 112 73;
-        --color-primary-700: 60 89 60;
-        --color-primary-800: 51 72 51;
-        --color-primary-900: 43 60 43;
-        --color-primary-950: 20 31 21;
-
-        --color-secondary-50: 245 248 245;
-        --color-secondary-100: 231 241 232;
-        --color-secondary-200: 208 226 211;
-        --color-secondary-300: 171 202 176;
-        --color-secondary-400: 126 170 134;
-        --color-secondary-500: 91 140 100;
-        --color-secondary-600: 71 114 79;
-        --color-secondary-700: 58 90 64;
-        --color-secondary-800: 50 73 55;
-        --color-secondary-900: 42 61 46;
-        --color-secondary-950: 19 32 22;
-
-        --color-accent-50: 247 246 245;
-        --color-accent-100: 237 235 231;
-        --color-accent-200: 218 215 205;
-        --color-accent-300: 195 190 174;
-        --color-accent-400: 170 161 141;
-        --color-accent-500: 153 140 118;
-        --color-accent-600: 140 126 106;
-        --color-accent-700: 117 104 89;
-        --color-accent-800: 96 86 76;
-        --color-accent-900: 79 71 63;
-        --color-accent-950: 42 36 32;
-    }
-    body[data-theme='violetish'] {
-        --color-dark-50: 242 245 251;
-        --color-dark-100: 231 236 248;
-        --color-dark-200: 211 219 242;
-        --color-dark-300: 184 195 233;
-        --color-dark-400: 155 165 222;
-        --color-dark-500: 129 136 211;
-        --color-dark-600: 104 105 195;
-        --color-dark-700: 89 87 171;
-        --color-dark-800: 73 73 138;
-        --color-dark-900: 64 65 111;
-        --color-dark-950: 34 34 59;
-
-        --color-light-50: 250 247 246;
-        --color-light-100: 244 237 236;
-        --color-light-200: 235 223 221;
-        --color-light-300: 220 201 197;
-        --color-light-400: 201 173 167;
-        --color-light-500: 176 139 131;
-        --color-light-600: 153 113 105;
-        --color-light-700: 127 93 86;
-        --color-light-800: 107 79 73;
-        --color-light-900: 91 70 65;
-        --color-light-950: 47 35 32;
-
-        --color-primary-50: 248 247 248;
-        --color-primary-100: 242 241 242;
-        --color-primary-200: 231 227 230;
-        --color-primary-300: 212 205 212;
-        --color-primary-400: 184 174 183;
-        --color-primary-500: 154 140 152;
-        --color-primary-600: 136 122 133;
-        --color-primary-700: 114 100 111;
-        --color-primary-800: 95 85 93;
-        --color-primary-900: 82 73 80;
-        --color-primary-950: 46 41 45;
-
-        --color-secondary-50: 245 246 249;
-        --color-secondary-100: 232 235 241;
-        --color-secondary-200: 214 220 231;
-        --color-secondary-300: 186 195 214;
-        --color-secondary-400: 152 166 194;
-        --color-secondary-500: 127 139 178;
-        --color-secondary-600: 109 119 163;
-        --color-secondary-700: 97 104 148;
-        --color-secondary-800: 83 87 122;
-        --color-secondary-900: 74 78 105;
-        --color-secondary-950: 45 47 62;
-
-        --color-accent-50: 250 247 246;
-        --color-accent-100: 242 233 228;
-        --color-accent-200: 238 225 218;
-        --color-accent-300: 225 204 192;
-        --color-accent-400: 206 173 155;
-        --color-accent-500: 186 144 121;
-        --color-accent-600: 163 119 95;
-        --color-accent-700: 136 98 77;
-        --color-accent-800: 114 83 66;
-        --color-accent-900: 96 73 60;
-        --color-accent-950: 51 36 28;
-    }
-}
-
-@layer utilities {
-    * {
-        @apply transition-colors duration-100 ease-in-out;
-    }
-
-    html,
-    body {
-        @apply w-full h-full;
+@layer components {
+    html, body {
+        @apply flex flex-col;
+        @apply w-full min-h-screen;
         @apply p-0 m-0;
     }
 
-    body {
-        @apply font-sans text-xs antialiased leading-3 xl:text-base;
-        @apply relative flex flex-col xl:flex-row;
-        @apply bg-primary-200 text-light-100;
-    }
-
-    aside {
-        @apply sticky;
-        @apply flex flex-row xl:flex-col;
-        @apply w-full h-auto xl:w-20 xl:h-full;
-        @apply text-[10px] xl:text-base;
-    }
-
-    aside #logo {
-        @apply flex;
-        @apply items-center justify-center;
-        @apply w-10 h-10 xl:h-20 xl:w-full;
-        @apply p-1;
-        @apply border-b border-secondary-900 xl:border-b-0;
-        @apply bg-secondary-800 xl:bg-primary-700;
-    }
-
-    aside #logo .logo,
-    #content #header .left .logo {
-        @apply w-7 h-7 xl:w-12 xl:h-12;
-        @apply fill-light-200;
-    }
-
-    aside #sidebar {
-        @apply flex flex-row xl:flex-col;
-        @apply items-center justify-start xl:justify-center;
-        @apply h-10 w-[calc(50%-40px)] xl:w-full xl:h-full;
-        @apply px-4 py-2 xl:p-2;
-        @apply border-b border-secondary-900 xl:border-b-0;
-        @apply bg-secondary-800 xl:bg-primary-700;
-    }
-
-    aside #sidebar .top {
-        @apply flex items-center justify-start xl:items-start xl:justify-center;
-        @apply w-1/2 h-full xl:w-full xl:h-1/2;
-    }
-
-    aside #sidebar .bottom {
-        @apply flex items-center justify-end xl:items-end xl:justify-center;
-        @apply w-1/2 h-full xl:w-full xl:h-1/2;
-    }
-
-    #content {
-        @apply flex flex-col;
-        @apply w-full h-full;
-    }
-
-    #content #header {
-        @apply relative;
-        @apply flex;
-        @apply items-center justify-end xl:justify-center;
-        @apply w-1/2 h-10 xl:h-20 xl:w-full;
-        @apply px-4 py-1 xl:p-4;
-        @apply text-[10px] xl:text-base;
-        @apply absolute top-0 right-0 xl:relative;
-        @apply border-b border-secondary-900;
-        @apply bg-secondary-800;
-    }
-
-    #guest #content #header {
-        @apply w-full;
-    }
-
-    #content #header .toast {
-        @apply absolute z-[999];
-        @apply w-80 xl:w-96;
-        @apply top-14 xl:top-24 right-[calc(50%-10rem)] xl:right-[calc(50%-12rem)];
-        @apply rounded-sm;
-        @apply border-l-4 shadow-md;
-    }
-
-    #content #header .toast h6 {
-        @apply w-full;
-        @apply px-3 pt-2;
-        @apply text-xs font-bold uppercase xl:text-sm;
-    }
-
-    #content #header .toast .message {
-        @apply flex flex-col;
-        @apply w-full;
-        @apply px-3 pb-2;
-        @apply text-[10px] xl:text-xs;
-    }
-
-    #content #header .toast .message span {
-        @apply w-full;
-        @apply mt-1 ml-2;
-    }
-
-    #content #header .toast.info {
-        @apply bg-info-100/90 text-info-700;
-        @apply shadow-info-400 border-info-700;
-    }
-    #content #header .toast.success {
-        @apply bg-success-100/90 text-success-700;
-        @apply shadow-success-300 border-success-700;
-    }
-    #content #header .toast.warning {
-        @apply bg-warning-100/90 text-warning-700;
-        @apply shadow-warning-300/75 border-warning-700;
-    }
-    #content #header .toast.error {
-        @apply bg-danger-100/90 text-danger-700;
-        @apply shadow-danger-300 border-danger-700;
-    }
-
-    #content #header .left {
-        @apply flex justify-start;
-        @apply w-1/2;
-    }
-
-    #content #header .right {
-        @apply flex justify-end;
-        @apply w-1/2;
-    }
-
-    #guest #content #header .left {
-        @apply justify-center w-full;
-    }
-
-    #guest #content #header .left .logo {
-        @apply w-7 h-7 xl:w-10 xl:h-10;
-    }
-
-    #guest #content #header .left .logo + span {
-        @apply mt-2 ml-2 xl:mt-2 xl:ml-3;
-    }
-
-    #content #articles {
-        @apply flex flex-col;
-        @apply w-full h-full;
-        @apply overflow-y-auto;
-        @apply xl:border-l xl:border-secondary-900;
-    }
-
-    #content #articles main {
-        @apply flex flex-col;
-        @apply w-full h-full;
-        @apply text-[10px] xl:text-sm leading-3;
-    }
-
-    #content #articles main .wrapper {
-        @apply flex flex-1;
-        @apply p-4;
-        @apply text-dark-950;
-        @apply w-full h-fit;
-    }
-
-    #content #articles main footer {
-        @apply flex flex-col md:flex-row;
-        @apply items-center justify-center;
-        @apply w-full h-auto;
-        @apply py-2 px-0 space-y-2 md:space-y-0 md:px-4 xl:py-2.5;
-        @apply text-[10px] xl:text-sm leading-3;
-        @apply border-t border-secondary-900;
-        @apply bg-secondary-800;
-    }
-
-    #content #articles main footer .left {
+    header {
         @apply flex flex-row;
-        @apply items-center justify-center;
-        @apply w-full md:w-1/2;
-        @apply text-secondary-400;
+        @apply w-full h-12;
+        @apply border-b border-dark/10;
+        @apply bg-primary;
+        @apply dark:bg-dark/70 dark:border-light/20;
     }
 
-    #content #articles main footer .right {
-        @apply flex flex-col xl:flex-row;
+    header .logo {
+        @apply flex;
         @apply items-center justify-center;
-        @apply w-full md:w-1/2;
-        @apply text-secondary-400;
+        @apply w-12 h-12;
+        @apply bg-dark;
+        @apply dark:bg-light/5 dark:border-light/20;
     }
 
-    #content #articles main footer .left .logo {
+    header .logo.guest {
+        @apply items-center justify-center;
+        @apply w-auto h-12;
+        @apply p-6 mx-auto;
+        @apply dark:bg-dark/50;
+    }
+
+    header .logo.guest span {
+        @apply ml-2;
+        @apply text-xl leading-none text-secondary;
+        @apply dark:text-secondary;
+    }
+
+    header .logo box-icon {
+        @apply w-7 h-7;
+        @apply fill-secondary;
+        @apply dark:text-secondary;
+    }
+
+    header .content {
+        @apply flex flex-1;
+        @apply w-full h-12;
+        @apply text-sm text-dark;
+        @apply dark:text-primary;
+    }
+
+    header .content .left {
+        @apply flex;
+        @apply items-center justify-center;
+        @apply w-1/2 h-12;
+    }
+
+    header .content .right {
+        @apply flex;
+        @apply items-center justify-center;
+        @apply w-1/2 h-12;
+    }
+
+    section.content {
+        @apply flex flex-row flex-1;
+        @apply w-full;
+    }
+
+    section.content aside {
+        @apply flex flex-col flex-1;
+        @apply w-12;
+        @apply bg-dark;
+        @apply dark:bg-accent/75;
+    }
+
+    section.content aside nav {
+        @apply flex flex-col;
+        @apply w-12 h-full;
+    }
+
+    section.content aside ul.nav {
+        @apply flex flex-col items-center justify-start flex-1;
+        @apply w-12 h-auto;
+        @apply mt-4;
+
+    }
+
+    section.content aside ul.nav > li {
+        @apply relative flex items-center justify-center;
+        @apply rounded-full hover:cursor-pointer;
+        @apply w-8 h-8;
+        @apply mb-4;
+        @apply text-xs hover:text-primary;
+        @apply bg-secondary hover:bg-accent;
+        @apply transition-all duration-200;
+        @apply z-[999];
+        @apply dark:hover:text-accent dark:bg-accent dark:hover:bg-primary
+    }
+
+    section.content aside ul.nav > li box-icon {
+        @apply w-[22px] h-[22px];
+        @apply fill-dark;
+        @apply dark:fill-light;
+    }
+
+    section.content aside ul.nav > li:hover box-icon {
+        @apply fill-secondary;
+        @apply dark:fill-accent;
+    }
+
+    section.content aside ul.nav > li ul.sub-menu > li {
+        @apply relative;
+    }
+
+    section.content aside ul.nav > li ul.sub-menu > li h5 {
+        @apply w-full;
+        @apply px-3 py-1.5 m-0 mb-0.5;
+        @apply text-xs font-semibold tracking-wider text-primary;
+        @apply bg-accent;
+        @apply dark:text-dark dark:bg-primary;
+    }
+
+    section.content aside ul.nav > li ul.sub-menu > li.split {
+        @apply mb-0.5;
+        @apply border-t border-dark/10;
+        @apply dark:border-light/10;
+    }
+
+    section.content aside ul.nav > li ul.sub-menu,
+    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu {
+        @apply absolute top-0 origin-top-left left-10;
+        @apply min-w-52;
+        @apply p-0 m-0 ml-1.5;
+        @apply shadow;
+        @apply bg-primary;
+        @apply dark:bg-accent;
+    }
+
+    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu {
+        @apply top-0.5 ml-1.5 left-52;
+    }
+
+    section.content aside ul.nav > li ul.sub-menu > li,
+    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu li {
+        @apply flex;
+        @apply w-full h-auto;
+    }
+
+    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu li a,
+    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu li span {
+        @apply p-0 m-0;
+    }
+
+    section.content aside ul.nav > li ul.sub-menu > li a,
+    section.content aside ul.nav > li ul.sub-menu > li span,
+    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu li a,
+    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu li span {
+        @apply w-full h-auto;
+        @apply px-3 py-1.5 m-0 mb-0.5;
+        @apply leading-none;
+        @apply text-xs text-dark hover:text-primary;
+        @apply hover:bg-accent;
+        @apply dark:text-light dark:hover:text-accent dark:hover:bg-primary;
+    }
+
+    section.content aside ul.nav > li ul.sub-menu > li span {
+        @apply flex flex-row items-center justify-between;
+        @apply text-xs text-dark hover:text-primary;
+        @apply hover:bg-accent;
+        @apply dark:text-light dark:hover:text-accent dark:hover:bg-primary;
+    }
+
+    section.content aside ul.nav > li ul.sub-menu > li span box-icon {
+        @apply fill-dark stroke-dark;
+        @apply dark:fill-light dark:stroke-light;
+    }
+
+    section.content aside ul.nav > li ul.sub-menu > li:hover span box-icon {
+        @apply fill-secondary stroke-secondary;
+        @apply dark:fill-accent dark:stroke-accent;
+    }
+
+    section.content aside ul.nav > li ul.sub-menu > li:last-of-type a,
+    section.content aside ul.nav > li ul.sub-menu > li:last-of-type span,
+    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu li a,
+    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu li span  {
+        @apply mb-0;
+    }
+
+    section.content aside ul.nav + ul.nav {
+        @apply flex items-center justify-center flex-grow-0;
+        @apply w-12 h-12;
+        @apply mt-0;
+    }
+
+    section.content aside ul.nav + ul.nav li.user-menu {
+        @apply relative;
+        @apply flex items-center justify-center;
+        @apply rounded-full hover:cursor-pointer;
+        @apply w-8 h-8;
+        @apply mb-2;
+        @apply bg-secondary hover:bg-accent;
+        @apply transition-all duration-200;
+        @apply dark:bg-accent dark:hover:bg-primary;
+    }
+
+    section.content aside ul.nav + ul.nav li.user-menu box-icon {
+        @apply w-[22px] h-[22px];
+        @apply fill-dark;
+        @apply dark:fill-light;
+    }
+
+    section.content aside ul.nav + ul.nav li.user-menu:hover box-icon {
+        @apply fill-secondary;
+        @apply dark:fill-accent;
+    }
+
+    section.content aside ul.nav + ul.nav li.user-menu ul.sub-menu {
+        @apply absolute origin-bottom-left -top-[340px] left-10;
+        @apply min-w-52;
+        @apply p-0 m-0 ml-1.5;
+        @apply shadow;
+        @apply bg-primary;
+        @apply dark:bg-accent;
+    }
+
+    section.content main {
+        @apply flex flex-col flex-grow;
+        @apply w-full;
+        @apply bg-light;
+        @apply dark:bg-dark;
+    }
+
+    section.content main .breadcrumb {
+        @apply flex flex-row items-center justify-between;
+        @apply border-b border-dark/10;
+        @apply w-full h-auto;
+        @apply dark:border-light/10;
+    }
+
+    section.content main .breadcrumb .guide,
+    section.content main .breadcrumb .practice {
+        @apply flex flex-row items-center justify-start;
+        @apply w-2/3 h-auto;
+        @apply p-4;
+        @apply text-xs leading-none align-middle text-dark/40;
+        @apply dark:text-light/40;
+    }
+
+    section.content main .breadcrumb .practice {
+        @apply flex flex-row items-center justify-end;
+        @apply w-1/3 h-auto;
+    }
+
+    section.content main .breadcrumb .guide box-icon,
+    section.content main .breadcrumb .practice box-icon {
+        @apply w-4 h-4;
+        @apply fill-dark/40;
+        @apply dark:fill-light/40;
+    }
+
+    section.content main .breadcrumb .guide box-icon,
+    section.content main .breadcrumb .guide span,
+    section.content main .breadcrumb .practice box-icon {
+        @apply mr-1;
+    }
+
+    section.content main .content {
+        @apply flex flex-col flex-1;
+        @apply p-4 m-0;
+        @apply w-full;
+        @apply text-sm text-dark;
+        @apply dark:text-primary;
+    }
+
+    section.content main footer {
+        @apply sticky flex flex-row;
+        @apply w-full h-12;
+        @apply bg-accent/20;
+        @apply border-t border-dark/10;
+        @apply dark:bg-primary/20 dark:border-light/10;
+    }
+
+    section.content main footer .left,
+    section.content main footer .right {
+        @apply flex flex-row items-center justify-center;
+        @apply w-1/2;
+    }
+
+    section.content main footer .left,
+    section.content main footer .right {
+        @apply flex flex-row items-center justify-center;
+        @apply text-xs text-accent;
+        @apply leading-none;
+        @apply dark:text-secondary;
+    }
+
+    section.content main footer .left box-icon {
         @apply w-5 h-5;
-        @apply leading-5;
-        @apply fill-secondary-400;
+        @apply p-0 m-0 mr-1;
+        @apply fill-accent;
+        @apply dark:fill-secondary;
     }
 
-    #content #articles main footer .left span,
-    #content #articles main footer .right span{
-        @apply mx-2;
-        @apply leading-5;
-        @apply xl:text-[12px] tracking-wide;
+    section.content main footer .right span,
+    section.content main footer .right a {
+        @apply mx-1;
     }
 
-    #content #articles main footer .right a {
-        @apply hover:text-secondary-300;
-        @apply transition-all;
-    }
-
-    #content #articles main footer .right span {
-        @apply xl:mr-20;
-        @apply text-center;
-    }
-
-    #content #articles main footer .right span br {
-        @apply xl:hidden;
+    section.content main footer .right box-icon {
+        @apply w-4 h-4;
+        @apply p-0 m-0;
+        @apply fill-accent;
+        @apply dark:fill-secondary;
     }
 }
