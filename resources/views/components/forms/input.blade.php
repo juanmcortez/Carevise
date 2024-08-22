@@ -1,7 +1,7 @@
 @props([
     'value' => null,
     'label' => null,
-    'showlbl' => false,
+    'nolbl' => false,
     'name' => null,
     'type' => 'text',
     'error' => null,
@@ -13,16 +13,21 @@
     'auto' => false,
 ])
 @php
+    $error_name = $name;
+    if (Str::contains($name, ['[', ']'])) {
+        $error_name = Str::replaceFirst('[', '.', $name);
+        $error_name = Str::replaceFirst(']', '', $error_name);
+    }
     $type = $name == 'password' ? 'password' : $type;
 @endphp
 <div @class([
     'form-block',
     'disabled' => $disabled,
     'readonly' => $readonly,
-    'show-error' => count($error->get($name)),
-    'mt-1' => !$showlbl,
+    'show-error' => count($error->get($error_name)),
+    'mt-1' => $nolbl,
 ])>
-    @if ($label && $showlbl)
+    @if ($label && !$nolbl)
         <label for="{{ $name }}">
             {{ $label }}
             <span @class(['hidden' => !$required])>*</span>
@@ -41,8 +46,8 @@
             @if ($focus) autofocus @endif
             @if ($auto) autocomplete="on" @else autocomplete="off" @endif />
     @endif
-    @if (count($error->get($name)))
-        @foreach ($error->get($name) as $message)
+    @if (count($error->get($error_name)))
+        @foreach ($error->get($error_name) as $message)
             <span class="error-detail">{{ $message }}</span>
         @endforeach
     @endif
