@@ -1,13 +1,18 @@
-<div id="header">
-    <div class="left">
-        @guest
-            <x-logo route="{{ route('index') }}" class="logo" />
-            <span>{{ config('company.name') }}</span>
-        @else
-            HDR L
-        @endguest
-    </div>
+<div class="header">
+    @Guest
+        <h1 class="centered">
+            <x-logo />
+            {{ config('company.name', 'Laravel') }}
+        </h1>
+    @endGuest
     @Auth
-        <div class="right">HDR R</div>
+        <h1>
+            @hasSection('page-title')
+                @yield('page-title')
+            @else
+                {{ config('company.name', 'Laravel') }}
+            @endif
+        </h1>
+        <div class="subtools">&nbsp;</div>
     @endAuth
 </div>

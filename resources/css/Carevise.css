@@ -2,170 +2,451 @@
 @tailwind components;
 @tailwind utilities;
 
-@layer utilities {
+@layer components {
     html,
     body {
-        @apply w-full h-full;
+        @apply flex;
+        @apply w-full min-h-screen;
         @apply p-0 m-0;
-    }
-
-    body {
-        @apply font-sans text-xs antialiased leading-3 xl:text-base;
-        @apply relative flex flex-col xl:flex-row;
-        @apply bg-original-primary-200 text-original-light-100;
+        @apply bg-light dark:bg-dark;
     }
 
     aside {
-        @apply sticky;
-        @apply flex flex-row xl:flex-col;
-        @apply w-full h-auto xl:w-20 xl:h-full;
-        @apply text-[10px] xl:text-base;
+        @apply flex flex-col;
+        @apply w-20 min-h-screen;
+        @apply border-r;
+        @apply bg-secondary border-accent/35;
+        @apply dark:bg-dark dark:border-primary/35;
     }
 
-    aside #logo {
+    aside .logo {
+        @apply w-8;
+        @apply p-0 pt-6 pb-4 m-0 mx-6 mb-4;
+        @apply border-b;
+        @apply border-accent/35;
+    }
+
+    aside .logo a {
+        @apply w-8 h-8;
+        @apply fill-accent;
+        @apply hover:fill-accent/50;
+    }
+
+    aside .nav {
+        @apply flex flex-col;
+        @apply flex-1 w-20;
+        @apply items-center justify-center;
+    }
+
+    aside .top {
+        @apply flex flex-col;
+        @apply w-20 h-full;
+    }
+
+    aside .bottom {
+        @apply flex flex-col;
+        @apply w-20 h-20;
+    }
+
+    aside .nav h1.menu {
+        @apply w-full;
+        @apply mb-1;
+        @apply text-xs !leading-4 text-center;
+        @apply text-dark/50;
+    }
+
+    aside .nav .item {
         @apply flex;
         @apply items-center justify-center;
-        @apply w-10 h-10 xl:h-20 xl:w-full;
-        @apply p-1;
-        @apply border-b border-original-secondary-900 xl:border-b-0;
-        @apply bg-original-secondary-800 xl:bg-original-primary-700;
+        @apply w-full h-auto;
+        @apply py-2.5 px-6 mb-1;
+        @apply text-accent;
     }
 
-    aside #logo .logo,
-    #content #header .left .logo {
-        @apply w-7 h-7 xl:w-12 xl:h-12;
-        @apply fill-original-light-200;
+    aside .nav .item:hover{
+        @apply text-primary bg-accent/50;
     }
 
-    aside #sidebar {
-        @apply flex flex-row xl:flex-col;
-        @apply items-center justify-start xl:justify-center;
-        @apply h-10 w-[calc(50%-40px)] xl:w-full xl:h-full;
-        @apply px-4 py-2 xl:p-2;
-        @apply border-b border-original-secondary-900 xl:border-b-0;
-        @apply bg-original-secondary-800 xl:bg-original-primary-700;
+    aside .nav .item.active {
+        @apply border-r-4;
+        @apply border-accent bg-accent/15 hover:bg-accent/50;
     }
 
-    aside #sidebar .top {
-        @apply flex items-center justify-start xl:items-start xl:justify-center;
-        @apply w-1/2 h-full xl:w-full xl:h-1/2;
+    aside .nav .item box-icon {
+        @apply w-5 h-5;
+        @apply fill-accent;
     }
 
-    aside #sidebar .bottom {
-        @apply flex items-center justify-end xl:items-end xl:justify-center;
-        @apply w-1/2 h-full xl:w-full xl:h-1/2;
+    aside .nav .item:hover box-icon {
+        @apply fill-primary;
     }
 
-    #content {
+    aside .nav .item + h1.menu {
+        @apply mt-6;
+    }
+
+    main {
+        @apply flex flex-row;
+        @apply w-full min-h-screen;
+    }
+
+    main aside.submenu {
+        @apply min-h-screen w-60;
+        @apply p-0 m-0;
+        @apply bg-secondary/75 border-accent/35;
+        @apply dark:bg-dark/75 dark:border-primary/35;
+    }
+
+    main aside.submenu .nav {
         @apply flex flex-col;
-        @apply w-full h-full;
+        @apply flex-1 w-full;
+        @apply py-[34px];
+        @apply items-start justify-start;
     }
 
-    #content #header {
+    main aside.submenu .nav h2.menu {
+        @apply w-full;
+        @apply px-6 mb-1;
+        @apply text-xs !leading-4;
+        @apply text-dark/50;
+    }
+
+    main aside.submenu .nav .item {
         @apply flex;
-        @apply items-center justify-end xl:justify-center;
-        @apply w-1/2 h-10 xl:h-20 xl:w-full;
-        @apply px-4 py-1 xl:p-4;
-        @apply text-[10px] xl:text-base;
-        @apply absolute top-0 right-0 xl:relative;
-        @apply border-b border-original-secondary-900;
-        @apply bg-original-secondary-800;
+        @apply items-center justify-start;
+        @apply w-full h-auto;
+        @apply py-2.5 px-6 mb-1;
+        @apply text-xs ;
+        @apply text-accent hover:text-primary hover:bg-accent/50;
     }
 
-    #guest #content #header {
+    main aside.submenu .nav .item box-icon {
+        @apply mr-1;
+    }
+
+    main aside.submenu .nav .item.mini box-icon {
+        @apply w-4 h-4;
+    }
+
+    main aside.submenu .nav .item.active {
+        @apply border-r-4;
+        @apply border-accent bg-accent/15 hover:bg-accent/50;
+    }
+
+    main aside.submenu .nav .item + h2.menu {
+        @apply mt-6;
+    }
+
+    /*main aside.submenu {
+        @apply hidden;
+    }*/
+
+    main .content {
+        @apply flex flex-col;
+        @apply p-0 m-0;
+        @apply w-full min-h-screen;
+        @apply text-sm;
+        @apply bg-primary text-dark;
+    }
+
+    main .content .header,
+    main .content .breadcrumb {
+        @apply px-6;
+    }
+
+    main .content .header {
+        @apply flex flex-row;
+        @apply w-full min-h-8;
+        @apply p-6 m-0;
+        @apply border-b;
+        @apply border-accent/35 bg-secondary/75;
+    }
+
+    main .content .header h1 {
+        @apply flex;
+        @apply items-center justify-start;
+        @apply text-2xl !leading-6;
+        @apply w-1/3 h-auto;
+    }
+
+    main .content .header h1.centered {
+        @apply text-2xl !leading-6;
+        @apply text-accent;
+        @apply justify-center;
         @apply w-full;
     }
 
-    #content #header .left {
-        @apply flex justify-start;
-        @apply w-1/2;
+    main .content .header h1.centered a {
+        @apply w-7 h-7;
+        @apply mr-2;
+        @apply fill-accent/75;
     }
 
-    #content #header .right {
-        @apply flex justify-end;
-        @apply w-1/2;
+    main .content .header .subtools {
+        @apply flex;
+        @apply items-center justify-end;
+        @apply w-2/3 h-auto;
     }
 
-    #guest #content #header .left {
-        @apply justify-center w-full;
+    main .content .breadcrumb {
+        @apply flex;
+        @apply items-center justify-start;
+        @apply py-3 m-0 mb-6;
+        @apply text-xs !leading-3;
+        @apply border-b;
+        @apply text-accent/35 border-accent/35;
     }
 
-    #guest #content #header .left .logo {
-        @apply w-7 h-7 xl:w-10 xl:h-10;
+    main .content .breadcrumb a {
+        @apply text-accent/35;
+        @apply hover:text-accent/50;
     }
 
-    #guest #content #header .left .logo + span {
-        @apply mt-2 ml-2 xl:mt-2 xl:ml-3;
+    main .content .breadcrumb a box-icon {
+        @apply w-4 h-4;
+        @apply fill-accent/35;
     }
 
-    #content #articles {
-        @apply flex flex-col;
-        @apply w-full h-full;
-        @apply overflow-y-auto;
-        @apply xl:border-l xl:border-original-secondary-900;
+    main .content .breadcrumb a:hover box-icon {
+        @apply fill-accent/50;
     }
 
-    #content #articles main {
-        @apply flex flex-col;
-        @apply w-full h-full;
-        @apply text-[10px] xl:text-sm leading-3;
+    main .content .breadcrumb .step {
+        @apply p-0 m-0 ml-3 pt-0.5;
+        @apply before:content-['>'] before:mr-3;
     }
 
-    #content #articles main .wrapper {
-        @apply flex flex-1;
-        @apply p-4;
-        @apply text-original-dark-950;
-        @apply w-full h-fit;
+    main .content article {
+        @apply flex-1;
+        @apply px-6;
     }
 
-    #content #articles main footer {
-        @apply flex flex-col md:flex-row;
-        @apply items-center justify-center;
-        @apply w-full h-auto;
-        @apply py-2 px-0 space-y-2 md:space-y-0 md:px-4 xl:py-2.5;
-        @apply text-[10px] xl:text-sm leading-3;
-        @apply border-t border-original-secondary-900;
-        @apply bg-original-secondary-800;
-    }
-
-    #content #articles main footer .left {
+    main .content footer {
         @apply flex flex-row;
-        @apply items-center justify-center;
-        @apply w-full md:w-1/2;
-        @apply text-original-secondary-400;
+        @apply w-full min-h-8;
+        @apply p-0 py-6 m-0 mt-6;
+        @apply border-t;
+        @apply border-accent/35 bg-secondary/75;
     }
 
-    #content #articles main footer .right {
-        @apply flex flex-col xl:flex-row;
+    main .content footer section {
+        @apply flex;
         @apply items-center justify-center;
-        @apply w-full md:w-1/2;
-        @apply text-original-secondary-400;
+        @apply w-1/2;
+        @apply text-xs !leading-3;
+        @apply text-accent;
     }
 
-    #content #articles main footer .left .logo {
+    main .content footer section a {
         @apply w-5 h-5;
-        @apply leading-5;
-        @apply fill-original-secondary-400;
+        @apply mr-1;
+        @apply fill-accent;
+        @apply hover:fill-accent/50;
     }
 
-    #content #articles main footer .left span,
-    #content #articles main footer .right span{
-        @apply mx-2;
-        @apply leading-5;
-        @apply xl:text-[12px] tracking-wide;
+    main .content footer section.right span {
+        @apply mr-2;
     }
 
-    #content #articles main footer .right a {
-        @apply hover:text-original-secondary-300;
-        @apply transition-all;
+    main .content footer section.right a {
+        @apply w-4 h-4;
+        @apply mx-1;
     }
 
-    #content #articles main footer .right span {
-        @apply xl:mr-20;
+    main .content footer section.right a box-icon {
+        @apply w-4 h-4;
+    }
+}
+
+@layer utilities {
+    .form-block {
+        @apply w-full h-auto;
+        @apply relative;
+        @apply pb-6 mt-6 mb-5;
+        @apply text-sm;
+        @apply text-dark;
+    }
+
+    .form-block-checkbox {
+        @apply relative;
+        @apply flex flex-row items-center justify-start;
+        @apply pb-6 mt-6 mb-5;
+    }
+
+    .form-block,
+    .form-block input,
+    .form-block-checkbox {
+        @apply w-full;
+    }
+
+    .form-block label,
+    .form-block-checkbox label {
+        @apply w-auto;
+    }
+
+    .form-block label {
+        @apply absolute left-3 -top-[18px];
+        @apply text-xs !leading-none text-accent/75;
+    }
+
+    .form-block-checkbox label {
+        @apply ml-2;
+        @apply text-xs !leading-none text-accent/75;
+    }
+
+    .form-block label span,
+    .form-block-checkbox label span {
+        @apply text-xs !leading-none text-danger/75;
+    }
+
+    .form-block input {
+        @apply rounded;
+        @apply px-3 py-2;
+        @apply placeholder:text-dark/25;
+        @apply border-accent/30 focus:border-accent/50;
+        @apply ring-accent/30 focus:ring-accent/25;
+        @apply ring-offset-accent/30 focus:ring-offset-0;
+        @apply outline-accent/30 focus:outline-0;
+        @apply text-xs !leading-none text-dark;
+    }
+
+    .form-block-checkbox input {
+        @apply rounded appearance-none cursor-pointer aspect-square;
+        @apply checked:bg-accent checked:hover:bg-accent;
+        @apply checked:focus:bg-accent checked:focus:hover:bg-accent;
+        @apply checked:border-accent/30;
+        @apply border-accent/30 focus:border-accent/50;
+        @apply ring-accent/30 focus:ring-accent/25;
+        @apply ring-offset-accent/30 focus:ring-offset-0;
+        @apply outline-accent/30 focus:outline-0;
+    }
+
+    .form-block.disabled label,
+    .form-block.readonly label {
+        @apply text-dark/25;
+    }
+
+    .form-block.disabled label span,
+    .form-block.readonly label span {
+        @apply text-danger/25;
+    }
+
+    .form-block.disabled input,
+    .form-block.readonly input {
+        @apply placeholder:text-accent/10;
+        @apply border-accent/15 focus:border-accent/35;
+        @apply ring-accent/15 focus:ring-accent/10;
+        @apply ring-offset-accent/15;
+        @apply outline-accent/15;
+        @apply text-dark/50 bg-dark/5;
+    }
+
+    .form-block-checkbox.disabled input,
+    .form-block-checkbox.readonly input {
+        @apply checked:bg-accent/10 checked:hover:bg-accent/10;
+        @apply checked:focus:bg-accent/10 checked:focus:hover:bg-accent/10;
+        @apply checked:border-accent/15;
+        @apply border-accent/15 focus:border-accent/35;
+        @apply ring-accent/15 focus:ring-accent/10;
+        @apply ring-offset-accent/15 focus:ring-offset-0;
+        @apply outline-accent/15 focus:outline-0;
+    }
+
+    .form-block.show-error label,
+    .form-block-checkbox.show-error label {
+        @apply text-danger/75
+    }
+
+    .form-block.show-error label span {
+        @apply text-danger/75;
+    }
+
+    .form-block.show-error input {
+        @apply placeholder:text-danger/35;
+        @apply border-danger/40 focus:border-danger/60;
+        @apply ring-danger/40 focus:ring-danger/35;
+        @apply ring-offset-danger/40;
+        @apply outline-danger/40;
+        @apply text-danger;
+    }
+
+    .form-block-checkbox.show-error input {
+        @apply checked:bg-danger checked:hover:bg-danger;
+        @apply checked:focus:bg-danger checked:focus:hover:bg-danger;
+        @apply checked:border-danger/30;
+        @apply border-danger/30 focus:border-danger/50;
+        @apply ring-danger/30 focus:ring-danger/25;
+        @apply ring-offset-danger/30 focus:ring-offset-0;
+        @apply outline-danger/30 focus:outline-0;
+    }
+
+    .form-block.show-error .error-detail,
+    .form-block-checkbox.show-error .error-detail {
+        @apply absolute z-[999];
+        @apply -top-2 right-2;
+        @apply w-auto px-1.5 py-1 rounded;
+        @apply bg-danger/80;
+        @apply text-[10px] text-right text-light leading-none;
+    }
+
+    .form-block.show-error .error-detail + .error-detail {
+        @apply -top-7 right-2;
+    }
+
+    .form-block.show-error .error-detail + .error-detail  + .error-detail {
+        @apply -top-12 right-2;
+    }
+
+    .form-block-checkbox.show-error .error-detail {
+        @apply left-4 top-3.5;
+        @apply w-48 p-0.5 rounded;
         @apply text-center;
     }
 
-    #content #articles main footer .right span br {
-        @apply xl:hidden;
+    .form-block-checkbox.show-error .error-detail + .error-detail {
+        @apply left-4 -top-2.5;
+    }
+
+    .form-block-checkbox.show-error .error-detail + .error-detail + .error-detail {
+        @apply left-4 -top-8;
+    }
+
+    .card-holder {
+        @apply flex flex-row;
+        @apply items-center justify-center;
+        @apply w-1/4 h-auto;
+        @apply px-6 pt-6 mb-0 last-of-type:mb-6;
+        @apply border-b-2 first-of-type:border-t-2;
+        @apply border-secondary bg-secondary/35;
+    }
+
+    .card-holder.double {
+        @apply items-center justify-between;
+        @apply w-1/2;
+        @apply space-x-6;
+    }
+
+    .card-holder .form-block {
+        @apply my-0 mt-4;
+    }
+
+    .card-holder .form-block-checkbox {
+        @apply my-0;
+    }
+
+    .card-holder .form-block + .form-block-checkbox {
+        @apply h-14;
+        @apply mt-4 mb-0;
+    }
+
+    .form-block.no-label,
+    .card-holder .form-block.no-label{
+        @apply mt-0 mb-1;
+    }
+
+    .form-block.no-label + .form-block-checkbox,
+    .card-holder .form-block.no-label + .form-block-checkbox {
+        @apply mt-0 mb-1;
+        @apply h-auto;
     }
 }

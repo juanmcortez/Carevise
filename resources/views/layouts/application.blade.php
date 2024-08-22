@@ -6,7 +6,13 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('company.name', 'Laravel') }}</title>
+    <title>
+        @hasSection('page-title')
+            @yield('page-title') | {{ config('company.name', 'Laravel') }}
+        @else
+            {{ config('company.name', 'Laravel') }}
+        @endif
+    </title>
     <!-- Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -23,19 +29,25 @@
     @vite(['resources/css/Carevise.css', 'resources/js/Carevise.js'])
 </head>
 
-<body @guest id="guest" @endguest>
+<body @Auth id="carevise" @else id="guest" @endAuth>
     @Auth
         @include('layouts.partials.sidebar')
     @endAuth
-    <div id="content">
-        @include('layouts.partials.header')
-        <div id="articles">
-            <main>
-                <div class="wrapper">@yield('content')</div>
-                @include('layouts.partials.footer')
-            </main>
-        </div>
-    </div>
+    <main>
+        @Auth
+            @include('layouts.partials.sidebar-submenu')
+        @endAuth
+        <section class="content">
+            @include('layouts.partials.header')
+            @Auth
+                @include('layouts.partials.breadcrumb')
+            @endAuth
+            <article>
+                @yield('content')
+            </article>
+            @include('layouts.partials.footer')
+        </section>
+    </main>
 </body>
 
 </html>
