@@ -2,13 +2,14 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Users\UserController;
+use App\Http\Controllers\Commons\DashboardController;
 
 // Protected routes by login
 Route::middleware('auth')->group(function () {
     // Landing
-    Route::get('/', function () {
-        return view('main.index');
-    })->name('index');
+    Route::controller(DashboardController::class)->group(function () {
+        Route::get('/', 'show')->name('dashboard');
+    });
 
     // User Profile
     Route::controller(UserController::class)->group(function () {
