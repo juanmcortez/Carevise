@@ -1,7 +1,7 @@
 <footer>
     <section class="left">
         <x-logo />
-        <span>{{ config('company.name') }}&nbsp;&copy;&nbsp;{{ date('Y') }}</span>
+        <span>{{ config('company.short-name', config('company.name', 'Carevise')) }}&nbsp;&copy;&nbsp;{{ date('Y') }}</span>
     </section>
     <section class="right">
         <span>{{ config('company.address') }}&nbsp;&nbsp;{{ config('company.phone') }}</span>

@@ -2,7 +2,7 @@
     @Guest
         <h1 class="centered">
             <x-logo />
-            {{ config('company.name', 'Laravel') }}
+            {{ config('company.short-name', config('company.name', 'Carevise')) }}
         </h1>
     @endGuest
     @Auth
@@ -10,7 +10,7 @@
             @hasSection('page-title')
                 @yield('page-title')
             @else
-                {{ config('company.name', 'Laravel') }}
+                {{ config('company.short-name', config('company.name', 'Carevise')) }}
             @endif
         </h1>
         <div class="subtools">&nbsp;</div>
