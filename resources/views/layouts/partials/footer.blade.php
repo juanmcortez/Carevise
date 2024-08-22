@@ -1,9 +1,9 @@
 <footer>
-    <div class="left">
-        <box-icon name="notepad"></box-icon>
+    <section class="left">
+        <x-logo />
         <span>{{ config('company.name') }}&nbsp;-&nbsp;&copy;&nbsp;{{ date('Y') }}</span>
-    </div>
-    <div class="right">
+    </section>
+    <section class="right">
         <span>{{ config('company.address') }}&nbsp;&nbsp;{{ config('company.phone') }}</span>
         <a href="{{ config('company.github') }}" target="_blank">
             <box-icon type='logo' name='github'></box-icon>
@@ -20,5 +20,5 @@
         <a href="{{ config('company.facebook') }}" target="_blank">
             <box-icon name='facebook-circle' type='logo'></box-icon>
         </a>
-    </div>
+    </section>
 </footer>

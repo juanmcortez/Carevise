@@ -3,365 +3,309 @@
 @tailwind utilities;
 
 @layer components {
-    html, body {
-        @apply flex flex-col;
+    html,
+    body {
+        @apply flex;
         @apply w-full min-h-screen;
         @apply p-0 m-0;
+        @apply bg-light dark:bg-dark;
     }
 
-    header {
-        @apply flex flex-row;
-        @apply w-full h-12;
-        @apply border-b border-dark/10;
-        @apply bg-primary;
-        @apply dark:bg-dark/70 dark:border-light/20;
-    }
-
-    header .logo {
-        @apply flex;
-        @apply items-center justify-center;
-        @apply w-12 h-12;
-        @apply bg-dark;
-        @apply dark:bg-light/5 dark:border-light/20;
-    }
-
-    header .logo.guest {
-        @apply items-center justify-center;
-        @apply w-auto h-12;
-        @apply p-6 mx-auto;
-        @apply dark:bg-dark/50;
-    }
-
-    header .logo.guest span {
-        @apply ml-2;
-        @apply text-xl leading-none text-secondary;
-        @apply dark:text-secondary;
-    }
-
-    header .logo box-icon {
-        @apply w-7 h-7;
-        @apply fill-secondary;
-        @apply dark:text-secondary;
-    }
-
-    header .content {
-        @apply flex flex-1;
-        @apply w-full h-12;
-        @apply text-sm text-dark;
-        @apply dark:text-primary;
-    }
-
-    header .content .left {
-        @apply flex;
-        @apply items-center justify-center;
-        @apply w-1/2 h-12;
-    }
-
-    header .content .right {
-        @apply flex;
-        @apply items-center justify-center;
-        @apply w-1/2 h-12;
-    }
-
-    section.content {
-        @apply flex flex-row flex-1;
-        @apply w-full;
-    }
-
-    section.content aside {
-        @apply flex flex-col flex-1;
-        @apply w-12;
-        @apply bg-dark;
-        @apply dark:bg-accent/75;
-    }
-
-    section.content aside nav {
+    aside {
         @apply flex flex-col;
-        @apply w-12 h-full;
+        @apply w-20 min-h-screen;
+        @apply border-r;
+        @apply bg-secondary border-accent/35;
+        @apply dark:bg-dark dark:border-primary/35;
     }
 
-    section.content aside ul.nav {
-        @apply flex flex-col items-center justify-start flex-1;
-        @apply w-12 h-auto;
-        @apply mt-4;
-
+    aside .logo {
+        @apply w-8;
+        @apply p-0 pt-6 pb-4 m-0 mx-6 mb-4;
+        @apply border-b;
+        @apply border-accent/35;
     }
 
-    section.content aside ul.nav > li {
-        @apply relative flex items-center justify-center;
-        @apply rounded-full hover:cursor-pointer;
+    aside .logo a {
         @apply w-8 h-8;
-        @apply mb-4;
-        @apply text-xs hover:text-primary;
-        @apply bg-secondary hover:bg-accent;
-        @apply transition-all duration-200;
-        @apply z-[999];
-        @apply dark:hover:text-accent dark:bg-accent dark:hover:bg-primary
+        @apply fill-accent;
+        @apply hover:fill-accent/50;
     }
 
-    section.content aside ul.nav > li box-icon {
-        @apply w-[22px] h-[22px];
-        @apply fill-dark;
-        @apply dark:fill-light;
+    aside .nav {
+        @apply flex flex-col;
+        @apply flex-1 w-20;
+        @apply items-center justify-center;
     }
 
-    section.content aside ul.nav > li:hover box-icon {
-        @apply fill-secondary;
-        @apply dark:fill-accent;
+    aside .top {
+        @apply flex flex-col;
+        @apply w-20 h-full;
     }
 
-    section.content aside ul.nav > li ul.sub-menu > li {
-        @apply relative;
+    aside .bottom {
+        @apply flex flex-col;
+        @apply w-20 h-20;
     }
 
-    section.content aside ul.nav > li ul.sub-menu > li h5 {
+    aside .nav h1.menu {
         @apply w-full;
-        @apply px-3 py-1.5 m-0 mb-0.5;
-        @apply text-xs font-semibold tracking-wider text-primary;
-        @apply bg-accent;
-        @apply dark:text-dark dark:bg-primary;
+        @apply mb-1;
+        @apply text-xs !leading-4 text-center;
+        @apply text-dark/50;
     }
 
-    section.content aside ul.nav > li ul.sub-menu > li.split {
-        @apply mb-0.5;
-        @apply border-t border-dark/10;
-        @apply dark:border-light/10;
-    }
-
-    section.content aside ul.nav > li ul.sub-menu,
-    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu {
-        @apply absolute top-0 origin-top-left left-10;
-        @apply min-w-52;
-        @apply p-0 m-0 ml-1.5;
-        @apply shadow;
-        @apply bg-primary;
-        @apply dark:bg-accent;
-    }
-
-    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu {
-        @apply top-0.5 ml-1.5 left-52;
-    }
-
-    section.content aside ul.nav > li ul.sub-menu > li,
-    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu li {
+    aside .nav .item {
         @apply flex;
+        @apply items-center justify-center;
         @apply w-full h-auto;
+        @apply py-2.5 px-6 mb-1;
+        @apply text-accent;
     }
 
-    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu li a,
-    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu li span {
+    aside .nav .item:hover{
+        @apply text-primary bg-accent/50;
+    }
+
+    aside .nav .item.active {
+        @apply border-r-4;
+        @apply border-accent bg-accent/15 hover:bg-accent/50;
+    }
+
+    aside .nav .item box-icon {
+        @apply w-5 h-5;
+        @apply fill-accent;
+    }
+
+    aside .nav .item:hover box-icon {
+        @apply fill-primary;
+    }
+
+    aside .nav .item + h1.menu {
+        @apply mt-6;
+    }
+
+    main {
+        @apply flex flex-row;
+        @apply w-full min-h-screen;
+    }
+
+    main aside.submenu {
+        @apply min-h-screen w-60;
         @apply p-0 m-0;
+        @apply bg-secondary/75 border-accent/35;
+        @apply dark:bg-dark/75 dark:border-primary/35;
     }
 
-    section.content aside ul.nav > li ul.sub-menu > li a,
-    section.content aside ul.nav > li ul.sub-menu > li span,
-    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu li a,
-    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu li span {
-        @apply w-full h-auto;
-        @apply px-3 py-1.5 m-0 mb-0.5;
-        @apply leading-none;
-        @apply text-xs text-dark hover:text-primary;
-        @apply hover:bg-accent;
-        @apply dark:text-light dark:hover:text-accent dark:hover:bg-primary;
+    main aside.submenu .nav {
+        @apply flex flex-col;
+        @apply flex-1 w-full;
+        @apply py-[34px];
+        @apply items-start justify-start;
     }
 
-    section.content aside ul.nav > li ul.sub-menu > li span {
-        @apply flex flex-row items-center justify-between;
-        @apply text-xs text-dark hover:text-primary;
-        @apply hover:bg-accent;
-        @apply dark:text-light dark:hover:text-accent dark:hover:bg-primary;
-    }
-
-    section.content aside ul.nav > li ul.sub-menu > li span box-icon {
-        @apply fill-dark stroke-dark;
-        @apply dark:fill-light dark:stroke-light;
-    }
-
-    section.content aside ul.nav > li ul.sub-menu > li:hover span box-icon {
-        @apply fill-secondary stroke-secondary;
-        @apply dark:fill-accent dark:stroke-accent;
-    }
-
-    section.content aside ul.nav > li ul.sub-menu > li:last-of-type a,
-    section.content aside ul.nav > li ul.sub-menu > li:last-of-type span,
-    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu li a,
-    section.content aside ul.nav > li ul.sub-menu > li ul.child-menu li span  {
-        @apply mb-0;
-    }
-
-    section.content aside ul.nav + ul.nav {
-        @apply flex items-center justify-center flex-grow-0;
-        @apply w-12 h-12;
-        @apply mt-0;
-    }
-
-    section.content aside ul.nav + ul.nav li.user-menu {
-        @apply relative;
-        @apply flex items-center justify-center;
-        @apply rounded-full hover:cursor-pointer;
-        @apply w-8 h-8;
-        @apply mb-2;
-        @apply bg-secondary hover:bg-accent;
-        @apply transition-all duration-200;
-        @apply dark:bg-accent dark:hover:bg-primary;
-    }
-
-    section.content aside ul.nav + ul.nav li.user-menu box-icon {
-        @apply w-[22px] h-[22px];
-        @apply fill-dark;
-        @apply dark:fill-light;
-    }
-
-    section.content aside ul.nav + ul.nav li.user-menu:hover box-icon {
-        @apply fill-secondary;
-        @apply dark:fill-accent;
-    }
-
-    section.content aside ul.nav + ul.nav li.user-menu ul.sub-menu {
-        @apply absolute origin-bottom-left -top-[340px] left-10;
-        @apply min-w-52;
-        @apply p-0 m-0 ml-1.5;
-        @apply shadow;
-        @apply bg-primary;
-        @apply dark:bg-accent;
-    }
-
-    section.content main {
-        @apply flex flex-col flex-grow;
+    main aside.submenu .nav h2.menu {
         @apply w-full;
-        @apply bg-light;
-        @apply dark:bg-dark;
+        @apply px-6 mb-1;
+        @apply text-xs !leading-4;
+        @apply text-dark/50;
     }
 
-    section.content main .breadcrumb {
-        @apply flex flex-row items-center justify-between;
-        @apply border-b border-dark/10;
+    main aside.submenu .nav .item {
+        @apply flex;
+        @apply items-center justify-start;
         @apply w-full h-auto;
-        @apply dark:border-light/10;
+        @apply py-2.5 px-6 mb-1;
+        @apply text-xs ;
+        @apply text-accent hover:text-primary hover:bg-accent/50;
     }
 
-    section.content main .breadcrumb .guide,
-    section.content main .breadcrumb .practice {
-        @apply flex flex-row items-center justify-start;
-        @apply w-2/3 h-auto;
-        @apply p-4;
-        @apply text-xs leading-none align-middle text-dark/40;
-        @apply dark:text-light/40;
-    }
-
-    section.content main .breadcrumb .practice {
-        @apply flex flex-row items-center justify-end;
-        @apply w-1/3 h-auto;
-    }
-
-    section.content main .breadcrumb .guide box-icon,
-    section.content main .breadcrumb .practice box-icon {
-        @apply w-4 h-4;
-        @apply fill-dark/40;
-        @apply dark:fill-light/40;
-    }
-
-    section.content main .breadcrumb .guide box-icon,
-    section.content main .breadcrumb .guide span,
-    section.content main .breadcrumb .practice box-icon {
+    main aside.submenu .nav .item box-icon {
         @apply mr-1;
     }
 
-    section.content main .content {
-        @apply flex flex-col flex-1;
-        @apply p-4 m-0;
-        @apply w-full;
-        @apply text-sm text-dark;
-        @apply dark:text-primary;
+    main aside.submenu .nav .item.mini box-icon {
+        @apply w-4 h-4;
     }
 
-    section.content main footer {
-        @apply sticky flex flex-row;
-        @apply w-full h-12;
-        @apply bg-accent/20;
-        @apply border-t border-dark/10;
-        @apply dark:bg-primary/20 dark:border-light/10;
+    main aside.submenu .nav .item.active {
+        @apply border-r-4;
+        @apply border-accent bg-accent/15 hover:bg-accent/50;
     }
 
-    section.content main footer .left,
-    section.content main footer .right {
-        @apply flex flex-row items-center justify-center;
+    main aside.submenu .nav .item + h2.menu {
+        @apply mt-6;
+    }
+
+    /*main aside.submenu {
+        @apply hidden;
+    }*/
+
+    main .content {
+        @apply flex flex-col;
+        @apply p-0 m-0;
+        @apply w-full min-h-screen;
+        @apply text-sm;
+        @apply bg-primary text-dark;
+    }
+
+    main .content .header,
+    main .content .breadcrumb {
+        @apply px-6;
+    }
+
+    main .content .header {
+        @apply flex flex-row;
+        @apply w-full min-h-8;
+        @apply p-6 m-0;
+        @apply border-b;
+        @apply border-accent/35 bg-secondary/75;
+    }
+
+    main .content .header h1 {
+        @apply flex;
+        @apply items-center justify-start;
+        @apply text-2xl !leading-6;
+        @apply w-1/3 h-auto;
+    }
+
+    main .content .header .subtools {
+        @apply flex;
+        @apply items-center justify-end;
+        @apply w-2/3 h-auto;
+    }
+
+    main .content .breadcrumb {
+        @apply flex;
+        @apply items-center justify-start;
+        @apply py-3 m-0 mb-6;
+        @apply text-xs !leading-3;
+        @apply border-b;
+        @apply text-accent/35 border-accent/35;
+    }
+
+    main .content .breadcrumb a {
+        @apply text-accent/35;
+        @apply hover:text-accent/50;
+    }
+
+    main .content .breadcrumb a box-icon {
+        @apply w-4 h-4;
+        @apply fill-accent/35;
+    }
+
+    main .content .breadcrumb a:hover box-icon {
+        @apply fill-accent/50;
+    }
+
+    main .content .breadcrumb .step {
+        @apply p-0 m-0 ml-3 pt-0.5;
+        @apply before:content-['>'] before:mr-3;
+    }
+
+    main .content article {
+        @apply flex-1;
+        @apply px-6;
+    }
+
+    main .content footer {
+        @apply flex flex-row;
+        @apply w-full min-h-8;
+        @apply p-0 py-6 m-0 mt-6;
+        @apply border-t;
+        @apply border-accent/35 bg-secondary/75;
+    }
+
+    main .content footer section {
+        @apply flex;
+        @apply items-center justify-center;
         @apply w-1/2;
+        @apply text-xs !leading-3;
+        @apply text-accent;
     }
 
-    section.content main footer .left,
-    section.content main footer .right {
-        @apply flex flex-row items-center justify-center;
-        @apply text-xs text-accent;
-        @apply leading-none;
-        @apply dark:text-secondary;
-    }
-
-    section.content main footer .left box-icon {
+    main .content footer section a {
         @apply w-5 h-5;
-        @apply p-0 m-0 mr-1;
+        @apply mr-1;
         @apply fill-accent;
-        @apply dark:fill-secondary;
+        @apply hover:fill-accent/50;
     }
 
-    section.content main footer .right span,
-    section.content main footer .right a {
+    main .content footer section.right span {
+        @apply mr-2;
+    }
+
+    main .content footer section.right a {
+        @apply w-4 h-4;
         @apply mx-1;
     }
 
-    section.content main footer .right box-icon {
+    main .content footer section.right a box-icon {
         @apply w-4 h-4;
-        @apply p-0 m-0;
-        @apply fill-accent;
-        @apply dark:fill-secondary;
     }
+}
 
+@layer utilities {
     .form-block {
+        @apply w-full h-auto;
         @apply relative;
-        @apply mt-5 mb-4;
+        @apply pb-6 mt-6 mb-5;
+        @apply text-sm;
+        @apply text-dark;
     }
 
     .form-block-checkbox {
         @apply relative;
-        @apply flex flex-row items-center justify-between;
-        @apply mt-1 mb-4;
+        @apply flex flex-row items-center justify-start;
+        @apply pb-6 mt-6 mb-5;
+    }
+
+    .form-block,
+    .form-block input,
+    .form-block-checkbox {
+        @apply w-full;
+    }
+
+    .form-block label,
+    .form-block-checkbox label {
+        @apply w-auto;
     }
 
     .form-block label {
-        @apply absolute left-0 -top-5;
-        @apply text-xs leading-none text-dark/75;
+        @apply absolute left-3 -top-[18px];
+        @apply text-xs !leading-none text-accent/75;
     }
 
     .form-block-checkbox label {
         @apply ml-2;
-        @apply text-xs leading-none text-dark/75;
+        @apply text-xs !leading-none text-accent/75;
     }
 
     .form-block label span,
     .form-block-checkbox label span {
-        @apply text-xs leading-none text-danger/75;
+        @apply text-xs !leading-none text-danger/75;
     }
 
     .form-block input {
         @apply rounded;
         @apply px-3 py-2;
         @apply placeholder:text-dark/25;
-        @apply border-dark/30 focus:border-dark/50;
-        @apply ring-dark/30 focus:ring-dark/25;
-        @apply ring-offset-dark/30 focus:ring-offset-0;
-        @apply outline-dark/30 focus:outline-0;
-        @apply text-sm leading-none text-dark;
+        @apply border-accent/30 focus:border-accent/50;
+        @apply ring-accent/30 focus:ring-accent/25;
+        @apply ring-offset-accent/30 focus:ring-offset-0;
+        @apply outline-accent/30 focus:outline-0;
+        @apply text-xs !leading-none text-dark;
     }
 
     .form-block-checkbox input {
         @apply rounded appearance-none cursor-pointer aspect-square;
-        @apply checked:bg-dark checked:hover:bg-dark;
-        @apply checked:focus:bg-dark checked:focus:hover:bg-dark;
-        @apply checked:border-dark/30;
-        @apply border-dark/30 focus:border-dark/50;
-        @apply ring-dark/30 focus:ring-dark/25;
-        @apply ring-offset-dark/30 focus:ring-offset-0;
-        @apply outline-dark/30 focus:outline-0;
+        @apply checked:bg-accent checked:hover:bg-accent;
+        @apply checked:focus:bg-accent checked:focus:hover:bg-accent;
+        @apply checked:border-accent/30;
+        @apply border-accent/30 focus:border-accent/50;
+        @apply ring-accent/30 focus:ring-accent/25;
+        @apply ring-offset-accent/30 focus:ring-offset-0;
+        @apply outline-accent/30 focus:outline-0;
     }
 
     .form-block.disabled label,
@@ -376,23 +320,23 @@
 
     .form-block.disabled input,
     .form-block.readonly input {
-        @apply placeholder:text-dark/10;
-        @apply border-dark/15 focus:border-dark/35;
-        @apply ring-dark/15 focus:ring-dark/10;
-        @apply ring-offset-dark/15;
-        @apply outline-dark/15;
-        @apply text-dark;
+        @apply placeholder:text-accent/10;
+        @apply border-accent/15 focus:border-accent/35;
+        @apply ring-accent/15 focus:ring-accent/10;
+        @apply ring-offset-accent/15;
+        @apply outline-accent/15;
+        @apply text-dark/50 bg-dark/5;
     }
 
     .form-block-checkbox.disabled input,
     .form-block-checkbox.readonly input {
-        @apply checked:bg-dark/10 checked:hover:bg-dark/10;
-        @apply checked:focus:bg-dark/10 checked:focus:hover:bg-dark/10;
-        @apply checked:border-dark/15;
-        @apply border-dark/15 focus:border-dark/35;
-        @apply ring-dark/15 focus:ring-dark/10;
-        @apply ring-offset-dark/15 focus:ring-offset-0;
-        @apply outline-dark/15 focus:outline-0;
+        @apply checked:bg-accent/10 checked:hover:bg-accent/10;
+        @apply checked:focus:bg-accent/10 checked:focus:hover:bg-accent/10;
+        @apply checked:border-accent/15;
+        @apply border-accent/15 focus:border-accent/35;
+        @apply ring-accent/15 focus:ring-accent/10;
+        @apply ring-offset-accent/15 focus:ring-offset-0;
+        @apply outline-accent/15 focus:outline-0;
     }
 
     .form-block.show-error label,
@@ -426,15 +370,59 @@
     .form-block.show-error .error-detail,
     .form-block-checkbox.show-error .error-detail {
         @apply absolute z-[999];
-        @apply -top-2 -right-2;
+        @apply -top-2 right-2;
         @apply w-auto px-1.5 py-1 rounded;
         @apply bg-danger/80;
         @apply text-[10px] text-right text-light leading-none;
     }
 
+    .form-block.show-error .error-detail + .error-detail {
+        @apply -top-7 right-2;
+    }
+
+    .form-block.show-error .error-detail + .error-detail  + .error-detail {
+        @apply -top-12 right-2;
+    }
+
     .form-block-checkbox.show-error .error-detail {
-        @apply left-4 -top-3.5;
+        @apply left-4 top-3.5;
         @apply w-48 p-0.5 rounded;
         @apply text-center;
+    }
+
+    .form-block-checkbox.show-error .error-detail + .error-detail {
+        @apply left-4 -top-2.5;
+    }
+
+    .form-block-checkbox.show-error .error-detail + .error-detail + .error-detail {
+        @apply left-4 -top-8;
+    }
+
+    .card-holder {
+        @apply flex flex-row;
+        @apply items-center justify-center;
+        @apply w-1/4 h-auto;
+        @apply px-6 pt-6 mb-0 last-of-type:mb-6;
+        @apply border-b-2 first-of-type:border-t-2;
+        @apply border-secondary bg-secondary/35;
+    }
+
+    .card-holder.double {
+        @apply items-center justify-between;
+        @apply w-1/2;
+        @apply space-x-6;
+    }
+
+    .card-holder .form-block {
+        @apply my-0 mt-4;
+    }
+
+    .card-holder .form-block-checkbox {
+        @apply my-0;
+    }
+
+    .card-holder .form-block + .form-block-checkbox {
+        @apply h-14;
+        @apply mt-4 mb-0;
     }
 }
