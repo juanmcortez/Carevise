@@ -99,4 +99,17 @@ class UpdateUserRequest extends FormRequest
             $demographics_attributes
         );
     }
+
+
+    /**
+     * Get custom messages for validator errors.
+     *
+     * @return array<string, \Illuminate\Contracts\Validation\ValidationAttributes|array<mixed>|string>
+     */
+    public function messages(): array
+    {
+        return [
+            'npi.required'            => 'The NPI is required if the user is a provider',
+        ];
+    }
 }

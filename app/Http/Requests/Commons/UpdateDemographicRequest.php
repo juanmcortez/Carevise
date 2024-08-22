@@ -26,7 +26,7 @@ class UpdateDemographicRequest extends FormRequest
             'first_name'    => ['required', 'string', 'max:128'],
             'middle_name'   => ['nullable', 'string', 'max:128'],
             'last_name'     => ['required', 'string', 'max:128'],
-            'date_of_birth' => ['required', 'date', 'date_format:"M d, Y"'],
+            'date_of_birth' => ['required', 'date', 'date_format:"M d, Y"', 'before:today'],
             'gender'        => ['required', 'string', 'max:128'],
         ];
     }
