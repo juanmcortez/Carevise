@@ -1,46 +1,46 @@
 @extends('layouts.application')
 
+@section('page-title', __(':userdata profile details', ['userdata' => $user->demographic->complete_name]))
+
 @section('content')
-    USER PROFILE
     <form method="POST" action="{{ route('user.profile.update', ['user' => $user]) }}">
         @csrf
         @method('PATCH')
-        <div class="flex flex-row space-x-4">
-            <div class="flex flex-row w-1/2 mb-12 space-x-2">
-                <x-forms.input name="username" :value="old('username', $user->username)" :error="$errors->get('username')" :placeholder="__('Username')" readonly />
-                <x-forms.input name="email" :value="old('email', $user->email)" :error="$errors->get('email')" :placeholder="__('E-mail')" maxlength="255" />
-            </div>
-            <div class="flex flex-row w-1/2 mb-12 space-x-2">
-                <x-forms.checkbox class="mr-4" name="is_active" value="1" :checked="old('is_active', $user->is_active)" :error="$errors->get('is_active')" readonly
-                    disabled>{{ __('Is the user active?') }}</x-forms.checkbox>
-                <x-forms.checkbox name="is_user_provider" value="1" :checked="old('is_user_provider', $user->is_user_provider)"
-                    :error="$errors->get('is_user_provider')">{{ __('Is the user a provider?') }}</x-forms.checkbox>
-            </div>
+
+        <x-input type="hidden" name="username" value="{{ $user->username }}" />
+
+        <div class="card-holder double">
+            <x-forms.input name="userdata" :label="__('Username')" :value="old('userdata', $user->username)" :error="$errors" disabled readonly
+                required />
+
+            <x-forms.checkbox name="is_active" :label="__('Is the user active?')" :checked="old('is_active', $user->is_active)" :error="$errors" />
+            <x-forms.input name="email" :label="__('E-mail')" :value="old('email', $user->email)" :error="$errors" focus required />
         </div>
-        <div class="flex flex-row space-x-4">
-            <div class="flex flex-row w-1/2 mb-12 space-x-2">
-                <x-forms.input name="demographic[title]" :value="old('demographic.title', $user->demographic->title)" :error="$errors->get('demographic.title')" :placeholder="__('Title')"
-                    maxlength="12" />
-                <x-forms.input name="demographic[last_name]" :value="old('demographic.last_name', $user->demographic->last_name)" :error="$errors->get('demographic.last_name')" :placeholder="__('Last name')" />
-            </div>
-            <div class="flex flex-row w-1/2 mb-12 space-x-2">
-                <x-forms.input name="demographic[first_name]" :value="old('demographic.first_name', $user->demographic->first_name)" :error="$errors->get('demographic.first_name')" :placeholder="__('First name')" />
-                <x-forms.input name="demographic[middle_name]" :value="old('demographic.middle_name', $user->demographic->middle_name)" :error="$errors->get('demographic.middle_name')" :placeholder="__('Middle name')" />
-            </div>
+
+        <div class="card-holder double">
+            <x-forms.input name="demographic[title]" :label="__('Title')" :value="old('demographic.title', $user->demographic->title)" :error="$errors" />
+            <x-forms.checkbox name="is_user_provider" :label="__('Is the user a provider?')" :checked="old('is_user_provider', $user->is_user_provider)" :error="$errors" />
+            <x-forms.input name="npi" :label="__('NPI')" :value="old('npi', $user->npi)" :error="$errors" />
         </div>
-        <div class="flex flex-row space-x-4">
-            <div class="flex flex-row w-1/2 mb-12 space-x-2">
-                <x-forms.input name="demographic[date_of_birth]" :value="old('demographic.date_of_birth', $user->demographic->date_of_birth->format('M d, Y'))" :error="$errors->get('demographic.date_of_birth')" :placeholder="__('Birthdate')" />
-                <x-forms.input name="demographic[gender]" :value="old('demographic.gender', $user->demographic->gender)" :error="$errors->get('demographic.gender')" :placeholder="__('Gender')" />
-            </div>
-            <div class="flex flex-row w-1/2 mb-12 space-x-2">
-                <x-forms.input name="npi" :value="old('npi', $user->npi)" :error="$errors->get('npi')" :placeholder="__('NPI')" maxlength="16" />
-            </div>
+
+        <div class="card-holder double">
+            <x-forms.input name="demographic[last_name]" :label="__('Last name')" :value="old('demographic.last_name', $user->demographic->last_name)" :error="$errors"
+                required />
+            <x-forms.input name="demographic[first_name]" :label="__('First name')" :value="old('demographic.first_name', $user->demographic->first_name)" :error="$errors"
+                required />
+            <x-forms.input name="demographic[middle_name]" :label="__('Middle name')" :value="old('demographic.middle_name', $user->demographic->middle_name)" :error="$errors" />
         </div>
-        <x-button
-            class="text-teal-100 uppercase bg-teal-600 border-teal-200 xl:w-32 hover:bg-teal-500/75 hover:text-teal-900 focus:border-teal-400 focus:bg-teal-500/50"
-            type="submit">
-            {{ __('Update') }}
-        </x-button>
+
+        <div class="card-holder double">
+            <x-forms.input name="demographic[date_of_birth]" :label="__('Birthdate')" :value="old('demographic.date_of_birth', $user->demographic->date_of_birth->format('M d, Y'))" :error="$errors"
+                required />
+            <x-forms.input name="demographic[gender]" :label="__('Gender')" :value="old('demographic.gender', $user->demographic->gender)" :error="$errors" />
+        </div>
+
+        <div class="card-holder double">
+            <button id="submit" class="w-full px-4 py-3 mb-6 rounded bg-dark text-light">
+                {{ __('Update') }}
+            </button>
+        </div>
     </form>
 @endsection

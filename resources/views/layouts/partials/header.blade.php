@@ -1,12 +1,18 @@
 <div class="header">
-    <h1>
-        @hasSection('page-title')
-            @yield('page-title')
-        @else
+    @Guest
+        <h1 class="centered">
+            <x-logo />
             {{ config('company.name', 'Laravel') }}
-        @endif
-    </h1>
-    <div class="subtools">
-        TOOLS
-    </div>
+        </h1>
+    @endGuest
+    @Auth
+        <h1>
+            @hasSection('page-title')
+                @yield('page-title')
+            @else
+                {{ config('company.name', 'Laravel') }}
+            @endif
+        </h1>
+        <div class="subtools">&nbsp;</div>
+    @endAuth
 </div>
