@@ -15,4 +15,7 @@
         </h1>
         <div class="subtools">&nbsp;</div>
     @endAuth
+    {{-- System wide messages when logged in --}}
+    <x-tools.toast :help="session('status')" :success="session('success')" :errors="$errors" :warning="session('warning')" :info="session('info')" />
+    {{-- System wide messages when logged in --}}
 </div>
