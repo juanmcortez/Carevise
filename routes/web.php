@@ -14,9 +14,14 @@ Route::middleware('auth')->group(function () {
     // Users
     Route::controller(UserController::class)->name('users.')->group(
         function () {
-            Route::get('/users/list', 'index')->name('list');
+            Route::get('/users', 'index')->name('list');
             Route::get('/users/{user}/profile', 'edit')->name('profile');
             Route::patch('/users/{user}/profile', 'update')->name('profile.update');
         }
     );
+});
+
+Route::fallback(function () {
+    // Default
+    return response()->redirectTo(route('dashboard'));
 });
