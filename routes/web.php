@@ -11,9 +11,12 @@ Route::middleware('auth')->group(function () {
         Route::get('/', 'show')->name('dashboard');
     });
 
-    // User Profile
-    Route::controller(UserController::class)->group(function () {
-        Route::get('/{user:username}/profile', 'edit')->name('user.profile');
-        Route::patch('/{user:username}/profile', 'update')->name('user.profile.update');
-    });
+    // Users
+    Route::controller(UserController::class)->name('users.')->group(
+        function () {
+            Route::get('/users/list', 'index')->name('list');
+            Route::get('/users/{user}/profile', 'edit')->name('profile');
+            Route::patch('/users/{user}/profile', 'update')->name('profile.update');
+        }
+    );
 });

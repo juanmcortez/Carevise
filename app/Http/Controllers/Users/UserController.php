@@ -11,12 +11,30 @@ use App\Http\Requests\Users\UpdateUserRequest;
 
 class UserController extends Controller
 {
+    private $submenu;
+
+    public function __construct(array $submenu = [])
+    {
+        $this->submenu = [
+            'section' => [
+                'title' => 'Users',
+                'items' => [
+                    'List' => ['routename' => 'users.list', 'icon' => 'user-detail'],
+                    'Create' => ['routename' => 'dashboard', 'icon' => 'user-plus'],
+                ]
+            ]
+        ];
+    }
+
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $submenu = $this->submenu;
+        $users = User::whereIsUserProvider(false)->get();
+
+        return view('users.index', compact('users', 'submenu'));
     }
 
     /**
@@ -24,7 +42,7 @@ class UserController extends Controller
      */
     public function create()
     {
-        //
+        abort(404);
     }
 
     /**
@@ -32,7 +50,7 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -40,7 +58,7 @@ class UserController extends Controller
      */
     public function show(User $user)
     {
-        //
+        abort(404);
     }
 
     /**
@@ -48,7 +66,7 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        return view('users.profile.edit', ['user' => $user]);
+        return view('users.profile.edit', ['user' => $user, 'submenu' => $this->submenu]);
     }
 
     /**
@@ -84,10 +102,10 @@ class UserController extends Controller
 
         if ($user->save() && $user->demographic->save()) {
             $message = 'User updated!';
-            return redirect()->route('user.profile', ['user' => $user])->with('success', $message);
+            return redirect()->route('users.profile', ['user' => $user])->with('success', $message);
         } else {
             $message = 'There was an error updating the user information.';
-            return redirect()->route('user.profile', ['user' => $user])->with('alert', $message);
+            return redirect()->route('users.profile', ['user' => $user])->with('alert', $message);
         }
     }
 
@@ -96,6 +114,6 @@ class UserController extends Controller
      */
     public function destroy(User $user)
     {
-        //
+        abort(404);
     }
 }

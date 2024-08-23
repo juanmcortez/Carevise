@@ -35,7 +35,9 @@
     @endAuth
     <main>
         @Auth
-            @include('layouts.partials.sidebar-submenu')
+            @hasSection('submenu')
+                @yield('submenu')
+            @endif
         @endAuth
         <section class="content">
             @include('layouts.partials.header')

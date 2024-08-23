@@ -2,12 +2,16 @@
 
 @section('page-title', __(':userdata profile details', ['userdata' => $user->demographic->complete_name]))
 
+@section('submenu')
+    <x-tools.submenu :items="$submenu" />
+@endsection
+
 @section('content')
-    <form method="POST" action="{{ route('user.profile.update', ['user' => $user]) }}">
+    <form method="POST" action="{{ route('users.profile.update', ['user' => $user]) }}">
         @csrf
         @method('PATCH')
 
-        <x-input type="hidden" name="username" value="{{ $user->username }}" />
+        <x-forms.input type="hidden" name="username" value="{{ $user->username }}" />
 
         <div class="card-holder double">
             <x-forms.input name="userdata" :label="__('Username')" :value="old('userdata', $user->username)" :error="$errors" disabled readonly

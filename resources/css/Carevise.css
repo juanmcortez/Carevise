@@ -202,6 +202,7 @@
         @apply hover:text-accent/50;
     }
 
+    main .content .breadcrumb .home,
     main .content .breadcrumb a box-icon {
         @apply w-4 h-4;
         @apply fill-accent/35;
@@ -448,5 +449,32 @@
     .card-holder .form-block.no-label + .form-block-checkbox {
         @apply mt-0 mb-1;
         @apply h-auto;
+    }
+
+    #table {
+        @apply table;
+        @apply w-full;
+        @apply border rounded-lg;
+        @apply bg-light/50 border-secondary;
+    }
+
+    #table tr {
+        @apply table-row;
+        @apply border-b;
+        @apply odd:border-secondary even:bg-primary last-of-type:border-b-0;
+        @apply hover:bg-accent/15 hover:cursor-pointer
+    }
+
+    #table tr th,
+    #table tr td {
+        @apply align-middle;
+        @apply text-xs leading-none text-center text-dark;
+        @apply px-4 py-3;
+    }
+
+    #table tr th {
+        @apply font-semibold uppercase;
+        @apply py-3;
+        @apply bg-accent text-light;
     }
 }
