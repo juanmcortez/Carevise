@@ -1,6 +1,7 @@
 @props([
     'value' => null,
     'label' => null,
+    'class' => null,
     'nolbl' => false,
     'name' => null,
     'type' => 'text',
@@ -18,7 +19,7 @@
         $error_name = Str::replaceFirst('[', '.', $name);
         $error_name = Str::replaceFirst(']', '', $error_name);
     }
-    $type = $name == 'password' || $name == 'password_confirmation' ? 'password' : $type;
+    $type = $name == 'password' || $name == 'password_confirmation' || $name == 'current_password' ? 'password' : $type;
 @endphp
 
 @if ($type == 'hidden')
@@ -30,6 +31,7 @@
         'readonly' => $readonly,
         'show-error' => count($error->get($error_name)),
         'no-label' => $nolbl,
+        $class,
     ])>
         @if ($label && !$nolbl)
             <label for="{{ $name }}">

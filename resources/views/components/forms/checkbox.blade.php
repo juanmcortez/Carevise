@@ -1,6 +1,7 @@
 @props([
     'value' => 1,
     'label' => null,
+    'class' => null,
     'name' => null,
     'type' => 'text',
     'error' => null,
@@ -20,6 +21,7 @@
     'disabled' => $disabled,
     'readonly' => $readonly,
     'show-error' => count($error->get($error_name)),
+    $class,
 ])>
     <input class="form-checkbox" type="checkbox"
         {{ $attributes->merge(['name' => $name, 'id' => $name, 'value' => $value]) }} @readonly($readonly)
