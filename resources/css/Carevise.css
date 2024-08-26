@@ -290,7 +290,8 @@
     }
 
     .toast.status,
-    .toast.info {
+    .toast.info,
+    .toast.help {
         @apply bg-info/85 text-info-darker;
         @apply shadow-info-darker border-info-darker;
     }
@@ -538,7 +539,7 @@
         @apply bg-light/50 border-secondary;
     }
 
-    #table tr {
+    #table tbody tr {
         @apply table-row;
         @apply border-b;
         @apply odd:border-primary even:border-light/50;
@@ -558,5 +559,86 @@
         @apply font-semibold uppercase;
         @apply py-4;
         @apply bg-accent text-light;
+        @apply hover:cursor-pointer;
+    }
+
+    #table tr th svg {
+        @apply inline-flex justify-center items-center;
+        @apply w-3.5 h-3.5;
+        @apply m-0 p-0 -mt-0.5;
+        @apply fill-light;
+    }
+
+    #table tr th span {
+        @apply flex justify-between items-center;
+    }
+
+    #table tfoot tr {
+        @apply bg-accent/20;
+        @apply hover:bg-accent/20 hover:cursor-default;
+    }
+
+    #table tfoot tr td {
+        @apply align-middle;
+        @apply text-xs leading-none text-center text-dark;
+        @apply bg-accent/20;
+        @apply hover:bg-accent/20 hover:cursor-default;
+        @apply p-0;
+    }
+
+    .table-pagination {
+        @apply flex items-center justify-between;
+        @apply m-2;
+        @apply text-xs leading-none;
+    }
+
+    .table-pagination .buttons {
+         @apply flex justify-between flex-1 sm:hidden;
+    }
+
+    .table-pagination .details{
+        @apply hidden sm:flex-1 sm:flex sm:items-center sm:justify-between;
+    }
+
+    .table-pagination .details .count {
+        @apply text-xs text-accent leading-3 dark:text-dark;
+    }
+
+    .table-pagination .details .previous {
+        @apply relative z-0 inline-flex rtl:flex-row-reverse;
+    }
+
+    .table-pagination .details .previous .arrow-prev,
+    .table-pagination .details .previous .arrow-next,
+    .table-pagination .details .previous .page,
+    .table-pagination .details .previous .element {
+        @apply relative inline-flex items-center justify-center;
+        @apply p-1 -ml-px;
+        @apply w-8 h-7;
+        @apply text-xs font-medium text-accent leading-3;
+        @apply bg-accent/10;
+        @apply border border-accent/50;
+        @apply cursor-pointer;
+    }
+
+    .table-pagination .details .previous .arrow-prev-link,
+    .table-pagination .details .previous .arrow-next-link,
+    .table-pagination .details .previous .page-link {
+        @apply relative inline-flex items-center justify-center;
+        @apply p-1 -ml-px;
+        @apply w-8 h-7;
+        @apply text-xs font-medium text-accent leading-3;
+        @apply bg-accent/10;
+        @apply border border-accent/50;
+        @apply cursor-pointer;
+        @apply hover:text-accent/50 hover:bg-accent/50 hover:text-light;
+        @apply focus:z-10 focus:outline-none focus:ring-0 ring-accent/50 focus:border-accent/50;
+        @apply active:bg-accent/10 active:text-accent;
+        @apply transition ease-in-out duration-150;
+    }
+
+    .table-pagination .details .previous .page {
+        @apply bg-accent/75;
+        @apply text-light;
     }
 }

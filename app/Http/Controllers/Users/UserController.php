@@ -40,8 +40,12 @@ class UserController extends Controller
     public function index(): View
     {
         $submenu = $this->submenu;
-        $users = User::whereIsUserProvider(false)->get();
-
+        $users = User::join('demographics', 'demographics.id', '=', 'users.demographic_id')
+            ->select('users.*')
+            ->orderBy('last_name')
+            ->orderBy('first_name')
+            ->orderBy('middle_name')
+            ->paginate(15);
         return view('users.index', compact('users', 'submenu'));
     }
 
@@ -67,7 +71,7 @@ class UserController extends Controller
         //
         if ($user) {
             $message = "<strong>{$user->demographic->complete_name}</strong> created!";
-            return Redirect::route('users.profile', ['user' => $user, 'submenu' => $this->submenu])->with('success', $message);
+            return Redirect::route('users.list')->with('success', $message);
         } else {
             $message = 'There was an error creating the user information.';
             return Redirect::to('users.profile.create', ['submenu' => $this->submenu])->with('alert', $message);
