@@ -262,6 +262,75 @@
         @apply relative;
     }
 
+    .user-dropdown {
+        @apply relative flex items-center;
+        @apply text-xs;
+    }
+
+    .user-dropdown button {
+        @apply align-middle text-accent;
+        @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+    }
+
+    .user-dropdown button svg {
+        @apply w-4 h-4 -mt-2 inline-flex;
+        @apply fill-accent;
+    }
+
+    .user-dropdown ul {
+        @apply absolute right-0 top-[30px] flex flex-col;
+        @apply min-w-24;
+        @apply overflow-hidden shadow-accent/35 shadow-sm;
+        @apply border bg-primary border-accent/35;
+    }
+
+    .user-dropdown ul li:first-of-type div {
+        @apply flex flex-col;
+        @apply w-full;
+        @apply mb-1;
+        @apply items-start justify-start;
+        @apply border-b border-accent/35;
+    }
+
+    .user-dropdown ul li:first-of-type div span {
+        @apply text-xs leading-none text-left;
+        @apply w-full h-auto;
+        @apply pt-3 px-6 mb-1;
+    }
+
+    .user-dropdown ul li:first-of-type div span + span {
+        @apply text-[10px] leading-none text-left;
+        @apply pt-0 pb-3 px-6 mb-1;
+        @apply text-dark/50;
+    }
+
+    .user-dropdown ul li .item {
+        @apply flex;
+        @apply items-center justify-start;
+        @apply w-full h-auto;
+        @apply py-2.5 px-6 mb-1;
+        @apply text-accent;
+    }
+
+    .user-dropdown ul li .item:hover{
+        @apply text-primary bg-accent/50;
+    }
+
+    .user-dropdown ul li .item.active {
+        @apply border-r-4;
+        @apply border-accent bg-accent/15 hover:bg-accent/50;
+    }
+
+    .user-dropdown ul li .item box-icon {
+        @apply w-5 h-5;
+        @apply mr-1;
+        @apply fill-accent;
+    }
+
+    .user-dropdown ul li .item:hover box-icon {
+        @apply fill-primary;
+    }
+
     .toast {
         @apply absolute z-[999];
         @apply top-6 right-6;
