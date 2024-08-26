@@ -166,7 +166,7 @@
         @apply flex;
         @apply items-center justify-start;
         @apply text-2xl !leading-6;
-        @apply w-1/3 h-auto;
+        @apply w-1/2 h-auto;
     }
 
     main .content .header h1.centered {
@@ -185,7 +185,7 @@
     main .content .header .subtools {
         @apply flex;
         @apply items-center justify-end;
-        @apply w-2/3 h-auto;
+        @apply w-1/2 h-auto;
     }
 
     main .content .breadcrumb {
@@ -202,6 +202,7 @@
         @apply hover:text-accent/50;
     }
 
+    main .content .breadcrumb .home,
     main .content .breadcrumb a box-icon {
         @apply w-4 h-4;
         @apply fill-accent/35;
@@ -256,6 +257,59 @@
     main .content footer section.right a box-icon {
         @apply w-4 h-4;
     }
+
+    body {
+        @apply relative;
+    }
+
+    .toast {
+        @apply absolute z-[999];
+        @apply top-6 right-6;
+        @apply w-auto;
+        @apply rounded-sm;
+        @apply border-l-4 shadow;
+    }
+
+    .toast h6 {
+        @apply w-full;
+        @apply px-3 pt-2;
+        @apply text-sm font-bold uppercase;
+    }
+
+    .toast .message {
+        @apply flex flex-col;
+        @apply w-full;
+        @apply px-3 pb-2;
+        @apply text-xs;
+        @apply text-light;
+    }
+
+    .toast .message span {
+        @apply w-full;
+        @apply mt-1 ml-2;
+    }
+
+    .toast.status,
+    .toast.info,
+    .toast.help {
+        @apply bg-info/85 text-info-darker;
+        @apply shadow-info-darker border-info-darker;
+    }
+
+    .toast.success {
+        @apply bg-success/85 text-success-darker;
+        @apply shadow-success-darker border-success-darker;
+    }
+
+    .toast.warning {
+        @apply bg-warning/85 text-warning-darker;
+        @apply shadow-warning-darker border-warning-darker;
+    }
+
+    .toast.error {
+        @apply bg-danger/85 text-danger-darker;
+        @apply shadow-danger-darker border-danger-darker;
+    }
 }
 
 @layer utilities {
@@ -273,8 +327,16 @@
         @apply pb-6 mt-6 mb-5;
     }
 
+    .form-block-select {
+        @apply relative flex flex-col;
+        @apply w-full;
+        @apply gap-1;
+        @apply text-dark;
+    }
+
     .form-block,
     .form-block input,
+    .form-block select,
     .form-block-checkbox {
         @apply w-full;
     }
@@ -299,7 +361,8 @@
         @apply text-xs !leading-none text-danger/75;
     }
 
-    .form-block input {
+    .form-block input,
+    .form-block select {
         @apply rounded;
         @apply px-3 py-2;
         @apply placeholder:text-dark/25;
@@ -308,6 +371,10 @@
         @apply ring-offset-accent/30 focus:ring-offset-0;
         @apply outline-accent/30 focus:outline-0;
         @apply text-xs !leading-none text-dark;
+    }
+
+    .form-block select {
+        @apply p-3;
     }
 
     .form-block-checkbox input {
@@ -332,7 +399,9 @@
     }
 
     .form-block.disabled input,
-    .form-block.readonly input {
+    .form-block.readonly input,
+    .form-block.disabled select,
+    .form-block.readonly select {
         @apply placeholder:text-accent/10;
         @apply border-accent/15 focus:border-accent/35;
         @apply ring-accent/15 focus:ring-accent/10;
@@ -361,7 +430,8 @@
         @apply text-danger/75;
     }
 
-    .form-block.show-error input {
+    .form-block.show-error input,
+    .form-block.show-error select {
         @apply placeholder:text-danger/35;
         @apply border-danger/40 focus:border-danger/60;
         @apply ring-danger/40 focus:ring-danger/35;
@@ -387,6 +457,7 @@
         @apply w-auto px-1.5 py-1 rounded;
         @apply bg-danger/80;
         @apply text-[10px] text-right text-light leading-none;
+        @apply overflow-x-hidden whitespace-nowrap;
     }
 
     .form-block.show-error .error-detail + .error-detail {
@@ -448,5 +519,161 @@
     .card-holder .form-block.no-label + .form-block-checkbox {
         @apply mt-0 mb-1;
         @apply h-auto;
+    }
+
+    .user-profile {
+        @apply flex flex-row;
+        @apply items-start justify-start;
+        @apply space-x-6;
+        @apply w-full h-auto;
+    }
+
+    .user-profile form,
+    .user-profile form + div {
+        @apply w-1/2;
+        @apply text-xs text-dark;
+    }
+
+    .user-profile form + div{
+        @apply flex flex-row;
+        @apply items-start justify-start;
+        @apply space-x-6;
+    }
+
+    .user-profile .card-holder {
+        @apply w-1/2;
+    }
+
+    .user-profile .card-holder.double {
+        @apply w-full;
+    }
+
+    #table {
+        @apply table;
+        @apply w-full;
+        @apply border rounded-lg;
+        @apply bg-light/50 border-secondary;
+    }
+
+    #table tbody tr {
+        @apply table-row;
+        @apply border-b;
+        @apply odd:border-primary even:border-light/50;
+        @apply odd:bg-light/50 even:bg-primary;
+        @apply last-of-type:border-b-0;
+        @apply hover:bg-accent/15 hover:cursor-pointer
+    }
+
+    #table thead tr th,
+    #table tbody tr td {
+        @apply align-middle;
+        @apply text-xs leading-none text-center text-dark;
+        @apply p-4;
+    }
+
+    #table thead tr th {
+        @apply font-semibold uppercase;
+        @apply py-4;
+        @apply bg-accent text-light;
+        @apply border-r-light/5 border-r last-of-type:border-r-0;
+        @apply hover:cursor-pointer;
+    }
+
+    #table thead tr th svg {
+        @apply inline-flex justify-center items-center;
+        @apply w-3.5 h-3.5;
+        @apply m-0 p-0 -mt-0.5;
+        @apply fill-light/50;
+    }
+
+    #table thead tr th span {
+        @apply flex justify-between items-center;
+    }
+
+    #table thead tr th span .label {
+        @apply w-11/12 text-center;
+    }
+
+    #table thead tr th span.sort-asc,
+    #table thead tr th span.sort-desc {
+        @apply hidden;
+    }
+
+    #table tbody tr td {
+        @apply border-r-accent/15 border-r last-of-type:border-r-0;
+    }
+
+    #table tfoot tr {
+        @apply bg-accent/20;
+        @apply hover:bg-accent/20 hover:cursor-default;
+    }
+
+    #table tfoot tr td {
+        @apply align-middle;
+        @apply text-xs leading-none text-center text-dark;
+        @apply bg-accent/20;
+        @apply hover:bg-accent/20 hover:cursor-default;
+        @apply p-0;
+    }
+
+    .table-pagination {
+        @apply flex items-center justify-between;
+        @apply m-2;
+        @apply text-xs leading-none;
+    }
+
+    .table-pagination .buttons {
+         @apply flex justify-between flex-1 sm:hidden;
+    }
+
+    .table-pagination .details{
+        @apply hidden sm:flex-1 sm:flex sm:items-center sm:justify-between;
+    }
+
+    .table-pagination .details .count {
+        @apply text-xs text-accent leading-3 dark:text-dark;
+    }
+
+    .table-pagination .details .previous {
+        @apply relative z-0 inline-flex rtl:flex-row-reverse;
+    }
+
+    .table-pagination .details .previous .arrow-prev,
+    .table-pagination .details .previous .arrow-next,
+    .table-pagination .details .previous .page,
+    .table-pagination .details .previous .element {
+        @apply relative inline-flex items-center justify-center;
+        @apply p-1 -ml-px;
+        @apply w-8 h-7;
+        @apply text-xs font-medium text-accent leading-3;
+        @apply bg-accent/10;
+        @apply border border-accent/50;
+        @apply cursor-pointer;
+    }
+
+    .table-pagination .details .previous .arrow-prev-link,
+    .table-pagination .details .previous .arrow-next-link,
+    .table-pagination .details .previous .page-link {
+        @apply relative inline-flex items-center justify-center;
+        @apply p-1 -ml-px;
+        @apply w-8 h-7;
+        @apply text-xs font-medium text-accent leading-3;
+        @apply bg-accent/10;
+        @apply border border-accent/50;
+        @apply cursor-pointer;
+        @apply hover:text-accent/50 hover:bg-accent/50 hover:text-light;
+        @apply focus:z-10 focus:outline-none focus:ring-0 ring-accent/50 focus:border-accent/50;
+        @apply active:bg-accent/10 active:text-accent;
+        @apply transition ease-in-out duration-150;
+    }
+
+    .table-pagination .details .previous .page {
+        @apply bg-accent/75;
+        @apply text-light;
+    }
+
+    #table.user-list tr th:first-of-type,
+    #table.user-list tr td:first-of-type {
+        @apply text-left;
     }
 }

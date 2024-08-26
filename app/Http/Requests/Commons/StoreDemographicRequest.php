@@ -5,7 +5,7 @@ namespace App\Http\Requests\Commons;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
-class UpdateDemographicRequest extends FormRequest
+class StoreDemographicRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.

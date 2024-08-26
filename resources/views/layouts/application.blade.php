@@ -8,9 +8,9 @@
 
     <title>
         @hasSection('page-title')
-            @yield('page-title') | {{ config('company.name', 'Laravel') }}
+            {{ config('company.short-name', config('company.name', 'Carevise')) }} | @yield('page-title')
         @else
-            {{ config('company.name', 'Laravel') }}
+            {{ config('company.short-name', config('company.name', 'Carevise')) }}
         @endif
     </title>
     <!-- Fonts -->
@@ -35,7 +35,9 @@
     @endAuth
     <main>
         @Auth
-            @include('layouts.partials.sidebar-submenu')
+            @hasSection('submenu')
+                @yield('submenu')
+            @endif
         @endAuth
         <section class="content">
             @include('layouts.partials.header')

@@ -1,5 +1,7 @@
 @extends('layouts.application')
 
+@section('page-title', __('Dashboard'))
+
 @section('content')
-    INDEX
+    DASHBOARD CONTENT
 @endsection

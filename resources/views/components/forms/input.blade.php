@@ -1,6 +1,7 @@
 @props([
     'value' => null,
     'label' => null,
+    'class' => null,
     'nolbl' => false,
     'name' => null,
     'type' => 'text',
@@ -18,7 +19,13 @@
         $error_name = Str::replaceFirst('[', '.', $name);
         $error_name = Str::replaceFirst(']', '', $error_name);
     }
-    $type = $name == 'password' || $name == 'password_confirmation' ? 'password' : $type;
+    $type =
+        $name == 'password' ||
+        $name == 'password_confirmation' ||
+        $name == 'current_password' ||
+        $name == 'user_current_password'
+            ? 'password'
+            : $type;
 @endphp
 
 @if ($type == 'hidden')
@@ -30,6 +37,7 @@
         'readonly' => $readonly,
         'show-error' => count($error->get($error_name)),
         'no-label' => $nolbl,
+        $class,
     ])>
         @if ($label && !$nolbl)
             <label for="{{ $name }}">
@@ -52,7 +60,9 @@
         @endif
         @if (count($error->get($error_name)))
             @foreach ($error->get($error_name) as $message)
-                <span class="error-detail">{{ $message }}</span>
+                <span class="error-detail" role="alert" tabindex="-1" x-data="{ isOpen: false }" x-cloak x-show="isOpen"
+                    x-init="$nextTick(() => { isOpen = !isOpen });
+                    setTimeout(() => isOpen = !isOpen, 4000);" x-transition.duration.300ms>{{ $message }}</span>
             @endforeach
         @endif
     </div>

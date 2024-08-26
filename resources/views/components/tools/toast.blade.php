@@ -22,7 +22,7 @@
 @if ($help || $success || $info || $errors->any() || $warning)
     <div {{ $attributes->merge(['class' => 'toast ' . $type]) }} role="alert" tabindex="-1" x-data="{ isOpen: false }"
         x-cloak x-show="isOpen" x-init="$nextTick(() => { isOpen = !isOpen });
-        setTimeout(() => isOpen = !isOpen, 4000);" x-transition.duration.400ms>
+        setTimeout(() => isOpen = !isOpen, 8000);" x-transition.duration.300ms>
         <h6>{{ __($type) }}</h6>
         <div class="message">
             @if ($info)
