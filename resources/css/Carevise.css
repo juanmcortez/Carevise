@@ -656,7 +656,7 @@
         @apply text-light;
     }
 
-    #table.user-list tr th:first-of-type span .label,
+    #table.user-list tr th:first-of-type,
     #table.user-list tr td:first-of-type {
         @apply text-left;
     }
