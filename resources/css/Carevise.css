@@ -548,29 +548,43 @@
         @apply hover:bg-accent/15 hover:cursor-pointer
     }
 
-    #table tr th,
-    #table tr td {
+    #table thead tr th,
+    #table tbody tr td {
         @apply align-middle;
         @apply text-xs leading-none text-center text-dark;
         @apply p-4;
     }
 
-    #table tr th {
+    #table thead tr th {
         @apply font-semibold uppercase;
         @apply py-4;
         @apply bg-accent text-light;
+        @apply border-r-light/5 border-r last-of-type:border-r-0;
         @apply hover:cursor-pointer;
     }
 
-    #table tr th svg {
+    #table thead tr th svg {
         @apply inline-flex justify-center items-center;
         @apply w-3.5 h-3.5;
         @apply m-0 p-0 -mt-0.5;
-        @apply fill-light;
+        @apply fill-light/50;
     }
 
-    #table tr th span {
+    #table thead tr th span {
         @apply flex justify-between items-center;
+    }
+
+    #table thead tr th span .label {
+        @apply w-11/12 text-center;
+    }
+
+    #table thead tr th span.sort-asc,
+    #table thead tr th span.sort-desc {
+        @apply hidden;
+    }
+
+    #table tbody tr td {
+        @apply border-r-accent/15 border-r last-of-type:border-r-0;
     }
 
     #table tfoot tr {
@@ -640,5 +654,10 @@
     .table-pagination .details .previous .page {
         @apply bg-accent/75;
         @apply text-light;
+    }
+
+    #table.user-list tr th:first-of-type span .label,
+    #table.user-list tr td:first-of-type {
+        @apply text-left;
     }
 }
