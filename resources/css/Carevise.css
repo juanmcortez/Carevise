@@ -327,8 +327,16 @@
         @apply pb-6 mt-6 mb-5;
     }
 
+    .form-block-select {
+        @apply relative flex flex-col;
+        @apply w-full;
+        @apply gap-1;
+        @apply text-dark;
+    }
+
     .form-block,
     .form-block input,
+    .form-block select,
     .form-block-checkbox {
         @apply w-full;
     }
@@ -353,7 +361,8 @@
         @apply text-xs !leading-none text-danger/75;
     }
 
-    .form-block input {
+    .form-block input,
+    .form-block select {
         @apply rounded;
         @apply px-3 py-2;
         @apply placeholder:text-dark/25;
@@ -362,6 +371,10 @@
         @apply ring-offset-accent/30 focus:ring-offset-0;
         @apply outline-accent/30 focus:outline-0;
         @apply text-xs !leading-none text-dark;
+    }
+
+    .form-block select {
+        @apply p-3;
     }
 
     .form-block-checkbox input {
@@ -386,7 +399,9 @@
     }
 
     .form-block.disabled input,
-    .form-block.readonly input {
+    .form-block.readonly input,
+    .form-block.disabled select,
+    .form-block.readonly select {
         @apply placeholder:text-accent/10;
         @apply border-accent/15 focus:border-accent/35;
         @apply ring-accent/15 focus:ring-accent/10;
@@ -415,7 +430,8 @@
         @apply text-danger/75;
     }
 
-    .form-block.show-error input {
+    .form-block.show-error input,
+    .form-block.show-error select {
         @apply placeholder:text-danger/35;
         @apply border-danger/40 focus:border-danger/60;
         @apply ring-danger/40 focus:ring-danger/35;

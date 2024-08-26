@@ -21,8 +21,8 @@
             </div>
 
             <div class="card-holder double">
-                <x-forms.input name="demographic[title]" :label="__('Title')" :value="old('demographic.title')" :error="$errors"
-                    class="!w-1/3" />
+                <x-forms.select name="demographic[title]" :label="__('Title')" :value="old('demographic.title')" :items="['sr' => 'Sr.', 'ms' => 'Ms.', 'mrs' => 'Mrs.', 'dr' => 'Dr.']"
+                    :error="$errors" class="!w-1/3" slctxt="" />
                 <x-forms.input name="demographic[last_name]" :label="__('Last name')" :value="old('demographic.last_name')" :error="$errors"
                     required />
                 <x-forms.input name="demographic[first_name]" :label="__('First name')" :value="old('demographic.first_name')" :error="$errors"
@@ -33,8 +33,13 @@
             <div class="card-holder double">
                 <x-forms.input name="demographic[date_of_birth]" :label="__('Birthdate')" :value="old('demographic.date_of_birth')" :error="$errors"
                     required />
-                <x-forms.input name="demographic[gender]" :label="__('Gender')" :value="old('demographic.gender')" :error="$errors"
-                    required />
+                <x-forms.select name="demographic[gender]" :label="__('Gender')" :value="old('demographic.gender')" :items="[
+                    'male' => 'Male',
+                    'female' => 'Female',
+                    'undisclosed' => 'Undisclosed',
+                    'other' => 'Other',
+                ]"
+                    :error="$errors" required />
             </div>
 
             <div class="card-holder double">
