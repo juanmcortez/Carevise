@@ -9,7 +9,7 @@
         $colnu = count($colbl);
     }
 @endphp
-<table id="table">
+<table id="table" {{ $attributes->merge(['class' => '']) }}>
     <thead>
         <tr>
             @for ($idx = 0; $idx < $colnu; $idx++)
