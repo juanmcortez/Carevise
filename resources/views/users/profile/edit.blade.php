@@ -17,7 +17,7 @@
             <div class="card-holder double">
                 <x-forms.input name="userdata" :label="__('Username')" :value="old('userdata', $user->username)" :error="$errors" disabled readonly
                     required />
-                {{-- <x-forms.checkbox name="is_active" :label="__('Is the user active?')" :checked="old('is_active', $user->is_active)" :error="$errors" /> --}}
+                <x-forms.checkbox name="is_active" :label="__('Is the user active?')" :checked="old('is_active', $user->is_active)" :error="$errors" />
                 <x-forms.input name="email" :label="__('E-mail')" :value="old('email', $user->email)" :error="$errors" focus required />
             </div>
 
