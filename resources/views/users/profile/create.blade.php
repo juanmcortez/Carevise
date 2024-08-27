@@ -21,7 +21,7 @@
             </div>
 
             <div class="card-holder double">
-                <x-forms.select name="demographic[title]" :label="__('Title')" :value="old('demographic.title')" :items="['sr' => 'Sr.', 'ms' => 'Ms.', 'mrs' => 'Mrs.', 'dr' => 'Dr.']"
+                <x-forms.select name="demographic[title]" :label="__('Title')" :items="\App\Enums\Title::options()" :value="old('demographic.title')"
                     :error="$errors" class="!w-1/3" slctxt="" />
                 <x-forms.input name="demographic[last_name]" :label="__('Last name')" :value="old('demographic.last_name')" :error="$errors"
                     required />
@@ -33,12 +33,7 @@
             <div class="card-holder double">
                 <x-forms.input name="demographic[date_of_birth]" :label="__('Birthdate')" :value="old('demographic.date_of_birth')" :error="$errors"
                     required />
-                <x-forms.select name="demographic[gender]" :label="__('Gender')" :value="old('demographic.gender')" :items="[
-                    'male' => 'Male',
-                    'female' => 'Female',
-                    'undisclosed' => 'Undisclosed',
-                    'other' => 'Other',
-                ]"
+                <x-forms.select name="demographic[gender]" :label="__('Gender')" :items="\App\Enums\Gender::options()" :value="old('demographic.gender')"
                     :error="$errors" required />
             </div>
 

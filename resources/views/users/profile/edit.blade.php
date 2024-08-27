@@ -22,7 +22,7 @@
             </div>
 
             <div class="card-holder double">
-                <x-forms.select name="demographic[title]" :label="__('Title')" :value="old('demographic.title', $user->demographic->title)" :items="['sr' => 'Sr.', 'ms' => 'Ms.', 'mrs' => 'Mrs.', 'dr' => 'Dr.']"
+                <x-forms.select name="demographic[title]" :label="__('Title')" :items="\App\Enums\Title::options()" :value="old('demographic.title', $user->demographic->title)"
                     :error="$errors" />
                 <x-forms.checkbox name="is_user_provider" :label="__('Is the user a provider?')" :checked="old('is_user_provider', $user->is_user_provider)" :error="$errors" />
                 <x-forms.input name="npi" :label="__('NPI')" :value="old('npi', $user->npi)" :error="$errors" />
@@ -39,12 +39,7 @@
             <div class="card-holder double">
                 <x-forms.input name="demographic[date_of_birth]" :label="__('Birthdate')" :value="old('demographic.date_of_birth', $user->demographic->date_of_birth->format('M d, Y'))" :error="$errors"
                     required />
-                <x-forms.select name="demographic[gender]" :label="__('Gender')" :value="old('demographic.gender', $user->demographic->gender)" :items="[
-                    'male' => 'Male',
-                    'female' => 'Female',
-                    'undisclosed' => 'Undisclosed',
-                    'other' => 'Other',
-                ]"
+                <x-forms.select name="demographic[gender]" :label="__('Gender')" :items="\App\Enums\Gender::options()" :value="old('demographic.gender', $user->demographic->gender)"
                     :error="$errors" required />
             </div>
 

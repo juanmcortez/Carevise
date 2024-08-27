@@ -39,7 +39,13 @@
         @if ($auto) autocomplete="on" @else autocomplete="off" @endif>
         <option value="">{{ __($slctxt) }}</option>
         @foreach ($items as $selval => $item)
-            <option @selected($value == $selval) value="{{ $selval }}">{{ __($item) }}</option>
+            @if (isset($value->value))
+                <option @selected($value->value == $selval) value="{{ $selval }}">{{ __($item) }}</option>
+            @elseif (isset($value))
+                <option @selected($value == $selval) value="{{ $selval }}">{{ __($item) }}</option>
+            @else
+                <option value="{{ $selval }}">{{ __($item) }}</option>
+            @endif
         @endforeach
     </select>
     @if (isset($error) && count($error->get($error_name)))
