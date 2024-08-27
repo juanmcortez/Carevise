@@ -55,8 +55,8 @@ class UpdateUserRequest extends FormRequest
             [
                 'username'              => ['bail', 'required', 'string', 'max:64', Rule::unique(User::class, 'id')->ignore($userID)],
                 'email'                 => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class, 'id')->ignore($userID)],
-                'is_active'             => ['boolean', 'in:on,1'],
-                'is_user_provider'      => ['boolean', 'in:on,1'],
+                'is_active'             => ['boolean'],
+                'is_user_provider'      => ['nullable', 'boolean'],
                 'specialty'             => ['nullable', 'string', 'max:128'],
                 'npi'                   => ['nullable', 'string', 'min:8', 'max:16', Rule::requiredIf($this->request->get('is_user_provider'))],
                 'federal_tax_id'        => ['nullable', 'string', 'min:8', 'max:16'],
