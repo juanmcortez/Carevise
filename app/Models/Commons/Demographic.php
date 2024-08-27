@@ -3,6 +3,8 @@
 namespace App\Models\Commons;
 
 use Carbon\Carbon;
+use App\Enums\Title;
+use App\Enums\Gender;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
@@ -66,8 +68,8 @@ class Demographic extends Model
     protected function casts(): array
     {
         return [
-            // 'title'         => Title::class,
-            // 'gender'        => Gender::class,
+            'title'         => Title::class,
+            'gender'        => Gender::class,
             'date_of_birth' => 'datetime:Y-m-d',
         ];
     }
