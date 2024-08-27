@@ -37,7 +37,7 @@ class StoreUserRequest extends FormRequest
         return array_merge(
             [
                 'username'              => ['bail', 'required', 'string', 'max:64', Rule::unique(User::class, 'username')],
-                'email'                 => ['required', 'string', 'email', 'max:255', Rule::unique(User::class, 'email')],
+                'email'                 => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class, 'email')],
                 'password'              => ['required', 'string', Password::defaults(), 'confirmed'],
             ],
             $demographics_rules
