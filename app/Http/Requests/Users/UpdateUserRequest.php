@@ -61,7 +61,7 @@ class UpdateUserRequest extends FormRequest
                 'npi'                   => ['nullable', 'string', 'min:8', 'max:16', Rule::requiredIf($this->request->get('is_user_provider'))],
                 'federal_tax_id'        => ['nullable', 'string', 'min:8', 'max:16'],
                 'taxonomy'              => ['nullable', 'string', 'min:8', 'max:16'],
-                'aditional_information' => ['nullable', 'longtext'],
+                'aditional_information' => ['nullable', 'string'],
                 'demographic_id'        => [Rule::exists(Demographic::class, 'id')],
                 // 'password'              => ['required', 'string', Password::default(), 'confirmed'],
             ],

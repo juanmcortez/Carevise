@@ -2,6 +2,7 @@
 
 namespace Database\Factories\Commons;
 
+use App\Enums\Title;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -18,7 +19,7 @@ class DemographicFactory extends Factory
     {
         $rndGdr = fake()->randomElement(['male', 'female']);
         return [
-            'title'         => '',
+            'title'         => fake()->randomElement(Title::cases()),
             'first_name'    => fake()->firstName($rndGdr),
             'middle_name'   => (fake()->boolean()) ? fake()->firstName($rndGdr) : null,
             'last_name'     => fake()->lastName(),

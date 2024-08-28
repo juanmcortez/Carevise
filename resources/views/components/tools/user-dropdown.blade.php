@@ -19,7 +19,7 @@
         @keydown.down.prevent="$focus.wrap().next()" @keydown.up.prevent="$focus.wrap().previous()">
         <li>
             <div>
-                <span class="font-semibold text-accent leading-none">
+                <span class="font-semibold leading-none text-accent">
                     {{ Auth::user()->username ? '@' . Auth::user()->username : Auth::user()->email }}
                 </span>
                 <span class="text-[10px] text-accent/75 leading-none">
@@ -27,16 +27,31 @@
                 </span>
             </div>
         </li>
+        @if (!auth()->user()->is_user_provider)
+            <li>
+                <x-link :class="request()->routeIs('users.profile') ? 'item active' : 'item'" :route="route('users.profile', ['user' => $userdata])">
+                    <box-icon type='solid' name='user-account'></box-icon>
+                    {{ __('Edit your info') }}
+                </x-link>
+            </li>
+            <li>
+                <x-link :class="request()->routeIs('users.list') ? 'item active' : 'item'" :route="route('users.list')">
+                    <box-icon type='solid' name='user-detail'></box-icon>
+                    {{ __('Users list') }}
+                </x-link>
+            </li>
+        @else
+            <li>
+                <x-link :class="request()->routeIs('providers.profile') ? 'item active' : 'item'" :route="route('providers.profile', ['provider' => $userdata])">
+                    <box-icon type='solid' name='user-account'></box-icon>
+                    {{ __('Edit your info') }}
+                </x-link>
+            </li>
+        @endif
         <li>
-            <x-link :class="request()->routeIs('users.profile') ? 'item active' : 'item'" :route="route('users.profile', ['user' => $userdata])">
-                <box-icon type='solid' name='user-account'></box-icon>
-                {{ __('Edit your info') }}
-            </x-link>
-        </li>
-        <li>
-            <x-link :class="request()->routeIs('users.list') ? 'item active' : 'item'" :route="route('users.list')">
+            <x-link :class="request()->routeIs('providers.list') ? 'item active' : 'item'" :route="route('providers.list')">
                 <box-icon type='solid' name='user-detail'></box-icon>
-                {{ __('Users list') }}
+                {{ __('Providers list') }}
             </x-link>
         </li>
         <li>
