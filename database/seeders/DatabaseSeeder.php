@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
 use Database\Seeders\Users\UserSeeder;
+use Database\Seeders\Users\ProviderSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,8 +15,9 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        $this->call([
-            UserSeeder::class,
-        ]);
+        // Create a unique main user
+        $this->callOnce(UserSeeder::class);
+        // Create some providers
+        $this->call(ProviderSeeder::class);
     }
 }

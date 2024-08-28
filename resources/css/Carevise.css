@@ -262,6 +262,75 @@
         @apply relative;
     }
 
+    .user-dropdown {
+        @apply relative flex items-center;
+        @apply text-xs;
+    }
+
+    .user-dropdown button {
+        @apply align-middle text-accent;
+        @apply focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-accent;
+    }
+
+    .user-dropdown button svg {
+        @apply w-4 h-4 -mt-2 inline-flex;
+        @apply fill-accent;
+    }
+
+    .user-dropdown ul {
+        @apply absolute right-0 top-[30px] flex flex-col;
+        @apply min-w-24;
+        @apply overflow-hidden shadow-accent/35 shadow-sm;
+        @apply border bg-primary border-accent/35;
+    }
+
+    .user-dropdown ul li:first-of-type div {
+        @apply flex flex-col;
+        @apply w-full;
+        @apply mb-1;
+        @apply items-start justify-start;
+        @apply border-b border-accent/35;
+    }
+
+    .user-dropdown ul li:first-of-type div span {
+        @apply text-xs leading-none text-left;
+        @apply w-full h-auto;
+        @apply pt-3 px-6 mb-1;
+    }
+
+    .user-dropdown ul li:first-of-type div span + span {
+        @apply text-[10px] leading-none text-left;
+        @apply pt-0 pb-3 px-6 mb-1;
+        @apply text-dark/50;
+    }
+
+    .user-dropdown ul li .item {
+        @apply flex;
+        @apply items-center justify-start;
+        @apply w-full h-auto;
+        @apply py-2.5 px-6 mb-1;
+        @apply text-accent;
+    }
+
+    .user-dropdown ul li .item:hover{
+        @apply text-primary bg-accent/50;
+    }
+
+    .user-dropdown ul li .item.active {
+        @apply border-r-4;
+        @apply border-accent bg-accent/15 hover:bg-accent/50;
+    }
+
+    .user-dropdown ul li .item box-icon {
+        @apply w-5 h-5;
+        @apply mr-1;
+        @apply fill-accent;
+    }
+
+    .user-dropdown ul li .item:hover box-icon {
+        @apply fill-primary;
+    }
+
     .toast {
         @apply absolute z-[999];
         @apply top-6 right-6;
@@ -336,6 +405,7 @@
 
     .form-block,
     .form-block input,
+    .form-block textarea,
     .form-block select,
     .form-block-checkbox {
         @apply w-full;
@@ -362,6 +432,7 @@
     }
 
     .form-block input,
+    .form-block textarea,
     .form-block select {
         @apply rounded;
         @apply px-3 py-2;
@@ -373,8 +444,12 @@
         @apply text-xs !leading-none text-dark;
     }
 
+    .form-block textarea {
+        @apply !leading-5;
+    }
+
     .form-block select {
-        @apply p-3;
+        @apply p-3 pr-8;
     }
 
     .form-block-checkbox input {
@@ -521,7 +596,8 @@
         @apply h-auto;
     }
 
-    .user-profile {
+    .user-profile,
+    .provider-profile {
         @apply flex flex-row;
         @apply items-start justify-start;
         @apply space-x-6;
@@ -529,23 +605,29 @@
     }
 
     .user-profile form,
-    .user-profile form + div {
+    .user-profile form + div,
+    .provider-profile form,
+    .provider-profile form + div {
         @apply w-1/2;
         @apply text-xs text-dark;
     }
 
-    .user-profile form + div{
+    .user-profile form + div,
+    .provider-profile form + div {
         @apply flex flex-row;
         @apply items-start justify-start;
         @apply space-x-6;
     }
 
-    .user-profile .card-holder {
+    .user-profile .card-holder,
+    .provider-profile .card-holder {
         @apply w-1/2;
     }
 
-    .user-profile .card-holder.double {
+    .user-profile .card-holder.double,
+    .provider-profile .card-holder.double {
         @apply w-full;
+        @apply last-of-type:mb-0;
     }
 
     #table {
@@ -601,6 +683,7 @@
 
     #table tbody tr td {
         @apply border-r-accent/15 border-r last-of-type:border-r-0;
+        @apply align-top;
     }
 
     #table tfoot tr {
@@ -672,8 +755,39 @@
         @apply text-light;
     }
 
+    #table.provider-list {
+        @apply w-1/2 space-x-6;
+    }
+
     #table.user-list tr th:first-of-type,
-    #table.user-list tr td:first-of-type {
+    #table.user-list tr td:first-of-type,
+    #table.provider-list tr th:first-of-type,
+    #table.provider-list tr td:first-of-type {
         @apply text-left;
+    }
+
+    #table.provider-list tr td:first-of-type {
+        @apply overflow-x-clip whitespace-nowrap;
+    }
+
+    #table tr td.empty {
+        @apply !text-center;
+    }
+
+    #table.inactive {
+        @apply border-dark/10;
+    }
+
+    #table.inactive tr {
+        @apply hover:odd:bg-light/50 hover:even:bg-light/50 border-light/10;
+    }
+
+    #table.inactive tr th {
+        @apply bg-dark/25 border-dark/10;
+        @apply hover:bg-dark/25 hover:border-dark/10;
+    }
+
+    #table.inactive tr td {
+        @apply bg-dark/10 border-dark/5 text-dark/50;
     }
 }

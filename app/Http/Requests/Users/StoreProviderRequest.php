@@ -2,15 +2,14 @@
 
 namespace App\Http\Requests\Users;
 
-use App\Models\Users\User;
+use App\Models\Users\Provider;
 use Illuminate\Validation\Rule;
-use App\Models\Commons\Demographic;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
-use App\Http\Requests\Commons\UpdateDemographicRequest;
+use App\Http\Requests\Commons\StoreDemographicRequest;
 
-class UpdateUserRequest extends FormRequest
+class StoreProviderRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -28,8 +27,8 @@ class UpdateUserRequest extends FormRequest
     {
         // Prepare the "active" checkbox status for validation
         $this->merge([
-            'is_active'         => ($this->is_active) ? true : false,
-            'is_user_provider'  => ($this->is_user_provider) ? true : false,
+            'is_active'         => true,
+            'is_user_provider'  => true,
         ]);
     }
 
@@ -41,29 +40,25 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules(): array
     {
-        // The user information we are working on
-        $userID = User::whereUsername($this->username)->firstOrFail()->id;
-
         // The demographic validation for the user
         $demographics_rules = array();
-        foreach ((new UpdateDemographicRequest())->rules() as $item => $rule) {
+        foreach ((new StoreDemographicRequest())->rules() as $item => $rule) {
             $demographics_rules['demographic.' . $item] = $rule;
         }
 
         // Provide the rules for validation
         return array_merge(
             [
-                'username'              => ['bail', 'required', 'string', 'max:64', Rule::unique(User::class, 'id')->ignore($userID)],
-                'email'                 => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class, 'id')->ignore($userID)],
+                'username'              => ['bail', 'required', 'string', 'max:64', Rule::unique(provider::class, 'username')],
+                'email'                 => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(provider::class, 'username')],
+                'password'              => ['required', 'string', Password::defaults(), 'confirmed'],
                 'is_active'             => ['boolean'],
-                'is_user_provider'      => ['nullable', 'boolean'],
+                'is_user_provider'      => ['boolean'],
                 'specialty'             => ['nullable', 'string', 'max:128'],
-                'npi'                   => ['nullable', 'string', 'min:8', 'max:16', Rule::requiredIf($this->request->get('is_user_provider'))],
+                'npi'                   => ['required', 'string', 'min:8', 'max:16'],
                 'federal_tax_id'        => ['nullable', 'string', 'min:8', 'max:16'],
                 'taxonomy'              => ['nullable', 'string', 'min:8', 'max:16'],
                 'aditional_information' => ['nullable', 'string'],
-                'demographic_id'        => [Rule::exists(Demographic::class, 'id')],
-                // 'password'              => ['required', 'string', Password::default(), 'confirmed'],
             ],
             $demographics_rules
         );
@@ -78,7 +73,7 @@ class UpdateUserRequest extends FormRequest
     public function attributes(): array
     {
         $demographics_attributes = array();
-        foreach ((new UpdateDemographicRequest())->attributes() as $item => $attribute) {
+        foreach ((new StoreDemographicRequest())->attributes() as $item => $attribute) {
             $demographics_attributes['demographic.' . $item] = $attribute;
         }
 
@@ -86,30 +81,16 @@ class UpdateUserRequest extends FormRequest
             [
                 'username'              => 'Username',
                 'email'                 => 'E-mail',
-                'is_active'             => 'User is active option',
-                'is_user_provider'      => 'User is a provider option',
+                'password'              => 'Password',
+                'is_active'             => 'is active option',
+                'is_user_provider'      => 'is a provider option',
                 'specialty'             => 'Specialty',
                 'npi'                   => 'NPI',
                 'federal_tax_id'        => 'Federal Tax ID',
                 'taxonomy'              => 'Taxonomy',
                 'aditional_information' => 'Additional info',
-                'demographic_id'        => 'Demographics',
-                // 'password'              => 'Password',
             ],
             $demographics_attributes
         );
-    }
-
-
-    /**
-     * Get custom messages for validator errors.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationAttributes|array<mixed>|string>
-     */
-    public function messages(): array
-    {
-        return [
-            'npi.required'            => 'The NPI is required if the user is a provider',
-        ];
     }
 }

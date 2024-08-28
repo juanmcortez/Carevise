@@ -2,6 +2,9 @@
 
 namespace App\Http\Requests\Commons;
 
+use App\Enums\Title;
+use App\Enums\Gender;
+use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Foundation\Http\FormRequest;
 
@@ -23,12 +26,12 @@ class UpdateDemographicRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'title'         => ['nullable', 'string', 'max:12'],
+            'title'         => ['nullable', 'string', 'max:12', Rule::enum(Title::class)],
             'first_name'    => ['required', 'string', 'max:128'],
             'middle_name'   => ['nullable', 'string', 'max:128'],
             'last_name'     => ['required', 'string', 'max:128'],
-            'date_of_birth' => ['required', 'date', 'date_format:"M d, Y"', 'before:today'],
-            'gender'        => ['required', 'string', 'max:128'],
+            'date_of_birth' => ['required', 'date', 'date_format:"M d, Y"', 'before_or_equal:today'],
+            'gender'        => ['required', 'string', 'max:128', Rule::enum(Gender::class)],
         ];
     }
 

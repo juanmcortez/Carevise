@@ -2,7 +2,7 @@
 
 namespace App\Http\Requests\Users;
 
-use App\Models\Users\User;
+use App\Models\Users\Provider;
 use Illuminate\Validation\Rule;
 use App\Models\Commons\Demographic;
 use Illuminate\Support\Facades\Auth;
@@ -10,10 +10,10 @@ use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
 use App\Http\Requests\Commons\UpdateDemographicRequest;
 
-class UpdateUserRequest extends FormRequest
+class UpdateProviderRequest extends FormRequest
 {
     /**
-     * Determine if the user is authorized to make this request.
+     * Determine if the provider is authorized to make this request.
      */
     public function authorize(): bool
     {
@@ -41,10 +41,10 @@ class UpdateUserRequest extends FormRequest
      */
     public function rules(): array
     {
-        // The user information we are working on
-        $userID = User::whereUsername($this->username)->firstOrFail()->id;
+        // The provider information we are working on
+        $providerID = Provider::whereUsername($this->username)->firstOrFail()->id;
 
-        // The demographic validation for the user
+        // The demographic validation for the provider
         $demographics_rules = array();
         foreach ((new UpdateDemographicRequest())->rules() as $item => $rule) {
             $demographics_rules['demographic.' . $item] = $rule;
@@ -53,12 +53,12 @@ class UpdateUserRequest extends FormRequest
         // Provide the rules for validation
         return array_merge(
             [
-                'username'              => ['bail', 'required', 'string', 'max:64', Rule::unique(User::class, 'id')->ignore($userID)],
-                'email'                 => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(User::class, 'id')->ignore($userID)],
+                'username'              => ['bail', 'required', 'string', 'max:64', Rule::unique(provider::class, 'id')->ignore($providerID)],
+                'email'                 => ['required', 'string', 'lowercase', 'email', 'max:255', Rule::unique(provider::class, 'id')->ignore($providerID)],
                 'is_active'             => ['boolean'],
-                'is_user_provider'      => ['nullable', 'boolean'],
+                'is_user_provider'      => ['boolean'],
                 'specialty'             => ['nullable', 'string', 'max:128'],
-                'npi'                   => ['nullable', 'string', 'min:8', 'max:16', Rule::requiredIf($this->request->get('is_user_provider'))],
+                'npi'                   => ['required', 'string', 'min:8', 'max:16'],
                 'federal_tax_id'        => ['nullable', 'string', 'min:8', 'max:16'],
                 'taxonomy'              => ['nullable', 'string', 'min:8', 'max:16'],
                 'aditional_information' => ['nullable', 'string'],
@@ -86,8 +86,8 @@ class UpdateUserRequest extends FormRequest
             [
                 'username'              => 'Username',
                 'email'                 => 'E-mail',
-                'is_active'             => 'User is active option',
-                'is_user_provider'      => 'User is a provider option',
+                'is_active'             => 'is active option',
+                'is_user_provider'      => 'is a provider option',
                 'specialty'             => 'Specialty',
                 'npi'                   => 'NPI',
                 'federal_tax_id'        => 'Federal Tax ID',
@@ -109,7 +109,7 @@ class UpdateUserRequest extends FormRequest
     public function messages(): array
     {
         return [
-            'npi.required'            => 'The NPI is required if the user is a provider',
+            'npi.required'            => 'The NPI is required for the provider',
         ];
     }
 }

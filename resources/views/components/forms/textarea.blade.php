@@ -1,12 +1,12 @@
 @props([
-    'slctxt' => 'Please select an option',
-    'items' => [],
     'value' => null,
     'label' => null,
     'class' => null,
     'nolbl' => false,
     'name' => null,
     'error' => null,
+    'rows' => 5,
+    'cols' => 5,
     'readonly' => false,
     'disabled' => false,
     'required' => false,
@@ -20,11 +20,12 @@
         $error_name = Str::replaceFirst(']', '', $error_name);
     }
 @endphp
+
 <div @class([
     'form-block',
     'disabled' => $disabled,
     'readonly' => $readonly,
-    'show-error' => isset($error) ? count($error->get($error_name)) : false,
+    'show-error' => count($error->get($error_name)),
     'no-label' => $nolbl,
     $class,
 ])>
@@ -34,21 +35,11 @@
             <span @class(['hidden' => !$required])>*</span>
         </label>
     @endif
-    <select class="form-input" {{ $attributes->merge(['name' => $name, 'id' => $name]) }} @readonly($readonly)
-        @disabled($disabled) @required($required) @if ($focus) autofocus @endif
-        @if ($auto) autocomplete="on" @else autocomplete="off" @endif>
-        <option value="">{{ __($slctxt) }}</option>
-        @foreach ($items as $selval => $item)
-            @if (isset($value->value))
-                <option @selected($value->value == $selval) value="{{ $selval }}">{{ __($item) }}</option>
-            @elseif (isset($value))
-                <option @selected($value == $selval) value="{{ $selval }}">{{ __($item) }}</option>
-            @else
-                <option value="{{ $selval }}">{{ __($item) }}</option>
-            @endif
-        @endforeach
-    </select>
-    @if (isset($error) && count($error->get($error_name)))
+    <textarea class="form-textarea"
+        {{ $attributes->merge(['name' => $name, 'id' => $name, 'placeholder' => $label, 'rows' => $rows, 'cols' => $cols]) }}
+        @readonly($readonly) @disabled($disabled) @required($required) @if ($focus) autofocus @endif
+        @if ($auto) autocomplete="on" @else autocomplete="off" @endif>{{ $value }}</textarea>
+    @if (count($error->get($error_name)))
         @foreach ($error->get($error_name) as $message)
             <span class="error-detail" role="alert" tabindex="-1" x-data="{ isOpen: false }" x-cloak x-show="isOpen"
                 x-init="$nextTick(() => { isOpen = !isOpen });

@@ -87,6 +87,19 @@ class User extends Authenticatable
 
 
     /**
+     * Scope to return only the users that are set as a provider
+     *
+     * @param $query
+     *
+     * @return void
+     */
+    public function scopeIsUserProvider($query)
+    {
+        return $query->whereIsUserProvider(true);
+    }
+
+
+    /**
      * Demographic relationship of the model
      *
      * @return void

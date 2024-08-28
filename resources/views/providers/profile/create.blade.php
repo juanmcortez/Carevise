@@ -1,17 +1,17 @@
 @extends('layouts.application')
 
-@section('page-title', __('Create a new user'))
+@section('page-title', __('Create a new provider'))
 
 @section('submenu')
     <x-tools.submenu :items="$submenu" />
 @endsection
 
 @section('content')
-    <div class="user-profile">
-        <form method="POST" action="{{ route('users.create') }}">
+    <div class="provider-profile">
+        <form method="POST" action="{{ route('providers.create') }}">
             @csrf
             <div class="card-holder double">
-                <x-forms.input name="username" :label="__('Username')" :value="old('username')" :error="$errors" focus required />
+                <x-forms.input name="username" :label="__('Provider username')" :value="old('username')" :error="$errors" focus required />
                 <x-forms.input name="email" :label="__('E-mail')" :value="old('email')" :error="$errors" required />
             </div>
 
@@ -21,8 +21,19 @@
             </div>
 
             <div class="card-holder double">
+                <x-forms.input name="npi" :label="__('NPI')" :value="old('npi')" :error="$errors" required />
+                <x-forms.select name="specialty" :label="__('Specialty')" :items="\App\Enums\SpecialistType::options()" :value="old('specialty')"
+                    :error="$errors" />
+            </div>
+
+            <div class="card-holder double">
+                <x-forms.input name="federal_tax_id" :label="__('Federal Tax ID')" :value="old('federal_tax_id')" :error="$errors" />
+                <x-forms.input name="taxonomy" :label="__('Taxonomy')" :value="old('taxonomy')" :error="$errors" />
+            </div>
+
+            <div class="card-holder double">
                 <x-forms.select name="demographic[title]" :label="__('Title')" :items="\App\Enums\Title::options()" :value="old('demographic.title')"
-                    :error="$errors" class="!w-1/3" slctxt="" />
+                    :error="$errors" class="!w-1/3" />
                 <x-forms.input name="demographic[last_name]" :label="__('Last name')" :value="old('demographic.last_name')" :error="$errors"
                     required />
                 <x-forms.input name="demographic[first_name]" :label="__('First name')" :value="old('demographic.first_name')" :error="$errors"
@@ -35,6 +46,10 @@
                     required />
                 <x-forms.select name="demographic[gender]" :label="__('Gender')" :items="\App\Enums\Gender::options()" :value="old('demographic.gender')"
                     :error="$errors" required />
+            </div>
+
+            <div class="card-holder double">
+                <x-forms.textarea name="aditional_information" :label="__('Aditional information')" :value="old('aditional_information')" :error="$errors" />
             </div>
 
             <div class="card-holder double">
