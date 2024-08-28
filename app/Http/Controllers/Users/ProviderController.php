@@ -48,6 +48,14 @@ class ProviderController extends Controller
      */
     public function index(): View
     {
+        // If the user is a provider
+        if (Auth::user()->is_user_provider) {
+            $this->submenu['sections'] = array_filter($this->submenu['sections'], function ($section) {
+                return $section['title'] !== 'Users';
+            });
+            $this->submenu['sections'] = array_values($this->submenu['sections']);
+        }
+        //
         return view('providers.index', [
             'providers' => Provider::allTheProviders(),
             'inactive' => Provider::allTheProvidersInactive(),
@@ -60,6 +68,14 @@ class ProviderController extends Controller
      */
     public function create(): View
     {
+        // If the user is a provider
+        if (Auth::user()->is_user_provider) {
+            $this->submenu['sections'] = array_filter($this->submenu['sections'], function ($section) {
+                return $section['title'] !== 'Users';
+            });
+            $this->submenu['sections'] = array_values($this->submenu['sections']);
+        }
+        //
         return view('providers.profile.create', ['submenu' => $this->submenu]);
     }
 
@@ -68,6 +84,14 @@ class ProviderController extends Controller
      */
     public function store(StoreProviderRequest $request): RedirectResponse
     {
+        // If the user is a provider
+        if (Auth::user()->is_user_provider) {
+            $this->submenu['sections'] = array_filter($this->submenu['sections'], function ($section) {
+                return $section['title'] !== 'Users';
+            });
+            $this->submenu['sections'] = array_values($this->submenu['sections']);
+        }
+        //
         $providerData = $request->except('demographic');
         $demgData = Arr::collapse($request->only('demographic'));
         //
@@ -97,6 +121,14 @@ class ProviderController extends Controller
      */
     public function edit(Provider $provider): View
     {
+        // If the user is a provider
+        if (Auth::user()->is_user_provider) {
+            $this->submenu['sections'] = array_filter($this->submenu['sections'], function ($section) {
+                return $section['title'] !== 'Users';
+            });
+            $this->submenu['sections'] = array_values($this->submenu['sections']);
+        }
+        //
         return view('providers.profile.edit', ['provider' => $provider, 'submenu' => $this->submenu]);
     }
 

@@ -25,6 +25,9 @@
                     <x-forms.checkbox name="is_active" :label="__('Is the provider active?')" :checked="old('is_active', $provider->is_active)" :error="$errors" />
                     <x-forms.checkbox name="is_user_provider" :label="__('Is a provider?')" :checked="old('is_user_provider', $provider->is_user_provider)" :error="$errors" />
                 </div>
+            @else
+                <x-forms.input type="hidden" name="is_active" value="1" />
+                <x-forms.input type="hidden" name="is_user_provider" value="1" />
             @endif
 
             <div class="card-holder double">
