@@ -405,6 +405,7 @@
 
     .form-block,
     .form-block input,
+    .form-block textarea,
     .form-block select,
     .form-block-checkbox {
         @apply w-full;
@@ -431,6 +432,7 @@
     }
 
     .form-block input,
+    .form-block textarea,
     .form-block select {
         @apply rounded;
         @apply px-3 py-2;
@@ -440,6 +442,10 @@
         @apply ring-offset-accent/30 focus:ring-offset-0;
         @apply outline-accent/30 focus:outline-0;
         @apply text-xs !leading-none text-dark;
+    }
+
+    .form-block textarea {
+        @apply !leading-5;
     }
 
     .form-block select {
@@ -590,7 +596,8 @@
         @apply h-auto;
     }
 
-    .user-profile {
+    .user-profile,
+    .provider-profile {
         @apply flex flex-row;
         @apply items-start justify-start;
         @apply space-x-6;
@@ -598,23 +605,29 @@
     }
 
     .user-profile form,
-    .user-profile form + div {
+    .user-profile form + div,
+    .provider-profile form,
+    .provider-profile form + div {
         @apply w-1/2;
         @apply text-xs text-dark;
     }
 
-    .user-profile form + div{
+    .user-profile form + div,
+    .provider-profile form + div {
         @apply flex flex-row;
         @apply items-start justify-start;
         @apply space-x-6;
     }
 
-    .user-profile .card-holder {
+    .user-profile .card-holder,
+    .provider-profile .card-holder {
         @apply w-1/2;
     }
 
-    .user-profile .card-holder.double {
+    .user-profile .card-holder.double,
+    .provider-profile .card-holder.double {
         @apply w-full;
+        @apply last-of-type:mb-0;
     }
 
     #table {
@@ -670,6 +683,7 @@
 
     #table tbody tr td {
         @apply border-r-accent/15 border-r last-of-type:border-r-0;
+        @apply align-top;
     }
 
     #table tfoot tr {
@@ -741,8 +755,39 @@
         @apply text-light;
     }
 
+    #table.provider-list {
+        @apply w-1/2 space-x-6;
+    }
+
     #table.user-list tr th:first-of-type,
-    #table.user-list tr td:first-of-type {
+    #table.user-list tr td:first-of-type,
+    #table.provider-list tr th:first-of-type,
+    #table.provider-list tr td:first-of-type {
         @apply text-left;
+    }
+
+    #table.provider-list tr td:first-of-type {
+        @apply overflow-x-clip whitespace-nowrap;
+    }
+
+    #table tr td.empty {
+        @apply !text-center;
+    }
+
+    #table.inactive {
+        @apply border-dark/10;
+    }
+
+    #table.inactive tr {
+        @apply hover:odd:bg-light/50 hover:even:bg-light/50 border-light/10;
+    }
+
+    #table.inactive tr th {
+        @apply bg-dark/25 border-dark/10;
+        @apply hover:bg-dark/25 hover:border-dark/10;
+    }
+
+    #table.inactive tr td {
+        @apply bg-dark/10 border-dark/5 text-dark/50;
     }
 }
