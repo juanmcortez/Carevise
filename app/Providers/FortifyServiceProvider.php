@@ -2,15 +2,18 @@
 
 namespace App\Providers;
 
+use App\Models\Users\User;
 use Illuminate\Support\Str;
 use Illuminate\Http\Request;
 use Laravel\Fortify\Fortify;
+use Illuminate\Support\Facades\Hash;
 use App\Actions\Fortify\CreateNewUser;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Cache\RateLimiting\Limit;
 use App\Actions\Fortify\ResetUserPassword;
 use App\Actions\Fortify\UpdateUserPassword;
 use Illuminate\Support\Facades\RateLimiter;
+use Illuminate\Validation\ValidationException;
 use Laravel\Fortify\Contracts\RegisterResponse;
 use App\Actions\Fortify\UpdateUserProfileInformation;
 
@@ -55,11 +58,11 @@ class FortifyServiceProvider extends ServiceProvider
             return view('auth.reset-password', ['request' => $request]);
         });
 
-        Fortify::confirmPasswordView(function () {
+        /*Fortify::confirmPasswordView(function () {
             return view('auth.confirm-password');
         });
 
-        /*Fortify::verifyEmailView(function () {
+        Fortify::verifyEmailView(function () {
             return view('auth.verify-email');
         });*/
         // Custom views for authentication
@@ -68,6 +71,20 @@ class FortifyServiceProvider extends ServiceProvider
         Fortify::updateUserProfileInformationUsing(UpdateUserProfileInformation::class);
         Fortify::updateUserPasswordsUsing(UpdateUserPassword::class);
         Fortify::resetUserPasswordsUsing(ResetUserPassword::class);
+
+        Fortify::authenticateUsing(function (Request $request) {
+            $user = User::where('username', $request->username)->first();
+            if ($user && !$user->is_active) {
+                // If the user is not active, throw a ValidationException
+                $userType = ($user->is_user_provider) ? 'provider' : 'user';
+                throw ValidationException::withMessages([
+                    Fortify::username() => "The {$userType} account is inactive. Please contact the administrator for asistance.",
+                ]);
+            }
+            if ($user && Hash::check($request->password, $user->password)) {
+                return $user;
+            }
+        });
 
         RateLimiter::for('login', function (Request $request) {
             $throttleKey = Str::transliterate(Str::lower($request->input(Fortify::username())) . '|' . $request->ip());
