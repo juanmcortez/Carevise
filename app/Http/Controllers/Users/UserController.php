@@ -136,12 +136,15 @@ class UserController extends Controller
         $user->demographic->date_of_birth = Carbon::createFromFormat('M d, Y', $demographicData->get('date_of_birth'))->format('Y-m-d');
 
         if ($user->save() && $user->demographic->save()) {
-            if ($user->is_user_provider) {
-                $message = "<strong>{$user->demographic->complete_name}</strong> updated!";
-                return Redirect::route('providers.profile', ['provider' => $user])->with('success', $message);
+            if (!$user->is_active) {
+                $message = "<strong>{$user->demographic->complete_name}</strong> has been deactivated.";
+                return Redirect::route('users.list')->with('info', $message);
+            } elseif ($user->is_user_provider) {
+                $message = "<strong>{$user->demographic->complete_name}</strong> is now a provider.";
+                return Redirect::route('providers.profile', ['provider' => $user])->with('info', $message);
             } else {
                 $message = "<strong>{$user->demographic->complete_name}</strong> updated!";
-                return Redirect::route('users.profile', ['user' => $user])->with('success', $message);
+                return Redirect::route('users.list')->with('success', $message);
             }
         } else {
             $message = 'There was an error updating the user information.';

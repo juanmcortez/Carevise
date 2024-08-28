@@ -132,12 +132,15 @@ class ProviderController extends Controller
         $provider->demographic->date_of_birth = Carbon::createFromFormat('M d, Y', $demographicData->get('date_of_birth'))->format('Y-m-d');
 
         if ($provider->save() && $provider->demographic->save()) {
-            if ($provider->is_user_provider) {
-                $message = "<strong>{$provider->demographic->complete_name}</strong> updated!";
-                return Redirect::route('providers.profile', ['provider' => $provider])->with('success', $message);
+            if (!$provider->is_active) {
+                $message = "<strong>{$provider->demographic->complete_name}</strong> has been deactivated.";
+                return Redirect::route('providers.list')->with('info', $message);
+            } elseif (!$provider->is_user_provider) {
+                $message = "<strong>{$provider->demographic->complete_name}</strong> is not longer a provider.";
+                return Redirect::route('users.profile', ['user' => $provider])->with('info', $message);
             } else {
                 $message = "<strong>{$provider->demographic->complete_name}</strong> updated!";
-                return Redirect::route('users.profile', ['user' => $provider])->with('success', $message);
+                return Redirect::route('providers.list')->with('success', $message);
             }
         } else {
             $message = 'There was an error updating the user information.';
