@@ -12,8 +12,8 @@
 @php
     $error_name = $name;
     if (Str::contains($name, ['[', ']'])) {
-        $error_name = Str::replaceFirst('[', '.', $name);
-        $error_name = Str::replaceFirst(']', '', $error_name);
+        $error_name = Str::replace('[', '.', $name);
+        $error_name = Str::replace(']', '', $error_name);
     }
 @endphp
 <div @class([
