@@ -38,7 +38,13 @@ class UserController extends Controller
                         'List' => ['routename' => 'providers.list', 'icon' => 'user-detail'],
                         'Create' => ['routename' => 'providers.create', 'icon' => 'user-plus'],
                     ]
-                ]
+                ],
+                [
+                    'title' => 'Disabled providers',
+                    'items' => [
+                        'List' => ['routename' => 'providers.disabled.list', 'icon' => 'user-detail'],
+                    ]
+                ],
             ],
         ];
     }
