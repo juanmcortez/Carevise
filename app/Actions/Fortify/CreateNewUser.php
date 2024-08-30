@@ -4,6 +4,7 @@ namespace App\Actions\Fortify;
 
 use Carbon\Carbon;
 use App\Models\Users\User;
+use App\Models\Commons\Address;
 use Illuminate\Validation\Rule;
 use App\Models\Commons\Demographic;
 use Illuminate\Support\Facades\Hash;
@@ -35,6 +36,7 @@ class CreateNewUser implements CreatesNewUsers
             'last_name'     => null,
             'date_of_birth' => Carbon::now()->format('Y-m-d'),
             'gender'        => null,
+            'address_id'    => Address::factory()->emptyValues()->create(),
         ]);
 
         return User::create([

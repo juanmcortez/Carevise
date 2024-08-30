@@ -59,6 +59,26 @@
             </div>
 
             <div class="card-holder double">
+                <x-forms.input name="demographic[address][street]" :label="__('Main address')" :value="old('demographic.address.street', $provider->demographic->address->street)"
+                    :error="$errors" />
+                <x-forms.input name="demographic[address][street_extended]" :label="__('Extended address')" :value="old('demographic.address.street_extended', $provider->demographic->address->street_extended)"
+                    :error="$errors" />
+            </div>
+
+            <div class="card-holder double">
+                <x-forms.input name="demographic[address][city]" :label="__('City')" :value="old('demographic.address.city', $provider->demographic->address->city)" :error="$errors" />
+                <x-forms.input name="demographic[address][state]" :label="__('State')" :value="old('demographic.address.state', $provider->demographic->address->state)"
+                    :error="$errors" />
+            </div>
+
+            <div class="card-holder double">
+                <x-forms.input name="demographic[address][postal_code]" :label="__('Postal code')" :value="old('demographic.address.postal_code', $provider->demographic->address->postal_code)"
+                    :error="$errors" />
+                <x-forms.select name="demographic[address][country]" :label="__('Country')" :items="\App\Enums\Countries::options()"
+                    :value="old('demographic.address.country', $provider->demographic->address->country)" :error="$errors" />
+            </div>
+
+            <div class="card-holder double">
                 <x-forms.textarea name="aditional_information" :label="__('Aditional information')" :value="old('aditional_information', $provider->aditional_information)" :error="$errors" />
             </div>
 

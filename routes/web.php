@@ -15,6 +15,7 @@ Route::middleware('auth')->group(function () {
     // Providers
     Route::controller(ProviderController::class)->name('providers.')->group(
         function () {
+            Route::get('/providers/disabled', 'disabled')->name('disabled.list');
             Route::get('/providers', 'index')->name('list');
             Route::get('/providers/create', 'create')->name('create');
             Route::post('/providers/create', 'store')->name('store');
