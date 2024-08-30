@@ -32,7 +32,7 @@
         <tfoot>
             <tr>
                 <td colspan="{{ $colnu }}">
-                    {{ $coldt->links() }}
+                    {!! $coldt !!}
                 </td>
             </tr>
         </tfoot>

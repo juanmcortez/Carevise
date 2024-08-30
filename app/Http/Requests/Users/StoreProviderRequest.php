@@ -7,6 +7,7 @@ use Illuminate\Validation\Rule;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Commons\StoreAddressRequest;
 use App\Http\Requests\Commons\StoreDemographicRequest;
 
 class StoreProviderRequest extends FormRequest
@@ -46,6 +47,12 @@ class StoreProviderRequest extends FormRequest
             $demographics_rules['demographic.' . $item] = $rule;
         }
 
+        // The demographic address validation for the user
+        $addresses_rules = array();
+        foreach ((new StoreAddressRequest())->rules() as $item => $rule) {
+            $addresses_rules['demographic.address.' . $item] = $rule;
+        }
+
         // Provide the rules for validation
         return array_merge(
             [
@@ -60,7 +67,8 @@ class StoreProviderRequest extends FormRequest
                 'taxonomy'              => ['nullable', 'string', 'min:8', 'max:16'],
                 'aditional_information' => ['nullable', 'string'],
             ],
-            $demographics_rules
+            $demographics_rules,
+            $addresses_rules
         );
     }
 
@@ -72,9 +80,16 @@ class StoreProviderRequest extends FormRequest
      */
     public function attributes(): array
     {
+        // The demographic attributes validation for the user
         $demographics_attributes = array();
         foreach ((new StoreDemographicRequest())->attributes() as $item => $attribute) {
             $demographics_attributes['demographic.' . $item] = $attribute;
+        }
+
+        // The demographic address attributes validation for the user
+        $addresses_attributes = array();
+        foreach ((new StoreAddressRequest())->attributes() as $item => $attribute) {
+            $addresses_attributes['demographic.address.' . $item] = $attribute;
         }
 
         return array_merge(
@@ -90,7 +105,8 @@ class StoreProviderRequest extends FormRequest
                 'taxonomy'              => 'Taxonomy',
                 'aditional_information' => 'Additional info',
             ],
-            $demographics_attributes
+            $demographics_attributes,
+            $addresses_attributes
         );
     }
 }

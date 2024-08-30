@@ -25,6 +25,9 @@
                     <x-forms.checkbox name="is_active" :label="__('Is the provider active?')" :checked="old('is_active', $provider->is_active)" :error="$errors" />
                     <x-forms.checkbox name="is_user_provider" :label="__('Is a provider?')" :checked="old('is_user_provider', $provider->is_user_provider)" :error="$errors" />
                 </div>
+            @else
+                <x-forms.input type="hidden" name="is_active" value="1" />
+                <x-forms.input type="hidden" name="is_user_provider" value="1" />
             @endif
 
             <div class="card-holder double">
@@ -53,6 +56,26 @@
                     required />
                 <x-forms.select name="demographic[gender]" :label="__('Gender')" :items="\App\Enums\Gender::options()" :value="old('demographic.gender', $provider->demographic->gender)"
                     :error="$errors" required />
+            </div>
+
+            <div class="card-holder double">
+                <x-forms.input name="demographic[address][street]" :label="__('Main address')" :value="old('demographic.address.street', $provider->demographic->address->street)"
+                    :error="$errors" />
+                <x-forms.input name="demographic[address][street_extended]" :label="__('Extended address')" :value="old('demographic.address.street_extended', $provider->demographic->address->street_extended)"
+                    :error="$errors" />
+            </div>
+
+            <div class="card-holder double">
+                <x-forms.input name="demographic[address][city]" :label="__('City')" :value="old('demographic.address.city', $provider->demographic->address->city)" :error="$errors" />
+                <x-forms.input name="demographic[address][state]" :label="__('State')" :value="old('demographic.address.state', $provider->demographic->address->state)"
+                    :error="$errors" />
+            </div>
+
+            <div class="card-holder double">
+                <x-forms.input name="demographic[address][postal_code]" :label="__('Postal code')" :value="old('demographic.address.postal_code', $provider->demographic->address->postal_code)"
+                    :error="$errors" />
+                <x-forms.select name="demographic[address][country]" :label="__('Country')" :items="\App\Enums\Countries::options()"
+                    :value="old('demographic.address.country', $provider->demographic->address->country)" :error="$errors" />
             </div>
 
             <div class="card-holder double">

@@ -87,7 +87,7 @@ class User extends Authenticatable
 
 
     /**
-     * Scope to return only the users that are set as a provider
+     * Scope to return only the users that are set as a provider in alphabetical order
      *
      * @param $query
      *
@@ -95,7 +95,11 @@ class User extends Authenticatable
      */
     public function scopeIsUserProvider($query)
     {
-        return $query->whereIsUserProvider(true);
+        return $query->whereIsUserProvider(true)
+            ->join('demographics', 'users.demographic_id', '=', 'demographics.id')
+            ->orderBy('demographics.last_name')
+            ->orderBy('demographics.first_name')
+            ->orderBy('demographics.middle_name');
     }
 
 

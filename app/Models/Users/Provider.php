@@ -3,6 +3,7 @@
 namespace App\Models\Users;
 
 use App\Models\Users\User;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
@@ -50,7 +51,21 @@ class Provider extends User
     {
         return static::isUserProvider()
             ->whereIsActive(true)
-            ->get();
+            ->paginate(15);
+    }
+
+
+    /**
+     * This function returns all the users that are set as a provider excepth the one logged in
+     *
+     * @return void
+     */
+    public static function allProvidersExceptMyself()
+    {
+        return static::isUserProvider()
+            ->whereNot('username', Auth::user()->username)
+            ->whereIsActive(true)
+            ->paginate(15);
     }
 
 
@@ -63,6 +78,6 @@ class Provider extends User
     {
         return static::isUserProvider()
             ->whereIsActive(false)
-            ->get();
+            ->paginate(15);
     }
 }

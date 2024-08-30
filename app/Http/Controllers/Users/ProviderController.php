@@ -7,6 +7,7 @@ use Illuminate\View\View;
 use Illuminate\Support\Arr;
 use Illuminate\Http\Request;
 use App\Models\Users\Provider;
+use App\Models\Commons\Address;
 use App\Models\Commons\Demographic;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Auth;
@@ -39,6 +40,12 @@ class ProviderController extends Controller
                         'Create' => ['routename' => 'providers.create', 'icon' => 'user-plus'],
                     ]
                 ],
+                [
+                    'title' => 'Disabled providers',
+                    'items' => [
+                        'List' => ['routename' => 'providers.disabled.list', 'icon' => 'user-detail'],
+                    ]
+                ],
             ]
         ];
     }
@@ -48,8 +55,38 @@ class ProviderController extends Controller
      */
     public function index(): View
     {
+        // If the user is a provider
+        if (Auth::user()->is_user_provider) {
+            $this->submenu['sections'] = array_filter($this->submenu['sections'], function ($section) {
+                return $section['title'] !== 'Users';
+            });
+            $this->submenu['sections'] = array_values($this->submenu['sections']);
+            //
+            $providerList = Provider::allProvidersExceptMyself();
+        } else {
+            $providerList = Provider::allTheProviders();
+        }
+        //
         return view('providers.index', [
-            'providers' => Provider::allTheProviders(),
+            'providers' => $providerList,
+            'submenu' => $this->submenu
+        ]);
+    }
+
+    /**
+     * Display a listing of the disabled resource.
+     */
+    public function disabled(): View
+    {
+        // If the user is a provider
+        if (Auth::user()->is_user_provider) {
+            $this->submenu['sections'] = array_filter($this->submenu['sections'], function ($section) {
+                return $section['title'] !== 'Users';
+            });
+            $this->submenu['sections'] = array_values($this->submenu['sections']);
+        }
+        //
+        return view('providers.disabled', [
             'inactive' => Provider::allTheProvidersInactive(),
             'submenu' => $this->submenu
         ]);
@@ -60,6 +97,14 @@ class ProviderController extends Controller
      */
     public function create(): View
     {
+        // If the user is a provider
+        if (Auth::user()->is_user_provider) {
+            $this->submenu['sections'] = array_filter($this->submenu['sections'], function ($section) {
+                return $section['title'] !== 'Users';
+            });
+            $this->submenu['sections'] = array_values($this->submenu['sections']);
+        }
+        //
         return view('providers.profile.create', ['submenu' => $this->submenu]);
     }
 
@@ -68,12 +113,38 @@ class ProviderController extends Controller
      */
     public function store(StoreProviderRequest $request): RedirectResponse
     {
-        $providerData = $request->except('demographic');
-        $demgData = Arr::collapse($request->only('demographic'));
+        // If the user is a provider
+        if (Auth::user()->is_user_provider) {
+            $this->submenu['sections'] = array_filter($this->submenu['sections'], function ($section) {
+                return $section['title'] !== 'Users';
+            });
+            $this->submenu['sections'] = array_values($this->submenu['sections']);
+        }
         //
-        $demgData['date_of_birth'] = Carbon::createFromFormat('M j, Y', $demgData['date_of_birth'])->format('Y-m-d');
-        $providerData['demographic_id'] = Demographic::factory()->create($demgData)->id;
-        $provider = Provider::create($providerData);
+        //
+        $prvdValid                      = Arr::except($request->validated(), 'demographic');
+        $demoValid                      = $request->validated('demographic');
+        //
+        $prvdValid['is_active']         = true;
+        $prvdValid['is_user_provider']  = true;
+        $valid_dob                      = $request->validated('demographic.date_of_birth');
+        $demoValid['date_of_birth']     = Carbon::createFromFormat('M d, Y', $valid_dob)->format('Y-m-d');
+        //
+        $prvdDemog                      = Arr::except($demoValid, 'address');
+        $prvdAddrs                      = $request->validated('demographic.address');
+        // $prvdPhone                   = $request->validated('demographic.phone');
+        // $prvdCellphone               = $request->validated('demographic.cellphone');
+        //
+        $provider = Provider::create($prvdValid);
+        $prvdDemog = $provider->demographic()->create($prvdDemog);
+        $prvdAddrs = $prvdDemog->address()->create($prvdAddrs);
+        // $prvdPhone = $prvdDemog->address()->create($prvdPhone);
+        // $prvdCellphone = $prvdDemog->address()->create($prvdCellphone);
+        //
+        $prvdDemog->update(['address_id' => $prvdAddrs->id]);
+        $provider->update(['demographic_id' => $prvdDemog->id]);
+        // $provider->demographic->phone->update($userPhone);
+        // $provider->demographic->cellphone->update($userCellphone);
         //
         if ($provider) {
             $message = "<strong>{$provider->demographic->complete_name}</strong> created!";
@@ -97,6 +168,14 @@ class ProviderController extends Controller
      */
     public function edit(Provider $provider): View
     {
+        // If the user is a provider
+        if (Auth::user()->is_user_provider) {
+            $this->submenu['sections'] = array_filter($this->submenu['sections'], function ($section) {
+                return $section['title'] !== 'Users';
+            });
+            $this->submenu['sections'] = array_values($this->submenu['sections']);
+        }
+        //
         return view('providers.profile.edit', ['provider' => $provider, 'submenu' => $this->submenu]);
     }
 
@@ -127,11 +206,12 @@ class ProviderController extends Controller
         // Pre-fill demographic values with validated info
         $demographicData = collect($request->safe()->only('demographic'))->collapse();
         $provider->demographic->fill($demographicData->all());
+        $provider->demographic->address->fill($demographicData->get('address'));
 
         // Correct date formatting
         $provider->demographic->date_of_birth = Carbon::createFromFormat('M d, Y', $demographicData->get('date_of_birth'))->format('Y-m-d');
 
-        if ($provider->save() && $provider->demographic->save()) {
+        if ($provider->save() && $provider->demographic->save() && $provider->demographic->address->save()) {
             if (!$provider->is_active) {
                 $message = "<strong>{$provider->demographic->complete_name}</strong> has been deactivated.";
                 return Redirect::route('providers.list')->with('info', $message);
@@ -173,6 +253,7 @@ class ProviderController extends Controller
     {
         $provName = $provider->demographic->complete_name;
         //
+        $provider->demographic->address->delete();
         $provider->demographic->delete();
         $provider->update(['is_active' => false]);
         $provider->delete();

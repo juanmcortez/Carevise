@@ -14,8 +14,8 @@ class ProviderSeeder extends Seeder
      */
     public function run(): void
     {
-        Provider::factory()->count(5)->create([
-            'password'          => Hash::make('5uper4dm!nCar3vis3'),
+        Provider::factory()->count(20)->create([
+            'password'  => Hash::make('5uper4dm!nCar3vis3'),
         ]);
     }
 }

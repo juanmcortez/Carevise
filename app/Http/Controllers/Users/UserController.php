@@ -38,7 +38,13 @@ class UserController extends Controller
                         'List' => ['routename' => 'providers.list', 'icon' => 'user-detail'],
                         'Create' => ['routename' => 'providers.create', 'icon' => 'user-plus'],
                     ]
-                ]
+                ],
+                [
+                    'title' => 'Disabled providers',
+                    'items' => [
+                        'List' => ['routename' => 'providers.disabled.list', 'icon' => 'user-detail'],
+                    ]
+                ],
             ],
         ];
     }
@@ -48,6 +54,11 @@ class UserController extends Controller
      */
     public function index(): View
     {
+        // If the user is a provider
+        if (Auth::user()->is_user_provider) {
+            abort(403);
+        }
+        //
         $submenu = $this->submenu;
         $users = User::join('demographics', 'demographics.id', '=', 'users.demographic_id')
             ->select('users.*')
@@ -64,6 +75,11 @@ class UserController extends Controller
      */
     public function create(): View
     {
+        // If the user is a provider
+        if (Auth::user()->is_user_provider) {
+            abort(403);
+        }
+        //
         return view('users.profile.create', ['submenu' => $this->submenu]);
     }
 
@@ -72,6 +88,11 @@ class UserController extends Controller
      */
     public function store(StoreUserRequest $request): RedirectResponse
     {
+        // If the user is a provider
+        if (Auth::user()->is_user_provider) {
+            abort(403);
+        }
+        //
         $userData = $request->except('demographic');
         $demgData = Arr::collapse($request->only('demographic'));
         //
@@ -101,6 +122,11 @@ class UserController extends Controller
      */
     public function edit(User $user): View
     {
+        // If the user is a provider
+        if (Auth::user()->is_user_provider) {
+            abort(403);
+        }
+        //
         return view('users.profile.edit', ['user' => $user, 'submenu' => $this->submenu]);
     }
 
@@ -109,6 +135,11 @@ class UserController extends Controller
      */
     public function update(UpdateUserRequest $request, User $user): RedirectResponse
     {
+        // If the user is a provider
+        if (Auth::user()->is_user_provider) {
+            abort(403);
+        }
+        //
         // If user changes - which does not has to happen!
         if ($request->validated('username') != $user->username) {
             return view('users.profile.edit', ['user' => $user])
@@ -157,6 +188,11 @@ class UserController extends Controller
      */
     public function passwordupdate(Request $request): RedirectResponse
     {
+        // If the user is a provider
+        if (Auth::user()->is_user_provider) {
+            abort(403);
+        }
+        //
         $validated = $request->validate([
             'current_password' => ['required', 'current_password'],
             'password' => ['required', Password::defaults(), 'confirmed'],
@@ -174,6 +210,11 @@ class UserController extends Controller
      */
     public function destroy(Request $request): RedirectResponse
     {
+        // If the user is a provider
+        if (Auth::user()->is_user_provider) {
+            abort(403);
+        }
+        //
         $request->validate([
             'user_current_password' => ['required', 'current_password'],
         ]);
