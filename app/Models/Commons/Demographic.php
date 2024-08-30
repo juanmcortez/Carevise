@@ -5,9 +5,11 @@ namespace App\Models\Commons;
 use Carbon\Carbon;
 use App\Enums\Title;
 use App\Enums\Gender;
+use App\Models\Commons\Address;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Casts\Attribute;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Demographic extends Model
@@ -27,7 +29,7 @@ class Demographic extends Model
         'last_name',
         'date_of_birth',
         'gender',
-        // 'address_id',
+        'address_id',
         // 'phone_id',
         // 'cellphone_id',
         // 'email_id',
@@ -40,11 +42,11 @@ class Demographic extends Model
      */
     protected $hidden = [
         'id',
-        // 'address_id',
+        'address_id',
         // 'phone_id',
         // 'cellphone_id',
         // 'email_id',
-        // 'address',
+        'address',
         // 'phone',
         // 'cellphone',
         // 'email',
@@ -70,7 +72,7 @@ class Demographic extends Model
         return [
             'title'         => Title::class,
             'gender'        => Gender::class,
-            'date_of_birth' => 'datetime:Y-m-d',
+            'date_of_birth' => 'date',
         ];
     }
 
@@ -81,8 +83,8 @@ class Demographic extends Model
      */
     protected function completeName(): Attribute
     {
-        $namVal = (!empty($this->middle_name)) ? "{$this->first_name} {$this->middle_name}" : "{$this->first_name}";
         if (!empty($this->first_name) && !empty($this->last_name)) {
+            $namVal = (!empty($this->middle_name)) ? "{$this->first_name} {$this->middle_name}" : "{$this->first_name}";
             return new Attribute(
                 get: fn() => "{$this->last_name}, {$namVal}",
             );
@@ -105,5 +107,15 @@ class Demographic extends Model
         } else {
             return new Attribute(get: fn() => null);
         }
+    }
+
+    /**
+     * Address relationship of the model
+     *
+     * @return void
+     */
+    public function address(): HasOne
+    {
+        return $this->hasOne(Address::class, 'id', 'address_id')->withDefault();
     }
 }

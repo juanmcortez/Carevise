@@ -21,11 +21,6 @@ return new class extends Migration
             $table->date('date_of_birth')->nullable()->index();
             $table->string('gender', 128)->nullable()->default('unassigned');
 
-            // $table->foreignId('address_id')->nullable()->constrained('demographics_addresses')->cascadeOnDelete();
-            // $table->foreignId('phone_id')->nullable()->constrained('demographics_phones')->cascadeOnDelete();
-            // $table->foreignId('cellphone_id')->nullable()->constrained('demographics_phones')->cascadeOnDelete();
-            // $table->foreignId('email_id')->nullable()->constrained('demographics_emails')->cascadeOnDelete();
-
             $table->timestamps();
             $table->softDeletes();
         });

@@ -3,6 +3,7 @@
 namespace Database\Factories\Commons;
 
 use App\Enums\Title;
+use App\Models\Commons\Address;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
@@ -25,7 +26,7 @@ class DemographicFactory extends Factory
             'last_name'     => fake()->lastName(),
             'date_of_birth' => fake()->dateTimeBetween('-95 Years', '-6 Months'),
             'gender'        => $rndGdr,
-            // 'address_id'    => (fake()->boolean()) ? Address::factory()->create() : Address::factory()->emptyValues()->create(),
+            'address_id'    => (fake()->boolean()) ? Address::factory()->create() : Address::factory()->emptyValues()->create(),
             // 'phone_id'      => (fake()->boolean()) ? Phone::factory()->create() : Phone::factory()->emptyValues()->create(),
             // 'cellphone_id'  => (fake()->boolean()) ? Phone::factory()->create() : Phone::factory()->emptyValues()->create(),
             // 'email_id'      => (fake()->boolean()) ? Email::factory()->create() : Email::factory()->emptyValues()->create(),

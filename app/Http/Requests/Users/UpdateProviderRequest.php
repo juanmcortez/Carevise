@@ -8,6 +8,7 @@ use App\Models\Commons\Demographic;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Validation\Rules\Password;
 use Illuminate\Foundation\Http\FormRequest;
+use App\Http\Requests\Commons\UpdateAddressRequest;
 use App\Http\Requests\Commons\UpdateDemographicRequest;
 
 class UpdateProviderRequest extends FormRequest
@@ -50,6 +51,12 @@ class UpdateProviderRequest extends FormRequest
             $demographics_rules['demographic.' . $item] = $rule;
         }
 
+        // The demographic address validation for the user
+        $addresses_rules = array();
+        foreach ((new UpdateAddressRequest())->rules() as $item => $rule) {
+            $addresses_rules['demographic.address.' . $item] = $rule;
+        }
+
         // Provide the rules for validation
         return array_merge(
             [
@@ -65,7 +72,8 @@ class UpdateProviderRequest extends FormRequest
                 'demographic_id'        => [Rule::exists(Demographic::class, 'id')],
                 // 'password'              => ['required', 'string', Password::default(), 'confirmed'],
             ],
-            $demographics_rules
+            $demographics_rules,
+            $addresses_rules
         );
     }
 
@@ -82,6 +90,12 @@ class UpdateProviderRequest extends FormRequest
             $demographics_attributes['demographic.' . $item] = $attribute;
         }
 
+        // The demographic address attributes validation for the user
+        $addresses_attributes = array();
+        foreach ((new UpdateAddressRequest())->attributes() as $item => $attribute) {
+            $addresses_attributes['demographic.address.' . $item] = $attribute;
+        }
+
         return array_merge(
             [
                 'username'              => 'Username',
@@ -96,7 +110,8 @@ class UpdateProviderRequest extends FormRequest
                 'demographic_id'        => 'Demographics',
                 // 'password'              => 'Password',
             ],
-            $demographics_attributes
+            $demographics_attributes,
+            $addresses_attributes
         );
     }
 

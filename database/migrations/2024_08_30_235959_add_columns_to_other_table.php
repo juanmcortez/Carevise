@@ -23,6 +23,13 @@ return new class extends Migration
             $table->boolean('is_active')->default(true)->after('remember_token');
             $table->boolean('is_user_provider')->default(false)->after('remember_token');
         });
+
+        Schema::table('demographics', function (Blueprint $table) {
+            $table->foreignId('address_id')->nullable()->after('gender')->constrained('demographics_addresses')->cascadeOnDelete();
+            // $table->foreignId('phone_id')->nullable()->constrained('demographics_phones')->cascadeOnDelete();
+            // $table->foreignId('cellphone_id')->nullable()->constrained('demographics_phones')->cascadeOnDelete();
+            // $table->foreignId('email_id')->nullable()->constrained('demographics_emails')->cascadeOnDelete();
+        });
     }
 
     /**
@@ -30,6 +37,13 @@ return new class extends Migration
      */
     public function down(): void
     {
+        Schema::table('demographics', function (Blueprint $table) {
+            // $table->dropConstrainedForeignId('email_id');
+            // $table->dropConstrainedForeignId('cellphone_id');
+            // $table->dropConstrainedForeignId('phone_id');
+            $table->dropConstrainedForeignId('address_id');
+        });
+
         Schema::table('users', function (Blueprint $table) {
             $table->dropColumn('is_user_provider');
             $table->dropColumn('is_active');
