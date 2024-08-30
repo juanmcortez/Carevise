@@ -643,7 +643,8 @@
         @apply odd:border-primary even:border-light/50;
         @apply odd:bg-light/50 even:bg-primary;
         @apply last-of-type:border-b-0;
-        @apply hover:bg-accent/15 hover:cursor-pointer
+        @apply hover:bg-accent/15 hover:cursor-pointer;
+        @apply transition ease-in-out duration-100;
     }
 
     #table thead tr th,
@@ -694,15 +695,15 @@
     #table tfoot tr td {
         @apply align-middle;
         @apply text-xs leading-none text-center text-dark;
-        @apply bg-accent/20;
-        @apply hover:bg-accent/20 hover:cursor-default;
+        @apply bg-accent/5;
+        @apply hover:bg-accent/5 hover:cursor-default;
         @apply p-0;
     }
 
     .table-pagination {
         @apply flex items-center justify-between;
         @apply m-2;
-        @apply text-xs leading-none;
+        @apply text-[10px] leading-none;
     }
 
     .table-pagination .buttons {
@@ -714,40 +715,51 @@
     }
 
     .table-pagination .details .count {
-        @apply text-xs text-accent leading-3 dark:text-dark;
+        @apply text-[10px] text-accent leading-none dark:text-dark;
+        @apply ml-1.5 mt-0.5;
     }
 
     .table-pagination .details .previous {
         @apply relative z-0 inline-flex rtl:flex-row-reverse;
     }
 
-    .table-pagination .details .previous .arrow-prev,
-    .table-pagination .details .previous .arrow-next,
-    .table-pagination .details .previous .page,
-    .table-pagination .details .previous .element {
-        @apply relative inline-flex items-center justify-center;
-        @apply p-1 -ml-px;
-        @apply w-8 h-7;
-        @apply text-xs font-medium text-accent leading-3;
-        @apply bg-accent/10;
-        @apply border border-accent/50;
-        @apply cursor-pointer;
+    .table-pagination .details box-icon {
+        @apply w-4 h-4;
     }
 
-    .table-pagination .details .previous .arrow-prev-link,
-    .table-pagination .details .previous .arrow-next-link,
-    .table-pagination .details .previous .page-link {
+    .table-pagination .buttons .arrow-prev,
+    .table-pagination .buttons .arrow-next,
+    .table-pagination .details .arrow-prev,
+    .table-pagination .details .arrow-next,
+    .table-pagination .details .page,
+    .table-pagination .details .element {
         @apply relative inline-flex items-center justify-center;
-        @apply p-1 -ml-px;
-        @apply w-8 h-7;
-        @apply text-xs font-medium text-accent leading-3;
+        @apply p-0 -ml-px;
+        @apply w-6 h-6;
+        @apply text-[10px] font-medium text-accent/30 leading-none;
         @apply bg-accent/10;
-        @apply border border-accent/50;
+        @apply border border-accent/50 fill-accent/30;
+    }
+
+
+    .table-pagination .buttons .arrow-prev-link,
+    .table-pagination .buttons .arrow-next-link,
+    .table-pagination .details .arrow-prev-link,
+    .table-pagination .details .arrow-next-link,
+    .table-pagination .details .page-link,
+    .table-pagination .details .element {
+        @apply relative inline-flex items-center justify-center;
+        @apply p-0 -ml-px;
+        @apply w-6 h-6;
+        @apply text-[10px] font-medium text-accent leading-none;
+        @apply bg-accent/10;
+        @apply border border-accent/50 fill-accent;
         @apply cursor-pointer;
-        @apply hover:text-accent/50 hover:bg-accent/50 hover:text-light;
+        @apply hover:text-accent/50 hover:bg-accent/50 hover:text-light hover:fill-light;
         @apply focus:z-10 focus:outline-none focus:ring-0 ring-accent/50 focus:border-accent/50;
         @apply active:bg-accent/10 active:text-accent;
         @apply transition ease-in-out duration-150;
+        @apply hover:cursor-pointer;
     }
 
     .table-pagination .details .previous .page {
@@ -756,7 +768,7 @@
     }
 
     #table.provider-list {
-        @apply w-1/2 space-x-6;
+        @apply w-full;
     }
 
     #table.user-list tr th:first-of-type,
@@ -778,16 +790,11 @@
         @apply border-dark/10;
     }
 
-    #table.inactive tr {
-        @apply hover:odd:bg-light/50 hover:even:bg-light/50 border-light/10;
-    }
-
     #table.inactive tr th {
-        @apply bg-dark/25 border-dark/10;
-        @apply hover:bg-dark/25 hover:border-dark/10;
+        @apply bg-dark/25 border-dark/10 text-dark/40;
     }
 
     #table.inactive tr td {
-        @apply bg-dark/10 border-dark/5 text-dark/50;
-    }
+        @apply bg-dark/10 border-dark/10 text-dark/50;
+    }/**/
 }
